@@ -1,18 +1,69 @@
 package objets; /***********************************************************************
- * Module:  Composant.java
- * Author:  user
- * Purpose: Defines the Class Composant
+ * Module:  objets.Composant.java
+ * Author:  admin
+ * Purpose: Defines the Class objets.Composant
  ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid 6aa75703-16b5-43d8-be94-7c4f9cb8d97d */
+/** @pdOid 3fe5ebfb-9410-4c66-a182-336ae567dfdf */
 public class Composant {
-   /** @pdOid 954fa934-412f-49de-8060-0932d6c0760e */
+   /** @pdOid 8cf34e34-498b-42a9-962b-273ef436681a */
    private int id;
-   /** @pdOid 5793d416-4aa6-4a3a-b21b-87313b856b9e */
+   /** @pdOid 26b94fdb-833d-4ea4-9b44-6f079bf737d5 */
    private String reference;
-   /** @pdOid ae2fdab1-7446-4644-bef2-1d29cd242cc3 */
+   /** @pdOid 9123d616-2086-4cb6-b345-4eb144ec0899 */
    private String constructeur;
+   /** @pdOid 6f27cd51-2014-4b04-b910-a6c562a77208 */
+   private String libelle;
+   /** @pdOid aa778ffc-2127-47f3-ae51-83f20dc41e47 */
+   private String details;
 
+   public int getId() {
+      return id;
+   }
+
+   public Composant(int id, String reference, String constructeur, String libelle, String details) {
+      this.id = id;
+      this.reference = reference;
+      this.constructeur = constructeur;
+      this.libelle = libelle;
+      this.details = details;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getReference() {
+      return reference;
+   }
+
+   public void setReference(String reference) {
+      this.reference = reference;
+   }
+
+   public String getConstructeur() {
+      return constructeur;
+   }
+
+   public void setConstructeur(String constructeur) {
+      this.constructeur = constructeur;
+   }
+
+   public String getLibelle() {
+      return libelle;
+   }
+
+   public void setLibelle(String libelle) {
+      this.libelle = libelle;
+   }
+
+   public String getDetails() {
+      return details;
+   }
+
+   public void setDetails(String details) {
+      this.details = details;
+   }
 }

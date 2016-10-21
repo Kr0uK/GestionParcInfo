@@ -1,23 +1,50 @@
 package objets; /***********************************************************************
  * Module:  objets.Formation.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Class objets.Formation
  ***********************************************************************/
 
-/** @pdOid ad6d1ed0-43fa-42ca-8b6d-03050f0cd43c */
+import java.util.Collection;
+
+/** @pdOid a11ac2b3-8aa8-4334-b2fb-57a3e07da044 */
 public class Formation {
-   /** @pdOid 08e4ac03-8d44-45b6-952c-b1d31cf3410c */
+   /** @pdOid 608bc400-8a70-41ed-9427-fd0240a722a5 */
    private int id;
-   /** @pdOid 60e6fbd4-43da-42f5-95dd-5850c5f9e924 */
+   /** @pdOid 618e4ce0-e2a0-4e1e-9453-1310fd9e6547 */
    private String libelle;
    
    /** @pdRoleInfo migr=no name=objets.Individu assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Individu> individu;
    /** @pdRoleInfo migr=no name=objets.Machine assc=association7 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Machine> machine;
-   
-   
+
+
+   public int getId() {
+      return id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getLibelle() {
+      return libelle;
+   }
+
+   public void setLibelle(String libelle) {
+      this.libelle = libelle;
+   }
+
+   public Formation(int id, String libelle, Collection<Individu> individu, Collection<Machine> machine) {
+
+      this.id = id;
+      this.libelle = libelle;
+      this.individu = individu;
+      this.machine = machine;
+   }
+
    /** @pdGenerated default getter */
+
    public java.util.Collection<Individu> getIndividu() {
       if (individu == null)
          individu = new java.util.HashSet<Individu>();

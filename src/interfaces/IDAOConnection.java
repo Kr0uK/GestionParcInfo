@@ -1,40 +1,25 @@
 package interfaces; /***********************************************************************
  * Module:  interfaces.IDAOConnection.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Interface interfaces.IDAOConnection
  ***********************************************************************/
 
 import java.util.*;
 
-/**
- * @pdOid d2535553-59f5-4fd3-af72-54396ef3db17
- */
+/** @pdOid 136f5f04-8780-41f4-b070-b03cc1b2d666 */
 public interface IDAOConnection {
-    /**
-     * @pdOid b42d2de3-a34f-4cd3-9a95-362034b75b53
-     */
-    final String adresse = null;
-    /**
-     * @pdOid db339d21-5592-42ee-99dc-83246ec7b8e7
-     */
-    final String user = null;
-    /**
-     * @pdOid 4ef73ffb-1b78-4eac-9309-d99f89c61e58
-     */
-    final String mdp = null;
-    /**
-     * @pdOid c2e391aa-f1ee-4fb3-88d3-5d7cc4567894
-     */
-    final String nomBase = null;
-
-    /**
-     * @pdOid de697fca-c491-456c-9a67-b69654578dd3
-     */
-    void connection();
-
-    /**
-     * @pdOid 41ac0fb3-920f-4f53-b401-899e33a8515c
-     */
-    void close();
+   /** @pdOid c84b92b1-5eaa-41f7-9542-8a341deb264d */
+  final String adresse = null;
+   final /** @pdOid 405a4f49-e89e-4a5a-b1c8-f8f1c6d58ff5 */
+   String user = null;
+   /** @pdOid 6424f6b2-b966-4741-8c0a-392b9e43aa52 */
+   final String mdp = null;
+   /** @pdOid 0a98bf29-2754-4e39-a8e3-5e2ab3be43ed */
+   final String nomBase = null;
+   
+   /** @pdOid 84c2a628-4166-4aa8-8ed5-f9e580b4a0c9 */
+   void connection();
+   /** @pdOid 5c40d471-57d3-40f6-aca2-5bd752f3483e */
+   void close();
 
 }

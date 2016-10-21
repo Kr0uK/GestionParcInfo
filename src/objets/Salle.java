@@ -1,14 +1,16 @@
 package objets; /***********************************************************************
  * Module:  objets.Salle.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Class objets.Salle
  ***********************************************************************/
 
-/** @pdOid 51723ffa-3b17-43eb-94a2-3f319a222ac4 */
+import java.util.Collection;
+
+/** @pdOid 03b2ad1a-8313-4e6a-a79b-deca79847e9d */
 public class Salle {
-   /** @pdOid e6609ba5-f716-4b96-af81-cb06f491997c */
+   /** @pdOid ac352b46-d631-470d-aebd-4a93f4aad5c0 */
    private int id;
-   /** @pdOid 0d212d2a-1137-462f-b6de-1a26eb37b8c0 */
+   /** @pdOid f06e9882-c6c0-46ec-851b-f6cd37b14c81 */
    private String numero;
    
    /** @pdRoleInfo migr=no name=objets.Machine assc=association2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
@@ -21,7 +23,29 @@ public class Salle {
          machine = new java.util.HashSet<Machine>();
       return machine;
    }
-   
+
+   public int getId() {
+      return id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getNumero() {
+      return numero;
+   }
+
+   public void setNumero(String numero) {
+      this.numero = numero;
+   }
+
+   public Salle(int id, String numero, Collection<Machine> machine) {
+      this.id = id;
+      this.numero = numero;
+      this.machine = machine;
+   }
+
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorMachine() {
       if (machine == null)

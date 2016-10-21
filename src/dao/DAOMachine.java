@@ -1,27 +1,25 @@
 package dao; /***********************************************************************
  * Module:  dao.DAOMachine.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Class dao.DAOMachine
  ***********************************************************************/
 
 import interfaces.IDAOHandler;
 
-import java.util.*;
-
-/** @pdOid 47f83607-34da-40fa-ba12-3b04fa93849d */
+/** @pdOid 8850f737-a717-44d5-85cf-4dc95e6871c5 */
 public class DAOMachine implements IDAOHandler {
     @Override
-    public boolean ajouter(Object object) {
+    public boolean ajouter() {
         return false;
     }
 
     @Override
-    public boolean supprimer(Object object) {
+    public boolean supprimer() {
         return false;
     }
 
     @Override
-    public boolean modifier(Object object) {
+    public boolean modifier() {
         return false;
     }
 

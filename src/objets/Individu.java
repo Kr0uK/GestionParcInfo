@@ -1,30 +1,100 @@
 package objets; /***********************************************************************
  * Module:  objets.Individu.java
- * Author:  user
+ * Author:  admin
  * Purpose: Defines the Class objets.Individu
  ***********************************************************************/
 
-/** @pdOid 5dad19fa-ccd3-458d-bd96-9ea272e4b935 */
+import java.util.Collection;
+
+/** @pdOid 9585b040-1e2b-453c-a37b-b3cc3269b384 */
 public class Individu {
-   /** @pdOid 055bf3e2-7916-4ff0-abd6-f522ffb269a6 */
+   /** @pdOid 5b90c2a2-4f18-49b5-a4e0-cf806a95629c */
    private int id;
-   /** @pdOid 5c280b5b-f03a-4756-bdc1-5c4666a9a2b6 */
+   /** @pdOid 320a6a5c-3f84-4ec7-b8b5-7c1c3b93a541 */
    private String nom;
-   /** @pdOid 8596dfb3-1ea9-4c34-8a48-0de79bd91222 */
+   /** @pdOid abf34c96-fb8d-45b3-9bfb-4f9383150661 */
    private String prenom;
-   /** @pdOid 2b7f7911-07bb-495f-91dc-60e2e82bdb7d */
+   /** @pdOid 323d93fe-a70c-4a9e-9a8a-e3749de595d8 */
    private String adresse;
-   /** @pdOid 4bbf86ae-b011-41df-acb2-ea684a05d33a */
+   /** @pdOid db506b49-22de-4c43-b9d5-91fc82b83cd2 */
    private String cp;
-   /** @pdOid c6ef28e9-9857-49ef-976e-fd06a18e4cd3 */
+   /** @pdOid 381f05ea-7e44-47fc-8188-f939571a04a5 */
    private String ville;
-   /** @pdOid a875c3f0-713c-48d2-a238-482e11e41f7a */
+   /** @pdOid 13684b8c-0dba-4a83-965a-75f9b4b05a86 */
    private String telephone;
    
    /** @pdRoleInfo migr=no name=objets.Role assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Role> role;
-   
-   
+
+   public int getId() {
+      return id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getNom() {
+      return nom;
+   }
+
+   public void setNom(String nom) {
+      this.nom = nom;
+   }
+
+   public String getPrenom() {
+      return prenom;
+   }
+
+   public void setPrenom(String prenom) {
+      this.prenom = prenom;
+   }
+
+   public String getAdresse() {
+      return adresse;
+   }
+
+   public void setAdresse(String adresse) {
+      this.adresse = adresse;
+   }
+
+   public String getCp() {
+      return cp;
+   }
+
+   public void setCp(String cp) {
+      this.cp = cp;
+   }
+
+   public String getVille() {
+      return ville;
+   }
+
+   public void setVille(String ville) {
+      this.ville = ville;
+   }
+
+   public String getTelephone() {
+      return telephone;
+   }
+
+   public void setTelephone(String telephone) {
+      this.telephone = telephone;
+   }
+
+   public Individu(int id, String nom, String prenom, String adresse, String cp, String ville, String telephone, Collection<Role> role, Collection<Machine> machine) {
+      this.id = id;
+      this.nom = nom;
+      this.prenom = prenom;
+      this.adresse = adresse;
+
+      this.cp = cp;
+      this.ville = ville;
+      this.telephone = telephone;
+      this.role = role;
+      this.machine = machine;
+   }
+
    /** @pdGenerated default getter */
    public java.util.Collection<Role> getRole() {
       if (role == null)
@@ -74,7 +144,7 @@ public class Individu {
          role.clear();
    }
    
-   /** @pdRoleInfo migr=no name=objets.Machine assc=association9 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=objets.Machine assc=association11 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Machine> machine;
    
    

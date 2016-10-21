@@ -1,14 +1,12 @@
 package dao; /***********************************************************************
  * Module:  dao.DAOConnection.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Class dao.DAOConnection
  ***********************************************************************/
 
 import interfaces.IDAOConnection;
 
-import java.util.*;
-
-/** @pdOid 2fc496fa-6261-4335-a5f1-873c9522c769 */
+/** @pdOid e1f67259-29a6-4ad8-8312-7ca59c54385f */
 public class DAOConnection implements IDAOConnection {
     @Override
     public void connection() {

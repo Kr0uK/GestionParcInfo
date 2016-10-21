@@ -1,27 +1,25 @@
 package dao; /***********************************************************************
  * Module:  dao.DAOSalle.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Class dao.DAOSalle
  ***********************************************************************/
 
 import interfaces.IDAOHandler;
 
-import java.util.*;
-
-/** @pdOid 4e77e4a7-1125-40b4-9cc6-e888c0550311 */
+/** @pdOid 48949297-0e27-4222-ae4f-02358912267c */
 public class DAOSalle implements IDAOHandler {
     @Override
-    public boolean ajouter(Object object) {
+    public boolean ajouter() {
         return false;
     }
 
     @Override
-    public boolean supprimer(Object object) {
+    public boolean supprimer() {
         return false;
     }
 
     @Override
-    public boolean modifier(Object object) {
+    public boolean modifier() {
         return false;
     }
 

@@ -1,16 +1,37 @@
 package objets; /***********************************************************************
- * Module:  Role.java
- * Author:  user
- * Purpose: Defines the Class Role
+ * Module:  objets.Role.java
+ * Author:  admin
+ * Purpose: Defines the Class objets.Role
  ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid 4302ea31-c9b1-45b7-b18e-cccc08058388 */
+/** @pdOid 9deeaa81-12e9-4c1e-9088-4cc779421093 */
 public class Role {
-   /** @pdOid d0ac5f57-8967-4c99-8c73-2279abe67040 */
+   /** @pdOid 39976556-5d14-4041-a2ef-ff726af7aa40 */
    private int id;
-   /** @pdOid 8fc34118-8b14-4f64-8ec4-b8ff5096ea26 */
+   /** @pdOid 97bd4c44-aebc-4147-a4de-79909b9d4212 */
    private String libelle;
 
+   public Role(int id, String libelle) {
+      this.id = id;
+      this.libelle = libelle;
+   }
+
+   public int getId() {
+
+      return id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getLibelle() {
+      return libelle;
+   }
+
+   public void setLibelle(String libelle) {
+      this.libelle = libelle;
+   }
 }

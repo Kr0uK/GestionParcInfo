@@ -1,32 +1,110 @@
 package objets; /***********************************************************************
  * Module:  objets.Machine.java
- * Author:  user
+ * Author:  admin
  * Purpose: Defines the Class objets.Machine
  ***********************************************************************/
 
-/** @pdOid 8c3f0b24-7e72-4510-8a9d-e480d54a25dd */
+import java.util.Collection;
+import java.util.Date;
+
+/** @pdOid 29bd1de5-32fa-4bc5-ac7b-a0c0ed192d80 */
 public class Machine {
-   /** @pdOid 62d0ebe0-85b5-4e7f-97ac-b97f361b03e2 */
+   /** @pdOid 40555939-bba9-4d75-86cd-8625d6989102 */
    private int id;
-   /** @pdOid 72a8f44d-c7f6-4d15-9b1f-9cd59f1773cc */
+   /** @pdOid e9a0a83d-ce7a-4cb7-9837-15df7bb2623b */
    private String idAfpa;
-   /** @pdOid 266ba813-8ab4-4d7a-aa58-85747f2c02a8 */
+   /** @pdOid 607c1715-5c6c-47fa-886c-54b17c15e2db */
    private String idUnique;
-   /** @pdOid 425965ed-3724-46f5-bb57-2f569c51bf57 */
+   /** @pdOid 772da07e-d119-4af1-9b90-e46745521d0d */
    private java.util.Date dateAchat;
-   /** @pdOid c13659fa-1826-4290-91fe-41ec94389b74 */
+   /** @pdOid c5643e4c-f69a-4635-b4ae-6b6f9f45273f */
    private int dureeGarantie;
-   /** @pdOid 81819717-4061-438c-92f7-f161d64b135a */
+   /** @pdOid 1b8c0308-3320-4538-ae91-5b266e4b9908 */
    private String adresseIP;
-   /** @pdOid 5c6ce2e3-4c5a-4fad-ad67-063df176a606 */
+   /** @pdOid 10b0d178-156a-4d1d-a648-d9afeb4c708f */
    private String type;
-   /** @pdOid f68bb64b-20ee-40a1-bd00-8a0ce4a96a75 */
+   /** @pdOid a35e2a86-06f9-463a-a73e-fa41f0456e9a */
    private String systemeExploitation;
    
    /** @pdRoleInfo migr=no name=objets.Composant assc=association1 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Composant> composant;
-   
-   
+
+   public Machine(int id, String idAfpa, String idUnique, Date dateAchat, int dureeGarantie, String adresseIP, String type, String systemeExploitation, Collection<Composant> composant) {
+      this.id = id;
+      this.idAfpa = idAfpa;
+      this.idUnique = idUnique;
+      this.dateAchat = dateAchat;
+      this.dureeGarantie = dureeGarantie;
+      this.adresseIP = adresseIP;
+      this.type = type;
+      this.systemeExploitation = systemeExploitation;
+      this.composant = composant;
+   }
+
+   public int getId() {
+      return id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getIdAfpa() {
+      return idAfpa;
+   }
+
+   public void setIdAfpa(String idAfpa) {
+      this.idAfpa = idAfpa;
+   }
+
+   public String getIdUnique() {
+      return idUnique;
+   }
+
+   public void setIdUnique(String idUnique) {
+      this.idUnique = idUnique;
+   }
+
+   public Date getDateAchat() {
+      return dateAchat;
+   }
+
+   public void setDateAchat(Date dateAchat) {
+      this.dateAchat = dateAchat;
+   }
+
+   public int getDureeGarantie() {
+      return dureeGarantie;
+   }
+
+   public void setDureeGarantie(int dureeGarantie) {
+      this.dureeGarantie = dureeGarantie;
+   }
+
+   public String getAdresseIP() {
+      return adresseIP;
+   }
+
+   public void setAdresseIP(String adresseIP) {
+      this.adresseIP = adresseIP;
+   }
+
+   public String getType() {
+      return type;
+   }
+
+   public void setType(String type) {
+      this.type = type;
+   }
+
+   public String getSystemeExploitation() {
+      return systemeExploitation;
+   }
+
+   public void setSystemeExploitation(String systemeExploitation) {
+      this.systemeExploitation = systemeExploitation;
+   }
+
    /** @pdGenerated default getter */
    public java.util.Collection<Composant> getComposant() {
       if (composant == null)
@@ -76,57 +154,10 @@ public class Machine {
          composant.clear();
    }
    
-   /** @pdRoleInfo migr=no name=objets.Logiciel assc=association5 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
-   public java.util.Collection<Logiciel> logiciel;
-   
-   
-   /** @pdGenerated default getter */
-   public java.util.Collection<Logiciel> getLogiciel() {
-      if (logiciel == null)
-         logiciel = new java.util.HashSet<Logiciel>();
-      return logiciel;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorLogiciel() {
-      if (logiciel == null)
-         logiciel = new java.util.HashSet<Logiciel>();
-      return logiciel.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newLogiciel */
-   public void setLogiciel(java.util.Collection<Logiciel> newLogiciel) {
-      removeAllLogiciel();
-      for (java.util.Iterator iter = newLogiciel.iterator(); iter.hasNext();)
-         addLogiciel((Logiciel)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newLogiciel */
-   public void addLogiciel(Logiciel newLogiciel) {
-      if (newLogiciel == null)
-         return;
-      if (this.logiciel == null)
-         this.logiciel = new java.util.HashSet<Logiciel>();
-      if (!this.logiciel.contains(newLogiciel))
-         this.logiciel.add(newLogiciel);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldLogiciel */
-   public void removeLogiciel(Logiciel oldLogiciel) {
-      if (oldLogiciel == null)
-         return;
-      if (this.logiciel != null)
-         if (this.logiciel.contains(oldLogiciel))
-            this.logiciel.remove(oldLogiciel);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllLogiciel() {
-      if (logiciel != null)
-         logiciel.clear();
+   /** @pdOid c048567c-b284-4a21-af5d-7e4f990bf0fe */
+   public java.lang.Boolean estsousgarantie() {
+      // TODO: implement
+      return null;
    }
 
 }

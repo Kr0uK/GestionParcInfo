@@ -1,27 +1,71 @@
 package objets; /***********************************************************************
  * Module:  objets.Batiment.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Class objets.Batiment
  ***********************************************************************/
 
-/** @pdOid c46bfeb7-fc57-49d2-9afc-45d56a229bf1 */
+import java.util.Collection;
+
+/** @pdOid 083aa14e-4ca0-4718-b4c2-fd6b665c604a */
 public class Batiment {
-   /** @pdOid 3c081896-1ad3-4d05-aa37-dd87462b8dbd */
+   /** @pdOid 0b8ebf22-7006-47b4-a3d8-afa3a1fe07da */
    private int id;
-   /** @pdOid 94a9dd3f-03b4-4fd1-8bbf-441295ecc04b */
+   /** @pdOid 4cd9614e-d702-444c-9e07-7dcf8af70d31 */
    private String adresse;
-   /** @pdOid cebeba03-20cb-48a1-b945-ee0dcc4d19ef */
+   /** @pdOid a254f799-4887-41f9-982d-8d65b743ff40 */
    private String cp;
-   /** @pdOid 03dacc98-42f0-4ee5-9f88-8e2d40a0a65a */
+   /** @pdOid 8bfb47c5-ef02-4b63-a50e-3ea84c9d02d9 */
    private String ville;
    
    /** @pdRoleInfo migr=no name=objets.Salle assc=association3 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Salle> salle;
-   
-   
+
+
+   public Batiment(int id, String adresse, String cp, String ville, Collection<Salle> salle) {
+      this.id = id;
+      this.adresse = adresse;
+      this.cp = cp;
+      this.ville = ville;
+      this.salle = salle;
+   }
+
+   public int getId() {
+      return id;
+
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getAdresse() {
+      return adresse;
+   }
+
+   public void setAdresse(String adresse) {
+      this.adresse = adresse;
+   }
+
+   public String getCp() {
+      return cp;
+   }
+
+   public void setCp(String cp) {
+      this.cp = cp;
+   }
+
+   public String getVille() {
+      return ville;
+   }
+
+   public void setVille(String ville) {
+      this.ville = ville;
+   }
+
    /** @pdGenerated default getter */
    public java.util.Collection<Salle> getSalle() {
       if (salle == null)
+
          salle = new java.util.HashSet<Salle>();
       return salle;
    }

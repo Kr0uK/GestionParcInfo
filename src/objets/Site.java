@@ -1,25 +1,50 @@
 package objets; /***********************************************************************
  * Module:  objets.Site.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Class objets.Site
  ***********************************************************************/
 
-/** @pdOid 0988e168-5376-49cd-addf-1530c2ec656e */
+import java.util.Collection;
+
+/** @pdOid 97ae18c2-e8e8-4d7c-8da4-3322509a9136 */
 public class Site {
-   /** @pdOid c8d89341-08f8-450d-a988-2a8c4e575f6c */
+   /** @pdOid ff7364da-5b1a-4604-90b8-6e8839be31e9 */
    private int id;
-   /** @pdOid bf155789-5a6f-4556-b3a3-54f44379be45 */
+   /** @pdOid c224e4a6-80ac-455c-b557-7dfa608d3f37 */
    private String libelle;
    
    /** @pdRoleInfo migr=no name=objets.Batiment assc=association4 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Batiment> batiment;
-   
-   
+
+
+   public Site(int id, String libelle, Collection<Batiment> batiment) {
+      this.id = id;
+      this.libelle = libelle;
+      this.batiment = batiment;
+   }
+
+   public int getId() {
+      return id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getLibelle() {
+      return libelle;
+   }
+
+   public void setLibelle(String libelle) {
+      this.libelle = libelle;
+   }
+
    /** @pdGenerated default getter */
    public java.util.Collection<Batiment> getBatiment() {
       if (batiment == null)
          batiment = new java.util.HashSet<Batiment>();
       return batiment;
+
    }
    
    /** @pdGenerated default iterator getter */

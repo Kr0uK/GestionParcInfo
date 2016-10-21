@@ -1,20 +1,20 @@
 package interfaces; /***********************************************************************
  * Module:  interfaces.IDAOHandler.java
- * Author:  user
+ * Author:  RENAUD
  * Purpose: Defines the Interface interfaces.IDAOHandler
  ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid 3c1d3a7d-5bc0-4ba1-a07e-f22b397ee611 */
+/** @pdOid 4249cbc3-8036-4cc9-95f5-90eab62c23bb */
 public interface IDAOHandler {
-   /** @pdOid ad6aa5f2-998e-47b2-9bc6-cda8d7248c6f */
-   boolean ajouter(Object object);
-   /** @pdOid 87b1d763-321e-4637-96d9-0d0128b19eea */
-   boolean supprimer(Object object);
-   /** @pdOid 125e5050-18a7-44c1-913d-9e8c9c7eda9d */
-   boolean modifier(Object object);
-   /** @pdOid a9e7227d-f849-413a-8a34-f6147147df3b */
-   Object lecture();
+   /** @pdOid 41e6d4e8-a210-442b-a58a-38f904f76a4a */
+   boolean ajouter();
+   /** @pdOid bf9b1bd6-306d-4c1d-aedd-378ddc37d59f */
+   boolean supprimer();
+   /** @pdOid 4de53753-3fcc-431d-a646-ea419c243124 */
+   boolean modifier();
+   /** @pdOid 11955bc4-da27-46fb-90af-45e7fc487c5e */
+   java.lang.Object lecture();
 
 }
