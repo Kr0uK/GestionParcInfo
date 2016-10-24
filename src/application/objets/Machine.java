@@ -1,7 +1,7 @@
-package objets; /***********************************************************************
- * Module:  objets.Machine.java
- * Author:  admin
- * Purpose: Defines the Class objets.Machine
+package application.objets; /***********************************************************************
+ * Module:  application.objets.Machine.java
+ * Author:  RENAUD
+ * Purpose: Defines the Class application.objets.Machine
  ***********************************************************************/
 
 import java.util.Collection;
@@ -23,23 +23,10 @@ public class Machine {
    private String adresseIP;
    /** @pdOid 10b0d178-156a-4d1d-a648-d9afeb4c708f */
    private String type;
-   /** @pdOid a35e2a86-06f9-463a-a73e-fa41f0456e9a */
-   private String systemeExploitation;
    
-   /** @pdRoleInfo migr=no name=objets.Composant assc=association1 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Composant assc=association1 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Composant> composant;
 
-   public Machine(int id, String idAfpa, String idUnique, Date dateAchat, int dureeGarantie, String adresseIP, String type, String systemeExploitation, Collection<Composant> composant) {
-      this.id = id;
-      this.idAfpa = idAfpa;
-      this.idUnique = idUnique;
-      this.dateAchat = dateAchat;
-      this.dureeGarantie = dureeGarantie;
-      this.adresseIP = adresseIP;
-      this.type = type;
-      this.systemeExploitation = systemeExploitation;
-      this.composant = composant;
-   }
 
    public int getId() {
       return id;
@@ -97,12 +84,16 @@ public class Machine {
       this.type = type;
    }
 
-   public String getSystemeExploitation() {
-      return systemeExploitation;
-   }
+   public Machine(int id, String idAfpa, String idUnique, Date dateAchat, int dureeGarantie, String adresseIP, String type, Collection<Composant> composant) {
 
-   public void setSystemeExploitation(String systemeExploitation) {
-      this.systemeExploitation = systemeExploitation;
+      this.id = id;
+      this.idAfpa = idAfpa;
+      this.idUnique = idUnique;
+      this.dateAchat = dateAchat;
+      this.dureeGarantie = dureeGarantie;
+      this.adresseIP = adresseIP;
+      this.type = type;
+      this.composant = composant;
    }
 
    /** @pdGenerated default getter */
@@ -110,6 +101,7 @@ public class Machine {
       if (composant == null)
          composant = new java.util.HashSet<Composant>();
       return composant;
+
    }
    
    /** @pdGenerated default iterator getter */
@@ -155,9 +147,15 @@ public class Machine {
    }
    
    /** @pdOid c048567c-b284-4a21-af5d-7e4f990bf0fe */
-   public java.lang.Boolean estsousgarantie() {
+   public boolean estSousGarantie() {
       // TODO: implement
-      return null;
+      return false;
+   }
+   
+   /** @pdOid ed539b07-b49c-4883-8b95-773e5a3a6699 */
+   public boolean ipDispo() {
+      // TODO: implement
+      return false;
    }
 
 }

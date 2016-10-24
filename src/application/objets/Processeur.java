@@ -1,7 +1,7 @@
-package objets; /***********************************************************************
- * Module:  objets.Processeur.java
+package application.objets; /***********************************************************************
+ * Module:  application.objets.Processeur.java
  * Author:  admin
- * Purpose: Defines the Class objets.Processeur
+ * Purpose: Defines the Class application.objets.Processeur
  ***********************************************************************/
 
 /** @pdOid 5d6517c4-b800-475d-9f03-aa10f3fba23c */
@@ -27,7 +27,9 @@ public class Processeur extends Composant {
       this.frequence = frequence;
    }
 
-   public Processeur(int id, String reference, String constructeur, String libelle, String details) {
-      super(id, reference, constructeur, libelle, details);
+   public Processeur(int coeurs, int frequence) {
+
+      this.coeurs = coeurs;
+      this.frequence = frequence;
    }
 }

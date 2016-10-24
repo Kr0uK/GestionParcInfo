@@ -1,7 +1,7 @@
-package objets; /***********************************************************************
- * Module:  objets.Individu.java
- * Author:  admin
- * Purpose: Defines the Class objets.Individu
+package application.objets; /***********************************************************************
+ * Module:  application.objets.Individu.java
+ * Author:  RENAUD
+ * Purpose: Defines the Class application.objets.Individu
  ***********************************************************************/
 
 import java.util.Collection;
@@ -23,8 +23,9 @@ public class Individu {
    /** @pdOid 13684b8c-0dba-4a83-965a-75f9b4b05a86 */
    private String telephone;
    
-   /** @pdRoleInfo migr=no name=objets.Role assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Role assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Role> role;
+
 
    public int getId() {
       return id;
@@ -87,15 +88,16 @@ public class Individu {
       this.nom = nom;
       this.prenom = prenom;
       this.adresse = adresse;
-
       this.cp = cp;
       this.ville = ville;
       this.telephone = telephone;
       this.role = role;
+
       this.machine = machine;
    }
 
    /** @pdGenerated default getter */
+
    public java.util.Collection<Role> getRole() {
       if (role == null)
          role = new java.util.HashSet<Role>();
@@ -125,7 +127,10 @@ public class Individu {
       if (this.role == null)
          this.role = new java.util.HashSet<Role>();
       if (!this.role.contains(newRole))
+      {
          this.role.add(newRole);
+         newRole.addIndividu(this);      
+      }
    }
    
    /** @pdGenerated default remove
@@ -135,16 +140,27 @@ public class Individu {
          return;
       if (this.role != null)
          if (this.role.contains(oldRole))
+         {
             this.role.remove(oldRole);
+            oldRole.removeIndividu(this);
+         }
    }
    
    /** @pdGenerated default removeAll */
    public void removeAllRole() {
       if (role != null)
-         role.clear();
+      {
+         Role oldRole;
+         for (java.util.Iterator iter = getIteratorRole(); iter.hasNext();)
+         {
+            oldRole = (Role)iter.next();
+            iter.remove();
+            oldRole.removeIndividu(this);
+         }
+      }
    }
    
-   /** @pdRoleInfo migr=no name=objets.Machine assc=association11 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Machine assc=association11 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Machine> machine;
    
    

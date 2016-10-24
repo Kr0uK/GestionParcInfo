@@ -1,13 +1,15 @@
-package dao; /***********************************************************************
- * Module:  dao.DAOBatiment.java
+package application.DAO; /***********************************************************************
+ * Module:  application.DAO.DAOSalle.java
  * Author:  RENAUD
- * Purpose: Defines the Class dao.DAOBatiment
+ * Purpose: Defines the Class application.DAO.DAOSalle
  ***********************************************************************/
 
-import interfaces.IDAOHandler;
+import application.interfaces.IDAOHandler;
 
-/** @pdOid 5deba7bc-222a-4be2-aa5d-20689d4fd332 */
-public class DAOBatiment implements IDAOHandler {
+import java.util.*;
+
+/** @pdOid 48949297-0e27-4222-ae4f-02358912267c */
+public class DAOSalle implements IDAOHandler {
     @Override
     public boolean ajouter() {
         return false;

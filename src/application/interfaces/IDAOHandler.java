@@ -1,7 +1,7 @@
-package interfaces; /***********************************************************************
- * Module:  interfaces.IDAOHandler.java
+package application.interfaces; /***********************************************************************
+ * Module:  application.interfaces.IDAOHandler.java
  * Author:  RENAUD
- * Purpose: Defines the Interface interfaces.IDAOHandler
+ * Purpose: Defines the Interface application.interfaces.IDAOHandler
  ***********************************************************************/
 
 import java.util.*;

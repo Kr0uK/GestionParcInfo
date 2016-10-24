@@ -1,10 +1,8 @@
-package objets; /***********************************************************************
- * Module:  objets.Batiment.java
+package application.objets; /***********************************************************************
+ * Module:  application.objets.Batiment.java
  * Author:  RENAUD
- * Purpose: Defines the Class objets.Batiment
+ * Purpose: Defines the Class application.objets.Batiment
  ***********************************************************************/
-
-import java.util.Collection;
 
 /** @pdOid 083aa14e-4ca0-4718-b4c2-fd6b665c604a */
 public class Batiment {
@@ -17,55 +15,13 @@ public class Batiment {
    /** @pdOid 8bfb47c5-ef02-4b63-a50e-3ea84c9d02d9 */
    private String ville;
    
-   /** @pdRoleInfo migr=no name=objets.Salle assc=association3 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Salle assc=association3 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Salle> salle;
-
-
-   public Batiment(int id, String adresse, String cp, String ville, Collection<Salle> salle) {
-      this.id = id;
-      this.adresse = adresse;
-      this.cp = cp;
-      this.ville = ville;
-      this.salle = salle;
-   }
-
-   public int getId() {
-      return id;
-
-   }
-
-   public void setId(int id) {
-      this.id = id;
-   }
-
-   public String getAdresse() {
-      return adresse;
-   }
-
-   public void setAdresse(String adresse) {
-      this.adresse = adresse;
-   }
-
-   public String getCp() {
-      return cp;
-   }
-
-   public void setCp(String cp) {
-      this.cp = cp;
-   }
-
-   public String getVille() {
-      return ville;
-   }
-
-   public void setVille(String ville) {
-      this.ville = ville;
-   }
-
+   
+   
    /** @pdGenerated default getter */
    public java.util.Collection<Salle> getSalle() {
       if (salle == null)
-
          salle = new java.util.HashSet<Salle>();
       return salle;
    }

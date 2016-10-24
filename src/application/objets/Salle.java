@@ -1,7 +1,7 @@
-package objets; /***********************************************************************
- * Module:  objets.Salle.java
+package application.objets; /***********************************************************************
+ * Module:  application.objets.Salle.java
  * Author:  RENAUD
- * Purpose: Defines the Class objets.Salle
+ * Purpose: Defines the Class application.objets.Salle
  ***********************************************************************/
 
 import java.util.Collection;
@@ -13,16 +13,9 @@ public class Salle {
    /** @pdOid f06e9882-c6c0-46ec-851b-f6cd37b14c81 */
    private String numero;
    
-   /** @pdRoleInfo migr=no name=objets.Machine assc=association2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Machine assc=association2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Machine> machine;
-   
-   
-   /** @pdGenerated default getter */
-   public java.util.Collection<Machine> getMachine() {
-      if (machine == null)
-         machine = new java.util.HashSet<Machine>();
-      return machine;
-   }
+
 
    public int getId() {
       return id;
@@ -41,11 +34,20 @@ public class Salle {
    }
 
    public Salle(int id, String numero, Collection<Machine> machine) {
+
       this.id = id;
       this.numero = numero;
       this.machine = machine;
    }
 
+   /** @pdGenerated default getter */
+
+   public java.util.Collection<Machine> getMachine() {
+      if (machine == null)
+         machine = new java.util.HashSet<Machine>();
+      return machine;
+   }
+   
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorMachine() {
       if (machine == null)

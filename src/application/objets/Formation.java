@@ -1,8 +1,11 @@
-package objets; /***********************************************************************
- * Module:  objets.Formation.java
+package application.objets; /***********************************************************************
+ * Module:  application.objets.Formation.java
  * Author:  RENAUD
- * Purpose: Defines the Class objets.Formation
+ * Purpose: Defines the Class application.objets.Formation
  ***********************************************************************/
+
+import application.objets.Individu;
+import application.objets.Machine;
 
 import java.util.Collection;
 
@@ -13,11 +16,18 @@ public class Formation {
    /** @pdOid 618e4ce0-e2a0-4e1e-9453-1310fd9e6547 */
    private String libelle;
    
-   /** @pdRoleInfo migr=no name=objets.Individu assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Individu assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Individu> individu;
-   /** @pdRoleInfo migr=no name=objets.Machine assc=association7 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Machine assc=association7 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Machine> machine;
-
+   
+   
+   /** @pdGenerated default getter */
+   public java.util.Collection<Individu> getIndividu() {
+      if (individu == null)
+         individu = new java.util.HashSet<Individu>();
+      return individu;
+   }
 
    public int getId() {
       return id;
@@ -36,23 +46,16 @@ public class Formation {
    }
 
    public Formation(int id, String libelle, Collection<Individu> individu, Collection<Machine> machine) {
-
       this.id = id;
       this.libelle = libelle;
       this.individu = individu;
+
       this.machine = machine;
    }
 
-   /** @pdGenerated default getter */
-
-   public java.util.Collection<Individu> getIndividu() {
-      if (individu == null)
-         individu = new java.util.HashSet<Individu>();
-      return individu;
-   }
-   
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorIndividu() {
+
       if (individu == null)
          individu = new java.util.HashSet<Individu>();
       return individu.iterator();
