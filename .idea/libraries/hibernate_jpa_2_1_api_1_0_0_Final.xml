@@ -1,0 +1,84 @@
+<component name="libraryTable">
+  <library name="hibernate-jpa-2.1-api-1.0.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/optional/hibernate-jpa-2.1-api-1.0.0.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/optional/joda-time-2.7.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/optional/jsoup-1.8.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/optional/log4j-1.2.17.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/optional/paranamer-2.8.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/required/classmate-1.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/required/javax.el-2.2.4.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/required/javax.el-api-2.2.4.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/required/jboss-logging-3.3.0.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hibernate-validator-5.3.0.Final-dist/hibernate-validator-5.3.0.Final/dist/lib/required/validation-api-1.1.0.Final.jar!/" />
+      <root url="file://$PROJECT_DIR$/.." />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../AddressApp-Part-1/src" />
+      <root url="file://$PROJECT_DIR$/../AndroidTP1/app/build/generated/source/buildConfig/androidTest/debug" />
+      <root url="file://$PROJECT_DIR$/../AndroidTP1/app/build/generated/source/buildConfig/debug" />
+      <root url="file://$PROJECT_DIR$/../AndroidTP1/app/build/generated/source/r/debug" />
+      <root url="file://$PROJECT_DIR$/../AndroidTP1/app/src/androidTest/java" />
+      <root url="file://$PROJECT_DIR$/../AndroidTP1/app/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../AndroidTP1/app/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../AndroidTP1cs/AndroidTP1/AndroidTP1/obj/Debug/android" />
+      <root url="file://$PROJECT_DIR$/../App1Android/App1Android/obj/Debug/android" />
+      <root url="file://$PROJECT_DIR$/../AppResAvion/app/build/generated/source/buildConfig/androidTest/debug" />
+      <root url="file://$PROJECT_DIR$/../AppResAvion/app/build/generated/source/buildConfig/debug" />
+      <root url="file://$PROJECT_DIR$/../AppResAvion/app/build/generated/source/r/debug" />
+      <root url="file://$PROJECT_DIR$/../AppResAvion/app/src/androidTest/java" />
+      <root url="file://$PROJECT_DIR$/../AppResAvion/app/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../AppResAvion/app/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../CoursJava/src" />
+      <root url="file://$PROJECT_DIR$/../Enim/src" />
+      <root url="file://$PROJECT_DIR$/../Exos/src" />
+      <root url="file://$PROJECT_DIR$/../GPI/src" />
+      <root url="file://$PROJECT_DIR$/src" />
+      <root url="file://$PROJECT_DIR$/../GetManga-master/src" />
+      <root url="file://$PROJECT_DIR$/../LapinModDixDeux/build/tmp/makeStart/extracted" />
+      <root url="file://$PROJECT_DIR$/../LapinModDixDeux/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../LapinMod/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../MasterMind/src" />
+      <root url="file://$PROJECT_DIR$/../PlusMoins/app/build/generated/source/buildConfig/androidTest/debug" />
+      <root url="file://$PROJECT_DIR$/../PlusMoins/app/build/generated/source/buildConfig/debug" />
+      <root url="file://$PROJECT_DIR$/../PlusMoins/app/build/generated/source/r/debug" />
+      <root url="file://$PROJECT_DIR$/../PlusMoins/app/src/androidTest/java" />
+      <root url="file://$PROJECT_DIR$/../PlusMoins/app/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../PlusMoins/app/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../TPGLPI/src" />
+      <root url="file://$PROJECT_DIR$/../Test2/app/build/generated/source/buildConfig/androidTest/debug" />
+      <root url="file://$PROJECT_DIR$/../Test2/app/build/generated/source/buildConfig/debug" />
+      <root url="file://$PROJECT_DIR$/../Test2/app/build/generated/source/r/debug" />
+      <root url="file://$PROJECT_DIR$/../Test2/app/src/androidTest/java" />
+      <root url="file://$PROJECT_DIR$/../Test2/app/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../Test2/app/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../TestApp/app/build/generated/source/buildConfig/androidTest/debug" />
+      <root url="file://$PROJECT_DIR$/../TestApp/app/build/generated/source/buildConfig/debug" />
+      <root url="file://$PROJECT_DIR$/../TestApp/app/build/generated/source/r/debug" />
+      <root url="file://$PROJECT_DIR$/../TestApp/app/src/androidTest/java" />
+      <root url="file://$PROJECT_DIR$/../TestApp/app/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../TestApp/app/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../TestThreads/app/build/generated/source/buildConfig/androidTest/debug" />
+      <root url="file://$PROJECT_DIR$/../TestThreads/app/build/generated/source/buildConfig/debug" />
+      <root url="file://$PROJECT_DIR$/../TestThreads/app/build/generated/source/r/debug" />
+      <root url="file://$PROJECT_DIR$/../TestThreads/app/src/androidTest/java" />
+      <root url="file://$PROJECT_DIR$/../TestThreads/app/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../TestThreads/app/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../Testerino2/app/build/generated/source/buildConfig/androidTest/debug" />
+      <root url="file://$PROJECT_DIR$/../Testerino2/app/build/generated/source/buildConfig/debug" />
+      <root url="file://$PROJECT_DIR$/../Testerino2/app/build/generated/source/r/debug" />
+      <root url="file://$PROJECT_DIR$/../Testerino2/app/src/androidTest/java" />
+      <root url="file://$PROJECT_DIR$/../Testerino2/app/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../Testerino2/app/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../Wireworld/src" />
+      <root url="file://$PROJECT_DIR$/../dames/src" />
+      <root url="file://$PROJECT_DIR$/../exo/src" />
+      <root url="file://$PROJECT_DIR$/../kr0uk/src" />
+      <root url="file://$PROJECT_DIR$/../test/src" />
+      <root url="file://$PROJECT_DIR$/../testerino/src" />
+      <root url="file://$PROJECT_DIR$/../tri/src" />
+      <root url="file://$PROJECT_DIR$/../untitled/src" />
+    </SOURCES>
+  </library>
+</component>
