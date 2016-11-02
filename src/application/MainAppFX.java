@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.Date;
 */
 
-import application.DAO.objets.*;
+import application.objets.*;
 
 /**
  *

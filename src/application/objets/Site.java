@@ -40,15 +40,16 @@ public class Site {
       this.batiment = batiment;
    }
 
-   /** @pdGenerated default getter */
-
+   /**
+     * @return  *  @pdGenerated default getter */
    public java.util.Collection<Batiment> getBatiment() {
       if (batiment == null)
          batiment = new java.util.HashSet<Batiment>();
       return batiment;
    }
    
-   /** @pdGenerated default iterator getter */
+   /**
+     * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorBatiment() {
       if (batiment == null)
          batiment = new java.util.HashSet<Batiment>();

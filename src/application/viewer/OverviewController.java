@@ -6,7 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import application.MainAppFX;
-import application.DAO.objets.Machine;
+import application.objets.Machine;
 
 public class OverviewController {
 		
@@ -32,14 +32,14 @@ public class OverviewController {
 		@FXML
 		private Label label7;
 
-		// Référence à l'application principale
+		// Rï¿½fï¿½rence ï¿½ l'application principale
 		private MainAppFX mainAppFX;
 
 
 
 	/**
 	 * Initialises la classe controller. 
-	 * Cette methode est automaticament appelée après le chargement du fichier FXML.
+	 * Cette methode est automaticament appelï¿½e aprï¿½s le chargement du fichier FXML.
 	 */
 	 @FXML
 	 private void initialize() {
@@ -49,13 +49,13 @@ public class OverviewController {
 	}
 	 
 	 /**
-	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
+	 * Appellï¿½ par l'application principale pour avoir une rï¿½fï¿½rence de retour sur elle-mï¿½me
 	 *
 	 * @param mainApp
 	 */
 	 public void setMainApp(MainAppFX mainAppFX) {
 		 this.mainAppFX = mainAppFX;
-		 // Ajout de la liste des données observables dans la tableFX
+		 // Ajout de la liste des donnï¿½es observables dans la tableFX
 		 tableFX.setItems(mainAppFX.getData());
 	 }
 	

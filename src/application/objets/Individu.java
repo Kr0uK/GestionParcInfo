@@ -96,15 +96,16 @@ public class Individu {
       this.machine = machine;
    }
 
-   /** @pdGenerated default getter */
-
+   /**
+     * @return  *  @pdGenerated default getter */
    public java.util.Collection<Role> getRole() {
       if (role == null)
          role = new java.util.HashSet<Role>();
       return role;
    }
    
-   /** @pdGenerated default iterator getter */
+   /**
+     * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorRole() {
       if (role == null)
          role = new java.util.HashSet<Role>();
@@ -164,14 +165,16 @@ public class Individu {
    public java.util.Collection<Machine> machine;
    
    
-   /** @pdGenerated default getter */
+   /**
+     * @return  *  @pdGenerated default getter */
    public java.util.Collection<Machine> getMachine() {
       if (machine == null)
          machine = new java.util.HashSet<Machine>();
       return machine;
    }
    
-   /** @pdGenerated default iterator getter */
+   /**
+     * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorMachine() {
       if (machine == null)
          machine = new java.util.HashSet<Machine>();

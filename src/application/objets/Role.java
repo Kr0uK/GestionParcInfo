@@ -40,7 +40,8 @@ public class Role {
       this.individu = individu;
    }
 
-   /** @pdGenerated default getter */
+   /**
+     * @return  *  @pdGenerated default getter */
    public java.util.Collection<Individu> getIndividu() {
       if (individu == null)
          individu = new java.util.HashSet<Individu>();
@@ -48,7 +49,8 @@ public class Role {
       return individu;
    }
    
-   /** @pdGenerated default iterator getter */
+   /**
+     * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorIndividu() {
       if (individu == null)
          individu = new java.util.HashSet<Individu>();

@@ -19,14 +19,16 @@ public class Batiment {
    public java.util.Collection<Salle> salle;
    
    
-   /** @pdGenerated default getter */
+   /**
+     * @return  *  @pdGenerated default getter */
    public java.util.Collection<Salle> getSalle() {
       if (salle == null)
          salle = new java.util.HashSet<Salle>();
       return salle;
    }
    
-   /** @pdGenerated default iterator getter */
+   /**
+     * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorSalle() {
       if (salle == null)
          salle = new java.util.HashSet<Salle>();

@@ -4,8 +4,6 @@ package application.objets; /***************************************************
  * Purpose: Defines the Class application.objets.Composant
  ***********************************************************************/
 
-import java.util.*;
-
 /** @pdOid 3fe5ebfb-9410-4c66-a182-336ae567dfdf */
 public class Composant {
    /** @pdOid 8cf34e34-498b-42a9-962b-273ef436681a */

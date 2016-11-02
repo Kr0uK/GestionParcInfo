@@ -40,15 +40,16 @@ public class Salle {
       this.machine = machine;
    }
 
-   /** @pdGenerated default getter */
-
+   /**
+     * @return  *  @pdGenerated default getter */
    public java.util.Collection<Machine> getMachine() {
       if (machine == null)
          machine = new java.util.HashSet<Machine>();
       return machine;
    }
    
-   /** @pdGenerated default iterator getter */
+   /**
+     * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorMachine() {
       if (machine == null)
          machine = new java.util.HashSet<Machine>();

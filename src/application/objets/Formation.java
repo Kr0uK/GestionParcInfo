@@ -4,8 +4,6 @@ package application.objets; /***************************************************
  * Purpose: Defines the Class application.objets.Formation
  ***********************************************************************/
 
-import application.objets.Individu;
-import application.objets.Machine;
 
 import java.util.Collection;
 
@@ -22,7 +20,8 @@ public class Formation {
    private java.util.Collection<Machine> machine;
    
    
-   /** @pdGenerated default getter */
+   /**
+     * @return  *  @pdGenerated default getter */
    public java.util.Collection<Individu> getIndividu() {
       if (individu == null)
          individu = new java.util.HashSet<Individu>();
@@ -53,7 +52,8 @@ public class Formation {
       this.machine = machine;
    }
 
-   /** @pdGenerated default iterator getter */
+   /**
+     * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorIndividu() {
 
       if (individu == null)
@@ -95,14 +95,16 @@ public class Formation {
       if (individu != null)
          individu.clear();
    }
-   /** @pdGenerated default getter */
+   /**
+     * @return  *  @pdGenerated default getter */
    public java.util.Collection<Machine> getMachine() {
       if (machine == null)
          machine = new java.util.HashSet<Machine>();
       return machine;
    }
    
-   /** @pdGenerated default iterator getter */
+   /**
+     * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorMachine() {
       if (machine == null)
          machine = new java.util.HashSet<Machine>();
