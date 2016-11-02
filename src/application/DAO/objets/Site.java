@@ -1,19 +1,24 @@
-package application.objets; /***********************************************************************
- * Module:  application.objets.Site.java
+package application.DAO.objets; /***********************************************************************
+ * Module:  application.DAO.objets.Site.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.objets.Site
+ * Purpose: Defines the Class application.DAO.objets.Site
  ***********************************************************************/
 
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 /** @pdOid 97ae18c2-e8e8-4d7c-8da4-3322509a9136 */
 public class Site {
+
+   @NotNull
    /** @pdOid ff7364da-5b1a-4604-90b8-6e8839be31e9 */
    private int id;
+
+   @NotNull
    /** @pdOid c224e4a6-80ac-455c-b557-7dfa608d3f37 */
    private String libelle;
    
-   /** @pdRoleInfo migr=no name=application.objets.Batiment assc=association4 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.DAO.objets.Batiment assc=association4 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Batiment> batiment;
 
 
@@ -31,6 +36,9 @@ public class Site {
 
    public void setLibelle(String libelle) {
       this.libelle = libelle;
+   }
+
+   public Site() {
    }
 
    public Site(int id, String libelle, Collection<Batiment> batiment) {

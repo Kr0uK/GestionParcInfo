@@ -6,7 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import application.MainAppFX;
-import application.objets.Machine;
+import application.DAO.objets.Machine;
 
 public class OverviewController {
 		

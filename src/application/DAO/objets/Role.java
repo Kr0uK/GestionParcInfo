@@ -1,19 +1,24 @@
-package application.objets; /***********************************************************************
- * Module:  application.objets.Role.java
+package application.DAO.objets; /***********************************************************************
+ * Module:  application.DAO.objets.Role.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.objets.Role
+ * Purpose: Defines the Class application.DAO.objets.Role
  ***********************************************************************/
 
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 /** @pdOid 9deeaa81-12e9-4c1e-9088-4cc779421093 */
 public class Role {
+
+   @NotNull
    /** @pdOid 39976556-5d14-4041-a2ef-ff726af7aa40 */
    private int id;
+
+   @NotNull
    /** @pdOid 97bd4c44-aebc-4147-a4de-79909b9d4212 */
    private String libelle;
    
-   /** @pdRoleInfo migr=no name=application.objets.Individu assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* side=A */
+   /** @pdRoleInfo migr=no name=application.DAO.objets.Individu assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* side=A */
    public java.util.Collection<Individu> individu;
 
 
@@ -31,6 +36,9 @@ public class Role {
 
    public void setLibelle(String libelle) {
       this.libelle = libelle;
+   }
+
+   public Role() {
    }
 
    public Role(int id, String libelle, Collection<Individu> individu) {

@@ -7,9 +7,9 @@ import javafx.fxml.FXML;
  */
 public class MainPageController {
 
-    private Main mainApp;
+    private MainAppFX mainApp;
 
-    public void setMainApp(Main mainApp) {
+    public void setMainApp(MainAppFX mainApp) {
         this.mainApp = mainApp;
     }
 

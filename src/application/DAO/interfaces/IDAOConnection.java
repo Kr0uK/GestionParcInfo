@@ -1,7 +1,7 @@
-package application.interfaces; /***********************************************************************
- * Module:  application.interfaces.IDAOConnection.java
+package application.DAO.interfaces; /***********************************************************************
+ * Module:  application.DAO.interfaces.IDAOConnection.java
  * Author:  RENAUD
- * Purpose: Defines the Interface application.interfaces.IDAOConnection
+ * Purpose: Defines the Interface application.DAO.interfaces.IDAOConnection
  ***********************************************************************/
 
 

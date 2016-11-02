@@ -1,21 +1,76 @@
-package application.objets; /***********************************************************************
- * Module:  application.objets.Batiment.java
+package application.DAO.objets; /***********************************************************************
+ * Module:  application.DAO.objets.Batiment.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.objets.Batiment
+ * Purpose: Defines the Class application.DAO.objets.Batiment
  ***********************************************************************/
+
+import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 /** @pdOid 083aa14e-4ca0-4718-b4c2-fd6b665c604a */
 public class Batiment {
+
+   @NotNull
    /** @pdOid 0b8ebf22-7006-47b4-a3d8-afa3a1fe07da */
    private int id;
+
+   @NotNull
    /** @pdOid 4cd9614e-d702-444c-9e07-7dcf8af70d31 */
    private String adresse;
+
+   @NotNull
    /** @pdOid a254f799-4887-41f9-982d-8d65b743ff40 */
    private String cp;
+
+   @NotNull
    /** @pdOid 8bfb47c5-ef02-4b63-a50e-3ea84c9d02d9 */
    private String ville;
-   
-   /** @pdRoleInfo migr=no name=application.objets.Salle assc=association3 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+
+   public int getId() {
+      return id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getAdresse() {
+      return adresse;
+   }
+
+   public void setAdresse(String adresse) {
+      this.adresse = adresse;
+   }
+
+   public String getCp() {
+      return cp;
+   }
+
+   public void setCp(String cp) {
+      this.cp = cp;
+   }
+
+   public String getVille() {
+      return ville;
+   }
+
+   public void setVille(String ville) {
+      this.ville = ville;
+   }
+
+   public Batiment() {
+   }
+
+   public Batiment(int id, String adresse, String cp, String ville, Collection<Salle> salle) {
+      this.id = id;
+      this.adresse = adresse;
+      this.cp = cp;
+      this.ville = ville;
+      this.salle = salle;
+   }
+
+   @NotNull
+   /** @pdRoleInfo migr=no name=application.DAO.objets.Salle assc=association3 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Salle> salle;
    
    

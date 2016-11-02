@@ -1,6 +1,6 @@
 package application.wrappers;
 
-import application.objets.Machine;
+import application.DAO.objets.Machine;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

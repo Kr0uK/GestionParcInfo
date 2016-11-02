@@ -1,22 +1,28 @@
-package application.objets; /***********************************************************************
- * Module:  application.objets.Formation.java
+package application.DAO.objets; /***********************************************************************
+ * Module:  application.DAO.objets.Formation.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.objets.Formation
+ * Purpose: Defines the Class application.DAO.objets.Formation
  ***********************************************************************/
 
 
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 /** @pdOid a11ac2b3-8aa8-4334-b2fb-57a3e07da044 */
 public class Formation {
+
+   @NotNull
    /** @pdOid 608bc400-8a70-41ed-9427-fd0240a722a5 */
    private int id;
+
+   @NotNull
+
    /** @pdOid 618e4ce0-e2a0-4e1e-9453-1310fd9e6547 */
    private String libelle;
    
-   /** @pdRoleInfo migr=no name=application.objets.Individu assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.DAO.objets.Individu assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Individu> individu;
-   /** @pdRoleInfo migr=no name=application.objets.Machine assc=association7 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.DAO.objets.Machine assc=association7 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Machine> machine;
    
    
@@ -42,6 +48,9 @@ public class Formation {
 
    public void setLibelle(String libelle) {
       this.libelle = libelle;
+   }
+
+   public Formation() {
    }
 
    public Formation(int id, String libelle, Collection<Individu> individu, Collection<Machine> machine) {

@@ -1,7 +1,7 @@
-package application.interfaces; /***********************************************************************
- * Module:  application.interfaces.IDAOHandler.java
+package application.DAO.interfaces; /***********************************************************************
+ * Module:  application.DAO.interfaces.IDAOHandler.java
  * Author:  RENAUD
- * Purpose: Defines the Interface application.interfaces.IDAOHandler
+ * Purpose: Defines the Interface application.DAO.interfaces.IDAOHandler
  ***********************************************************************/
 
 /** @pdOid 4249cbc3-8036-4cc9-95f5-90eab62c23bb */

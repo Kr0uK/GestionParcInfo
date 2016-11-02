@@ -1,19 +1,24 @@
-package application.objets; /***********************************************************************
- * Module:  application.objets.Salle.java
+package application.DAO.objets; /***********************************************************************
+ * Module:  application.DAO.objets.Salle.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.objets.Salle
+ * Purpose: Defines the Class application.DAO.objets.Salle
  ***********************************************************************/
 
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 /** @pdOid 03b2ad1a-8313-4e6a-a79b-deca79847e9d */
 public class Salle {
+
+   @NotNull
    /** @pdOid ac352b46-d631-470d-aebd-4a93f4aad5c0 */
    private int id;
+
+   @NotNull
    /** @pdOid f06e9882-c6c0-46ec-851b-f6cd37b14c81 */
    private String numero;
    
-   /** @pdRoleInfo migr=no name=application.objets.Machine assc=association2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.DAO.objets.Machine assc=association2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Machine> machine;
 
 
@@ -31,6 +36,9 @@ public class Salle {
 
    public void setNumero(String numero) {
       this.numero = numero;
+   }
+
+   public Salle() {
    }
 
    public Salle(int id, String numero, Collection<Machine> machine) {
