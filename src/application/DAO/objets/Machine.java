@@ -5,6 +5,7 @@ package application.DAO.objets;
  * Purpose: Defines the Class application.DAO.objets.Machine
  ***********************************************************************/
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -27,38 +28,40 @@ import javafx.beans.property.StringProperty;
  * @pdOid 29bd1de5-32fa-4bc5-ac7b-a0c0ed192d80
  */
 
-public class Machine {
+public class Machine implements Serializable {
 
     @NotNull
     @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
     /** @pdOid 40555939-bba9-4d75-86cd-8625d6989102 */
-    private final StringProperty id;
+    private  StringProperty id = null;
+
+
     @NotNull
     @Pattern(regexp = "^[0-9]{3}\\s[0-9]{4}$", message = "Veuillez entrer un identifiant valide")
     /** @pdOid e9a0a83d-ce7a-4cb7-9837-15df7bb2623b */
-    private final StringProperty idAfpa;
+    private  StringProperty idAfpa = null;
     @NotNull
     @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un identifiant valide")
     /** @pdOid 607c1715-5c6c-47fa-886c-54b17c15e2db */
-    private final StringProperty idUnique;
+    private  StringProperty idUnique = null;
 
     @NotNull
     /** @pdOid 772da07e-d119-4af1-9b90-e46745521d0d */
-    private final ObjectProperty<java.util.Date> dateAchat;
+    private  StringProperty dateAchat = null;
 
     /**
      * @pdOid c5643e4c-f69a-4635-b4ae-6b6f9f45273f
      */
     @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer une durée valide")
-    private final StringProperty dureeGarantie;
+    private  StringProperty dureeGarantie = null;
     @NotNull
     @Pattern(regexp = "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", message = "Veuillez entrer une adresse IP valide")
     /** @pdOid 1b8c0308-3320-4538-ae91-5b266e4b9908 */
-    private final StringProperty adresseIP;
+    private  StringProperty adresseIP = null;
     @NotNull
     @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer une valeur valide")
     /** @pdOid 10b0d178-156a-4d1d-a648-d9afeb4c708f */
-    private final StringProperty type;
+    private  StringProperty type = null;
 
     /**
      * @pdRoleInfo migr=no name=application.DAO.objets.Composant assc=association1 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation
@@ -115,15 +118,15 @@ public class Machine {
     }
 
     // DATEACHAT
-    public Date getDateAchat() {
+    public String getDateAchat() {
         return dateAchat.get();
     }
 
-    public void setDateAchat(Date dateAchat) {
+    public void setDateAchat(String dateAchat) {
         this.dateAchat.set(dateAchat);
     }
 
-    public ObjectProperty<java.util.Date> dateAchatProperty() {
+    public StringProperty dateAchatProperty() {
         return dateAchat;
     }
 
@@ -186,21 +189,33 @@ public class Machine {
    }
    */
 
+    public Machine(StringProperty id, StringProperty idAfpa, StringProperty idUnique, StringProperty dateAchat, StringProperty dureeGarantie, StringProperty adresseIP, StringProperty type) {
+        this.id = id;
+        this.idAfpa = idAfpa;
+        this.idUnique = idUnique;
+        this.dateAchat = dateAchat;
+        this.dureeGarantie = dureeGarantie;
+        this.adresseIP = adresseIP;
+        this.type = type;
+    }
 
-    public Machine(String id, String idAfpa, String idUnique, Date dateAchat, String dureeGarantie, String adresseIP, String type, Collection<Composant> composant) {
+
+    public Machine(String id, String idAfpa, String idUnique, String dateAchat, String dureeGarantie, String adresseIP, String type) {
         // CONVERSION EN TYPE D'OBJETS OBSERVABLES
         this.id = new SimpleStringProperty(id);
         this.idAfpa = new SimpleStringProperty(idAfpa);
         this.idUnique = new SimpleStringProperty(idUnique);
-        this.dateAchat = new SimpleObjectProperty<java.util.Date>(dateAchat);
+        this.dateAchat = new SimpleStringProperty(dateAchat);
         this.dureeGarantie = new SimpleStringProperty(dureeGarantie);
         this.adresseIP = new SimpleStringProperty(adresseIP);
         this.type = new SimpleStringProperty(type);
-        this.composant = composant;
     }
 
 
-    // COMPOSANTS
+
+    public Machine() {
+    }
+// COMPOSANTS
 
     /**
      * @return *  @pdGenerated default getter

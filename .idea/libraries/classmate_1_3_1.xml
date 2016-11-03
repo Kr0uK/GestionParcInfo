@@ -14,8 +14,12 @@
       <root url="jar://$USER_HOME$/Documents/hibernate jars/log4j-1.2.17.jar!/" />
       <root url="jar://$USER_HOME$/Documents/hibernate jars/paranamer-2.8.jar!/" />
       <root url="jar://$USER_HOME$/Documents/hibernate jars/validation-api-1.1.0.Final.jar!/" />
+      <root url="file://$USER_HOME$/Documents/hibernate jars" />
+      <root url="jar://$USER_HOME$/Documents/hibernate jars/mysql-connector-java-3.1.14-bin.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/hibernate jars/commons-dbutils-1.6.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Documents/hibernate jars" recursive="false" />
   </library>
 </component>

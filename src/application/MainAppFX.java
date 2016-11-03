@@ -1,13 +1,22 @@
 package application;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
+import com.sun.media.jfxmedia.logging.Logger;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -23,65 +32,61 @@ import java.util.Date;
 */
 
 import application.DAO.objets.*;
+import application.viewer.OverviewController;
+import org.apache.commons.dbutils.DbUtils;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 /**
- *
  * @author Neo_Ryu
  */
 public class MainAppFX extends Application {
+
     private Stage primaryStage;
     private BorderPane rootLayout;
+
     private ObservableList<Machine> Data = FXCollections.observableArrayList();
+
 
     public MainAppFX() {
 
-        // ICI : R�cup�ration des donn�es SGBD pour affichage
-        // A titre d'exemple : Ajout de plusieurs lignes test
-        Data.add(new Machine("1","localhost", "localhost", null, "0", "128.0.0.1", "root", null));
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                // TODO : JEU D'ESSAI / R�cup�ration des donn�es SGBD pour affichage
+                Data.add(new Machine("1", "666 1337", "localhost", "01/01/2000", "0", "192.168.1.1", "root"));
+                Data.add(new Machine("2", "404 4444", "lacolhost", "21/12/2012", "0", "10.0.0.1", "root"));
+                //Data.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
+            }
+        });
 
     }
 
     public ObservableList<Machine> getData() {
+        System.out.println("getData");
         return Data;
     }
 
 
     @Override
     public void start(Stage primaryStage) {
-        /*
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-
-        Scene scene = new Scene(root, 300, 250);
-
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        */
 
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Parc informatique");
+        this.primaryStage.setTitle("Hola, Holy Hole !");
         initRootLayout();
         showOverview();
-
     }
 
     public void initRootLayout() {
         try {
             // Chargement du layout racine à partir du fichier fxml
-            FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewer/RootLayout.fxml"));
             loader.setLocation(MainAppFX.class.getResource("viewer/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
+            loader.setController(this);
+
 
             // Montrer la scene contenant le layout racine
             Scene scene = new Scene(rootLayout);
@@ -94,13 +99,21 @@ public class MainAppFX extends Application {
 
     public void showOverview() {
         try {
+
+            System.out.println("showOverview");
+
             // charger l'apercu (overview) fxml
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainAppFX.class.getResource("viewer/FXMLOverview.fxml"));
-            AnchorPane personOverview = (AnchorPane) loader.load();
+            loader.setLocation(MainAppFX.class.getResource("viewer/Overview.fxml"));
+            AnchorPane overview = (AnchorPane) loader.load();
 
             // charger cet apercu au centre du layout racine
-            rootLayout.setCenter(personOverview);
+            rootLayout.setCenter(overview);
+
+            // ajouts des donn�es dans le tableview controller
+            OverviewController controller = loader.getController();
+            controller.setMainAppFX(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -114,7 +127,54 @@ public class MainAppFX extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        try {
+            trucDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         launch(args);
     }
 
+    public static void trucDB() throws SQLException {
+        Connection conn = null;
+
+        final String url = "jdbc:mysql://192.168.1.3:3306/holaholyhole";
+
+        final String driver = "com.mysql.jdbc.Driver";
+
+        final String usr = "holaholyhole";
+
+        final String pwd = "holaholyhole";
+
+        try {
+
+            DbUtils.loadDriver(driver);
+
+            conn = DriverManager.getConnection(url, usr, pwd);
+
+
+            ResultSetHandler<List<Machine>> resultSetHandler = new BeanListHandler<>(Machine.class);
+
+
+            QueryRunner run = new QueryRunner();
+
+            System.out.println("la");
+            List<Machine> machines = run.query(conn, "SELECT * FROM MACHINE", resultSetHandler);
+            System.out.println("avant le for");
+            for (Machine machine : machines) {
+                System.out.println("mergyez");
+                System.out.println(machine.getAdresseIP() + " | " + machine.getIdAfpa());
+
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            conn.close();
+
+        }
+    }
 }

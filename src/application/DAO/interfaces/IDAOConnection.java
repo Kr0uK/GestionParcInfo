@@ -9,7 +9,7 @@ package application.DAO.interfaces; /*******************************************
 /** @pdOid 136f5f04-8780-41f4-b070-b03cc1b2d666 */
 public interface IDAOConnection {
    /** @pdOid c84b92b1-5eaa-41f7-9542-8a341deb264d */
-   final String ADRESSE = null;
+   final String ADRESSE= null;
    /** @pdOid 405a4f49-e89e-4a5a-b1c8-f8f1c6d58ff5 */
    final String USER = null;
    /** @pdOid 6424f6b2-b966-4741-8c0a-392b9e43aa52 */
