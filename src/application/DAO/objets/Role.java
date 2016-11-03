@@ -5,16 +5,19 @@ package application.DAO.objets; /***********************************************
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 
 /** @pdOid 9deeaa81-12e9-4c1e-9088-4cc779421093 */
 public class Role {
 
    @NotNull
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
    /** @pdOid 39976556-5d14-4041-a2ef-ff726af7aa40 */
    private int id;
 
    @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un rôle valide")
    /** @pdOid 97bd4c44-aebc-4147-a4de-79909b9d4212 */
    private String libelle;
    

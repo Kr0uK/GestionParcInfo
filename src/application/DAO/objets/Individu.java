@@ -5,19 +5,24 @@ package application.DAO.objets; /***********************************************
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 
 /** @pdOid 9585b040-1e2b-453c-a37b-b3cc3269b384 */
 public class Individu {
+
    @NotNull
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
    /** @pdOid 5b90c2a2-4f18-49b5-a4e0-cf806a95629c */
    private int id;
 
    @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un nom valide")
    /** @pdOid 320a6a5c-3f84-4ec7-b8b5-7c1c3b93a541 */
    private String nom;
 
    @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un prénom valide")
    /** @pdOid abf34c96-fb8d-45b3-9bfb-4f9383150661 */
    private String prenom;
 
@@ -26,14 +31,17 @@ public class Individu {
    private String adresse;
 
    @NotNull
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
    /** @pdOid db506b49-22de-4c43-b9d5-91fc82b83cd2 */
    private String cp;
 
    @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer une ville valide")
    /** @pdOid 381f05ea-7e44-47fc-8188-f939571a04a5 */
    private String ville;
 
    @NotNull
+   @Pattern(regexp = "^(0)[1-5679]([0-9]{2}){4}$", message = "Veuillez entrer un numéro de téléphone valide")
    /** @pdOid 13684b8c-0dba-4a83-965a-75f9b4b05a86 */
    private String telephone;
 

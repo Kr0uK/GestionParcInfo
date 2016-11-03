@@ -5,11 +5,13 @@ package application.DAO.objets; /***********************************************
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /** @pdOid 3fe5ebfb-9410-4c66-a182-336ae567dfdf */
 public class Composant {
 
    @NotNull
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
    /** @pdOid 8cf34e34-498b-42a9-962b-273ef436681a */
    private int id;
 
@@ -18,6 +20,7 @@ public class Composant {
    private String reference;
 
    @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un constructeur valide")
    /** @pdOid 9123d616-2086-4cb6-b345-4eb144ec0899 */
    private String constructeur;
 

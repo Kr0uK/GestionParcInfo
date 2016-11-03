@@ -5,16 +5,19 @@ package application.DAO.objets; /***********************************************
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 
 /** @pdOid 03b2ad1a-8313-4e6a-a79b-deca79847e9d */
 public class Salle {
 
    @NotNull
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
    /** @pdOid ac352b46-d631-470d-aebd-4a93f4aad5c0 */
    private int id;
 
    @NotNull
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un numéro valide")
    /** @pdOid f06e9882-c6c0-46ec-851b-f6cd37b14c81 */
    private String numero;
    

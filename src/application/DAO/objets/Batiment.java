@@ -5,12 +5,14 @@ package application.DAO.objets; /***********************************************
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 
 /** @pdOid 083aa14e-4ca0-4718-b4c2-fd6b665c604a */
 public class Batiment {
 
    @NotNull
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
    /** @pdOid 0b8ebf22-7006-47b4-a3d8-afa3a1fe07da */
    private int id;
 
@@ -19,10 +21,12 @@ public class Batiment {
    private String adresse;
 
    @NotNull
+   @Pattern(regexp = "[0-9]{5}", message = "Veuillez entrer un code postal valide")
    /** @pdOid a254f799-4887-41f9-982d-8d65b743ff40 */
    private String cp;
 
    @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer une ville valide")
    /** @pdOid 8bfb47c5-ef02-4b63-a50e-3ea84c9d02d9 */
    private String ville;
 
