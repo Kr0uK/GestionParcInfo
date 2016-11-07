@@ -25,9 +25,9 @@ public class Connexion {
 
             QueryRunner run = new QueryRunner();
 
-            /*ResultSetHandler<Machine> resMachine = new BeanHandler<>(Machine.class);
+            ResultSetHandler<Machine> resMachine = new BeanHandler<>(Machine.class);
             Machine machine = run.query(conn, "SELECT * FROM MACHINE WHERE id = ?", resMachine, 3);
-            System.out.println(machine.getAdresseIP());*/
+            System.out.println(machine.getAdresseIP());
 
             ResultSetHandler<List<Machine>> resultSetHandler = new BeanListHandler<>(Machine.class);
             List<Machine> stagiaires = run.query(conn, "SELECT * FROM MACHINE", resultSetHandler);

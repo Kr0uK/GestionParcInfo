@@ -6,6 +6,7 @@ package application.DAO.interfaces; /*******************************************
 
 // Connexion.connectionDB("jdbc:mysql://192.168.1.3:3306/holaholyhole", "com.mysql.jdbc.Driver", "holaholyhole", "holaholyhole");
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /** @pdOid 136f5f04-8780-41f4-b070-b03cc1b2d666 */
@@ -23,7 +24,7 @@ public interface IDAOConnection {
    
    /**
      * @return  *  @pdOid 84c2a628-4166-4aa8-8ed5-f9e580b4a0c9 */
-   boolean connexion();
+   Connection connexion();
    /**
      * @return  *  @pdOid 5c40d471-57d3-40f6-aca2-5bd752f3483e */
    boolean fermer() throws SQLException;

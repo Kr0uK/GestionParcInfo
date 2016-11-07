@@ -5,9 +5,19 @@ package application.DAO; /******************************************************
  ***********************************************************************/
 
 import application.DAO.interfaces.IDAOHandler;
+import application.DAO.objets.Machine;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /** @pdOid 8850f737-a717-44d5-85cf-4dc95e6871c5 */
-class DAOMachine implements IDAOHandler {
+public class DAOMachine implements IDAOHandler {
+
+
     @Override
     public boolean ajouter() {
         return false;
@@ -24,7 +34,21 @@ class DAOMachine implements IDAOHandler {
     }
 
     @Override
-    public Object lecture() {
-        return null;
+    public <T>T lecture() {
+
+
+        QueryRunner run = new QueryRunner();
+
+        ResultSetHandler<T> resMachine = new BeanHandler<T>((Class<T>) Machine.class);
+        T machine = null;
+        try {
+
+            machine = run.query(conn.connexion(),"SELECT * FROM MACHINE WHERE id = ?", resMachine, 3);
+            return machine;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

@@ -4,8 +4,12 @@ package application.DAO.interfaces; /*******************************************
  * Purpose: Defines the Interface application.DAO.interfaces.IDAOHandler
  ***********************************************************************/
 
+import application.DAO.DAOConnection;
+
 /** @pdOid 4249cbc3-8036-4cc9-95f5-90eab62c23bb */
 public interface IDAOHandler {
+
+   DAOConnection conn = new DAOConnection();
    /**
      * @return  *  @pdOid 41e6d4e8-a210-442b-a58a-38f904f76a4a */
    boolean ajouter();
@@ -17,6 +21,6 @@ public interface IDAOHandler {
    boolean modifier();
    /**
      * @return  *  @pdOid 11955bc4-da27-46fb-90af-45e7fc487c5e */
-   java.lang.Object lecture();
+   <T>T lecture();
 
 }

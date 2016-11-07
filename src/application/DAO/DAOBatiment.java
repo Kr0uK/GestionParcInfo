@@ -24,7 +24,7 @@ public class DAOBatiment implements IDAOHandler {
     }
 
     @Override
-    public Object lecture() {
+    public <T>T lecture() {
         return null;
     }
 }
