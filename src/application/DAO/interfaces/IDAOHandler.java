@@ -14,15 +14,17 @@ public interface IDAOHandler {
    DAOConnection conn = new DAOConnection();
    /**
      * @return  *  @pdOid 41e6d4e8-a210-442b-a58a-38f904f76a4a */
-   boolean ajouter();
+   <T> boolean ajouter(T objet);
    /**
      * @return  *  @pdOid bf9b1bd6-306d-4c1d-aedd-378ddc37d59f */
-   boolean supprimer();
+   <T> boolean supprimer(T objet);
    /**
      * @return  *  @pdOid 4de53753-3fcc-431d-a646-ea419c243124 */
-   boolean modifier();
+   <T> boolean modifier(T objet);
    /**
      * @return  *  @pdOid 11955bc4-da27-46fb-90af-45e7fc487c5e */
-   <T> List<T> lecture();
+   <T> List<T> lecture(T objet);
+
+   <T> T lecture(T objet, int id);
 
 }

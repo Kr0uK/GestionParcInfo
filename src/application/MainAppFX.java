@@ -1,22 +1,17 @@
 package application;
 
 import application.DAO.DAOConnection;
-import application.DAO.DAOMachine;
+import application.DAO.DAOHandler;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
-
-import com.sun.media.jfxmedia.logging.Logger;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -41,7 +36,7 @@ import application.viewer.MachineController;
 public class MainAppFX extends Application {
 
     static DAOConnection testco = new DAOConnection();
-    static DAOMachine daoMachine = new DAOMachine();
+    static DAOHandler daoHandler = new DAOHandler();
     private Stage primaryStage;
     private BorderPane rootLayout;
 
@@ -68,7 +63,7 @@ public class MainAppFX extends Application {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-             List<Machine> liste =  daoMachine.lecture();
+             List<Machine> liste =  daoHandler.lecture(new Machine());
                 for (Machine machine:liste) {
                     Data.add(machine);
                 }
