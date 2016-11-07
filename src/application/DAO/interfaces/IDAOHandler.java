@@ -6,6 +6,8 @@ package application.DAO.interfaces; /*******************************************
 
 import application.DAO.DAOConnection;
 
+import java.util.List;
+
 /** @pdOid 4249cbc3-8036-4cc9-95f5-90eab62c23bb */
 public interface IDAOHandler {
 
@@ -21,6 +23,6 @@ public interface IDAOHandler {
    boolean modifier();
    /**
      * @return  *  @pdOid 11955bc4-da27-46fb-90af-45e7fc487c5e */
-   <T>T lecture();
+   <T> List<T> lecture();
 
 }

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import com.sun.media.jfxmedia.logging.Logger;
 
@@ -67,7 +68,11 @@ public class MainAppFX extends Application {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Data.add(daoMachine.lecture());
+             List<Machine> liste =  daoMachine.lecture();
+                for (Machine machine:liste) {
+                    Data.add(machine);
+                }
+
             }});
     }
 

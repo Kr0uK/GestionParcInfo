@@ -6,6 +6,8 @@ package application.DAO; /******************************************************
 
 import application.DAO.interfaces.IDAOHandler;
 
+import java.util.List;
+
 /** @pdOid 48949297-0e27-4222-ae4f-02358912267c */
 public class DAOSalle implements IDAOHandler {
     @Override
@@ -24,7 +26,6 @@ public class DAOSalle implements IDAOHandler {
     }
 
     @Override
-    public <T>T lecture() {
+    public <T> List<T> lecture() {
         return null;
-    }
-}
+    }}

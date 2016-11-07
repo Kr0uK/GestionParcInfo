@@ -17,6 +17,9 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 /*	PROPERTY :
  *	Avec JavaFX il est courant d'utiliser les Properties pour tous les champs de votre classe.
  *	Une Property (propriété) nous permet, par exemple, d'être automatiquement averti lorsque la
@@ -33,21 +36,39 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Machine {
 
    //STRING - TODO : types variables a revoir
+   @NotNull
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
    private String id;
+   @NotNull
+   @Pattern(regexp = "^[0-9]{3}\\s[0-9]{4}$", message = "Veuillez entrer un identifiant valide")
    private String idAfpa;
+   @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un identifiant valide")
    private String idUnique;
+   @NotNull
    private String dateAchat;
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer une durée valide")
    private String dureeGarantie;
+   @NotNull
+   @Pattern(regexp = "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", message = "Veuillez entrer une adresse IP valide")
    private String adresseIP;
+   @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer une valeur valide")
    private String type;
 
    // STRINGPROPERTY
    private StringProperty idSP;
+
    private StringProperty idAfpaSP;
+
    private StringProperty idUniqueSP;
+
    private StringProperty dateAchatSP;
+
    private StringProperty dureeGarantieSP;
+
    private StringProperty adresseIPSP;
+
    private StringProperty typeSP;
 
    // COMPOSANTS - TODO

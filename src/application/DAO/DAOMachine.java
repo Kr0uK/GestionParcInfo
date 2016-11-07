@@ -16,7 +16,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-/** @pdOid 8850f737-a717-44d5-85cf-4dc95e6871c5 */
+/**
+ * @pdOid 8850f737-a717-44d5-85cf-4dc95e6871c5
+ */
 public class DAOMachine implements IDAOHandler {
 
 
@@ -36,20 +38,29 @@ public class DAOMachine implements IDAOHandler {
     }
 
     @Override
-    public List<T> lecture() {
+    public <T> List<T> lecture() {
 
 
         QueryRunner run = new QueryRunner();
 
-        ResultSetHandler<List<T>> resMachine = new BeanListHandler<T>((Class<T>) Machine.class);
+
+        ResultSetHandler<List<T>> resMachine = new BeanListHandler<>((Class<T>) Machine.class);
+
         try {
 
-            List<T> machine = run.query(conn.connexion(),"SELECT * FROM MACHINE", resMachine);
+
+            List<T> machine = run.query(conn.connexion(), "SELECT * FROM MACHINE", resMachine);
+
             return machine;
+
         } catch (SQLException e) {
+
             e.printStackTrace();
+
             return null;
+
         }
+
 
     }
 }
