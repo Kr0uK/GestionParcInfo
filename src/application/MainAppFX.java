@@ -39,10 +39,12 @@ import application.viewer.MachineController;
  */
 public class MainAppFX extends Application {
 
+    static DAOConnection testco = new DAOConnection();
+    static DAOMachine daoMachine = new DAOMachine();
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    private ObservableList<Machine> Data = FXCollections.observableArrayList();
+    private static ObservableList<Machine> Data = FXCollections.observableArrayList();
 
 
     public MainAppFX() {
@@ -52,11 +54,21 @@ public class MainAppFX extends Application {
             public void run() {
                 // TODO : JEU D'ESSAI / R�cup�ration des donn�es SGBD pour affichage
                 Data.add(new Machine("1", "localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"));
-                Data.add(new Machine("2", "lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
+                getDataMachine();
+
+                Data.add(new Machine("3", "lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
                 //Data.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
+
             }
         });
 
+    }
+    public static void getDataMachine(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Data.add(daoMachine.lecture());
+            }});
     }
 
     public ObservableList<Machine> getData() {
@@ -77,6 +89,9 @@ public class MainAppFX extends Application {
         //String choixLayout = "viewer/Overview.fxml";
         String choixLayout = "viewer/Machine.fxml";
         // Le choix de l'affichage des autres layout se fera par le menubar
+
+
+
         showOverview(choixLayout);
 
     }
@@ -137,14 +152,6 @@ public class MainAppFX extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        DAOConnection testco = new DAOConnection();
-        DAOMachine daoMachine = new DAOMachine();
-        testco.connexion();
-        Machine machine = daoMachine.lecture();
-        System.out.println(machine.getAdresseIP());
-
-
-
         launch(args);
     }
 

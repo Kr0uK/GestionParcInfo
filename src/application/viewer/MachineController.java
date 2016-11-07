@@ -22,7 +22,7 @@ import javafx.fxml.FXMLLoader;
 */
 public class MachineController {
 		
-		// Référence pour le tableview et les colonnes
+		// Rï¿½fï¿½rence pour le tableview et les colonnes
 		@FXML
 		private TableView<Machine> tableFX;
 		@FXML
@@ -30,7 +30,7 @@ public class MachineController {
 		@FXML
 		private TableColumn<Machine, String> coltwo;
 		 
-		// Référence pour les labels
+		// Rï¿½fï¿½rence pour les labels
 		@FXML
 		private Label label1;
 		@FXML
@@ -46,13 +46,13 @@ public class MachineController {
 		@FXML
 		private Label label7;
 
-		// Référence à l'application principale
+		// Rï¿½fï¿½rence ï¿½ l'application principale
 		public static MainAppFX mainAppFX;
 
 
 	/**
 	 * Initialises la classe controller. 
-	 * Cette methode est automaticament appelée après le chargement du fichier FXML.
+	 * Cette methode est automaticament appelï¿½e aprï¿½s le chargement du fichier FXML.
 	 */
 	 @FXML
 	 private void initialize() {
@@ -65,14 +65,15 @@ public class MachineController {
 		 
 		 // Ajout d'un listener pour ecouter les changements :
 		 // Nous obtenons la selectedItemProperty de la table de machines et lui ajoutons un listener. 
-		 // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
-		 // Nous prenons la machine nouvellement sélectionnée pour la transmettre à la méthode showDetails(...).
+		 // Chaque fois que l'utilisateur sï¿½lectionne une machine dans la table, notre expression lambda est exï¿½cutï¿½e.
+		 // Nous prenons la machine nouvellement sï¿½lectionnï¿½e pour la transmettre ï¿½ la mï¿½thode showDetails(...).
 		 tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
+		 // TODO rafraÃ®chir le tableau Ã  l'ajout
 	}
 	 
 	 private void showDetails(Machine machine) {
 		 if (machine != null) {
-		 // Remplissage des labels avec les données Machine de l'item selectionné dans le tableview
+		 // Remplissage des labels avec les donnï¿½es Machine de l'item selectionnï¿½ dans le tableview
 			 label1.setText(machine.getId());
 			 label2.setText(machine.getIdAfpa());
 			 label3.setText(machine.getIdUnique());
@@ -92,7 +93,7 @@ public class MachineController {
 		 }
 	}
 	 
-	 // Methode appelée lorsque l'utilisateur clique sur le boutton de suppression
+	 // Methode appelï¿½e lorsque l'utilisateur clique sur le boutton de suppression
 	 @FXML
 	 private void handleDeletePerson() {
 	  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
@@ -102,18 +103,18 @@ public class MachineController {
 
 	 
 	 /**
-	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
+	 * Appellï¿½ par l'application principale pour avoir une rï¿½fï¿½rence de retour sur elle-mï¿½me
 	 *
 	 * @param mainApp
 	 */
 	 public void setMainAppFX(MainAppFX mainAppFX) {		
 		this.mainAppFX = mainAppFX;
 		 
-		// Affichage des données en mode console : fonctionnel	
+		// Affichage des donnï¿½es en mode console : fonctionnel	
 		System.out.println(mainAppFX.getData().get(0).getAdresseIP());
 		 
-		// Ajout de la liste des données observables dans le tableview " tableFX "
-		tableFX.setItems(mainAppFX.getData()); //TODO : les données sont dispo, mais l'insertion dans le tableview merde...
+		// Ajout de la liste des donnï¿½es observables dans le tableview " tableFX "
+		tableFX.setItems(mainAppFX.getData()); //TODO : les donnï¿½es sont dispo, mais l'insertion dans le tableview merde...
 		
 	 }
 	

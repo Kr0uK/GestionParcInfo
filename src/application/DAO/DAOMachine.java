@@ -9,10 +9,12 @@ import application.DAO.objets.Machine;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /** @pdOid 8850f737-a717-44d5-85cf-4dc95e6871c5 */
 public class DAOMachine implements IDAOHandler {
@@ -34,16 +36,15 @@ public class DAOMachine implements IDAOHandler {
     }
 
     @Override
-    public <T>T lecture() {
+    public List<T> lecture() {
 
 
         QueryRunner run = new QueryRunner();
 
-        ResultSetHandler<T> resMachine = new BeanHandler<T>((Class<T>) Machine.class);
-        T machine = null;
+        ResultSetHandler<List<T>> resMachine = new BeanListHandler<T>((Class<T>) Machine.class);
         try {
 
-            machine = run.query(conn.connexion(),"SELECT * FROM MACHINE WHERE id = ?", resMachine, 3);
+            List<T> machine = run.query(conn.connexion(),"SELECT * FROM MACHINE", resMachine);
             return machine;
         } catch (SQLException e) {
             e.printStackTrace();
