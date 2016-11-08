@@ -1,7 +1,6 @@
 package application;
 
 import application.DAO.DAOConnection;
-import application.DAO.DAOHandler;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

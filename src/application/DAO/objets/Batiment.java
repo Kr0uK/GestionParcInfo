@@ -17,18 +17,9 @@ public class Batiment {
    private int id;
 
    @NotNull
-   /** @pdOid 4cd9614e-d702-444c-9e07-7dcf8af70d31 */
-   private String adresse;
-
-   @NotNull
-   @Pattern(regexp = "[0-9]{5}", message = "Veuillez entrer un code postal valide")
-   /** @pdOid a254f799-4887-41f9-982d-8d65b743ff40 */
-   private String cp;
-
-   @NotNull
-   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer une ville valide")
-   /** @pdOid 8bfb47c5-ef02-4b63-a50e-3ea84c9d02d9 */
-   private String ville;
+   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
+   /** @pdOid 0b8ebf22-7006-47b4-a3d8-afa3a1fe07da */
+   private int numero;
 
    public int getId() {
       return id;
@@ -38,38 +29,20 @@ public class Batiment {
       this.id = id;
    }
 
-   public String getAdresse() {
-      return adresse;
+   public int getNumero() {
+      return numero;
    }
 
-   public void setAdresse(String adresse) {
-      this.adresse = adresse;
-   }
-
-   public String getCp() {
-      return cp;
-   }
-
-   public void setCp(String cp) {
-      this.cp = cp;
-   }
-
-   public String getVille() {
-      return ville;
-   }
-
-   public void setVille(String ville) {
-      this.ville = ville;
+   public void setNumero(int numero) {
+      this.numero = numero;
    }
 
    public Batiment() {
    }
 
-   public Batiment(int id, String adresse, String cp, String ville, Collection<Salle> salle) {
+   public Batiment(int id, int numero, Collection<Salle> salle) {
       this.id = id;
-      this.adresse = adresse;
-      this.cp = cp;
-      this.ville = ville;
+      this.numero = numero;
       this.salle = salle;
    }
 

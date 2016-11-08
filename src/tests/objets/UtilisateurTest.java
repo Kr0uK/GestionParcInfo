@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by user on 03/11/2016.
  */
-public class IndividuTest {
+public class UtilisateurTest {
     @Test
     public void setId() throws Exception {
 

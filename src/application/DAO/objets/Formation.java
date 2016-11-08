@@ -22,18 +22,18 @@ public class Formation {
    /** @pdOid 618e4ce0-e2a0-4e1e-9453-1310fd9e6547 */
    private String libelle;
    
-   /** @pdRoleInfo migr=no name=application.DAO.objets.Individu assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
-   private java.util.Collection<Individu> individu;
+   /** @pdRoleInfo migr=no name=application.DAO.objets.Utilisateur assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   private java.util.Collection<Utilisateur> utilisateur;
    /** @pdRoleInfo migr=no name=application.DAO.objets.Machine assc=association7 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Machine> machine;
    
    
    /**
      * @return  *  @pdGenerated default getter */
-   public java.util.Collection<Individu> getIndividu() {
-      if (individu == null)
-         individu = new java.util.HashSet<Individu>();
-      return individu;
+   public java.util.Collection<Utilisateur> getUtilisateur() {
+      if (utilisateur == null)
+         utilisateur = new java.util.HashSet<Utilisateur>();
+      return utilisateur;
    }
 
    public int getId() {
@@ -55,10 +55,10 @@ public class Formation {
    public Formation() {
    }
 
-   public Formation(int id, String libelle, Collection<Individu> individu, Collection<Machine> machine) {
+   public Formation(int id, String libelle, Collection<Utilisateur> utilisateur, Collection<Machine> machine) {
       this.id = id;
       this.libelle = libelle;
-      this.individu = individu;
+      this.utilisateur = utilisateur;
 
       this.machine = machine;
    }
@@ -67,44 +67,44 @@ public class Formation {
      * @return  *  @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorIndividu() {
 
-      if (individu == null)
-         individu = new java.util.HashSet<Individu>();
-      return individu.iterator();
+      if (utilisateur == null)
+         utilisateur = new java.util.HashSet<Utilisateur>();
+      return utilisateur.iterator();
    }
    
    /** @pdGenerated default setter
-     * @param newIndividu */
-   public void setIndividu(java.util.Collection<Individu> newIndividu) {
+     * @param newUtilisateur */
+   public void setUtilisateur(java.util.Collection<Utilisateur> newUtilisateur) {
       removeAllIndividu();
-      for (java.util.Iterator iter = newIndividu.iterator(); iter.hasNext();)
-         addIndividu((Individu)iter.next());
+      for (java.util.Iterator iter = newUtilisateur.iterator(); iter.hasNext();)
+         addIndividu((Utilisateur)iter.next());
    }
    
    /** @pdGenerated default add
-     * @param newIndividu */
-   public void addIndividu(Individu newIndividu) {
-      if (newIndividu == null)
+     * @param newUtilisateur */
+   public void addIndividu(Utilisateur newUtilisateur) {
+      if (newUtilisateur == null)
          return;
-      if (this.individu == null)
-         this.individu = new java.util.HashSet<Individu>();
-      if (!this.individu.contains(newIndividu))
-         this.individu.add(newIndividu);
+      if (this.utilisateur == null)
+         this.utilisateur = new java.util.HashSet<Utilisateur>();
+      if (!this.utilisateur.contains(newUtilisateur))
+         this.utilisateur.add(newUtilisateur);
    }
    
    /** @pdGenerated default remove
-     * @param oldIndividu */
-   public void removeIndividu(Individu oldIndividu) {
-      if (oldIndividu == null)
+     * @param oldUtilisateur */
+   public void removeIndividu(Utilisateur oldUtilisateur) {
+      if (oldUtilisateur == null)
          return;
-      if (this.individu != null)
-         if (this.individu.contains(oldIndividu))
-            this.individu.remove(oldIndividu);
+      if (this.utilisateur != null)
+         if (this.utilisateur.contains(oldUtilisateur))
+            this.utilisateur.remove(oldUtilisateur);
    }
    
    /** @pdGenerated default removeAll */
    public void removeAllIndividu() {
-      if (individu != null)
-         individu.clear();
+      if (utilisateur != null)
+         utilisateur.clear();
    }
    /**
      * @return  *  @pdGenerated default getter */
