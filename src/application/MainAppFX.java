@@ -25,7 +25,7 @@ import java.util.Collection;
 import java.util.Date;
 */
 
-import application.DAO.objets.*;
+import application.objets.*;
 import application.viewer.OverviewController;
 import application.viewer.MachineController;
 

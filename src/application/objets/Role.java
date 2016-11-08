@@ -1,7 +1,7 @@
-package application.DAO.objets; /***********************************************************************
- * Module:  application.DAO.objets.Role.java
+package application.objets; /***********************************************************************
+ * Module:  application.beans.Role.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.DAO.objets.Role
+ * Purpose: Defines the Class application.beans.Role
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
@@ -21,7 +21,7 @@ public class Role {
    /** @pdOid 97bd4c44-aebc-4147-a4de-79909b9d4212 */
    private String libelle;
    
-   /** @pdRoleInfo migr=no name=application.DAO.objets.Utilisateur assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* side=A */
+   /** @pdRoleInfo migr=no name=application.beans.Individu assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* side=A */
    public java.util.Collection<Utilisateur> utilisateur;
 
 
@@ -44,16 +44,16 @@ public class Role {
    public Role() {
    }
 
-   public Role(int id, String libelle, Collection<Utilisateur> utilisateur) {
+   public Role(int id, String libelle, Collection<Utilisateur> individu) {
 
       this.id = id;
       this.libelle = libelle;
-      this.utilisateur = utilisateur;
+      this.utilisateur = individu;
    }
 
    /**
      * @return  *  @pdGenerated default getter */
-   public java.util.Collection<Utilisateur> getUtilisateur() {
+   public java.util.Collection<Utilisateur> getIndividu() {
       if (utilisateur == null)
          utilisateur = new java.util.HashSet<Utilisateur>();
 
@@ -69,37 +69,37 @@ public class Role {
    }
    
    /** @pdGenerated default setter
-     * @param newUtilisateur */
-   public void setUtilisateur(java.util.Collection<Utilisateur> newUtilisateur) {
+     * @param newIndividu */
+   public void setIndividu(java.util.Collection<Utilisateur> newIndividu) {
       removeAllIndividu();
-      for (java.util.Iterator iter = newUtilisateur.iterator(); iter.hasNext();)
+      for (java.util.Iterator iter = newIndividu.iterator(); iter.hasNext();)
          addIndividu((Utilisateur)iter.next());
    }
    
    /** @pdGenerated default add
-     * @param newUtilisateur */
-   public void addIndividu(Utilisateur newUtilisateur) {
-      if (newUtilisateur == null)
+     * @param newIndividu */
+   public void addIndividu(Utilisateur newIndividu) {
+      if (newIndividu == null)
          return;
       if (this.utilisateur == null)
          this.utilisateur = new java.util.HashSet<Utilisateur>();
-      if (!this.utilisateur.contains(newUtilisateur))
+      if (!this.utilisateur.contains(newIndividu))
       {
-         this.utilisateur.add(newUtilisateur);
-         newUtilisateur.addRole(this);
+         this.utilisateur.add(newIndividu);
+         newIndividu.addRole(this);      
       }
    }
    
    /** @pdGenerated default remove
-     * @param oldUtilisateur */
-   public void removeIndividu(Utilisateur oldUtilisateur) {
-      if (oldUtilisateur == null)
+     * @param oldIndividu */
+   public void removeIndividu(Utilisateur oldIndividu) {
+      if (oldIndividu == null)
          return;
       if (this.utilisateur != null)
-         if (this.utilisateur.contains(oldUtilisateur))
+         if (this.utilisateur.contains(oldIndividu))
          {
-            this.utilisateur.remove(oldUtilisateur);
-            oldUtilisateur.removeRole(this);
+            this.utilisateur.remove(oldIndividu);
+            oldIndividu.removeRole(this);
          }
    }
    
@@ -107,12 +107,12 @@ public class Role {
    public void removeAllIndividu() {
       if (utilisateur != null)
       {
-         Utilisateur oldUtilisateur;
+         Utilisateur oldIndividu;
          for (java.util.Iterator iter = getIteratorIndividu(); iter.hasNext();)
          {
-            oldUtilisateur = (Utilisateur)iter.next();
+            oldIndividu = (Utilisateur)iter.next();
             iter.remove();
-            oldUtilisateur.removeRole(this);
+            oldIndividu.removeRole(this);
          }
       }
    }

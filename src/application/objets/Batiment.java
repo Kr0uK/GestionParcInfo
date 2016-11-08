@@ -1,7 +1,7 @@
-package application.DAO.objets; /***********************************************************************
- * Module:  application.DAO.objets.Batiment.java
+package application.objets; /***********************************************************************
+ * Module:  application.beans.Batiment.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.DAO.objets.Batiment
+ * Purpose: Defines the Class application.beans.Batiment
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
@@ -17,9 +17,18 @@ public class Batiment {
    private int id;
 
    @NotNull
-   @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
-   /** @pdOid 0b8ebf22-7006-47b4-a3d8-afa3a1fe07da */
-   private int numero;
+   /** @pdOid 4cd9614e-d702-444c-9e07-7dcf8af70d31 */
+   private String adresse;
+
+   @NotNull
+   @Pattern(regexp = "[0-9]{5}", message = "Veuillez entrer un code postal valide")
+   /** @pdOid a254f799-4887-41f9-982d-8d65b743ff40 */
+   private String cp;
+
+   @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer une ville valide")
+   /** @pdOid 8bfb47c5-ef02-4b63-a50e-3ea84c9d02d9 */
+   private String ville;
 
    public int getId() {
       return id;
@@ -29,25 +38,43 @@ public class Batiment {
       this.id = id;
    }
 
-   public int getNumero() {
-      return numero;
+   public String getAdresse() {
+      return adresse;
    }
 
-   public void setNumero(int numero) {
-      this.numero = numero;
+   public void setAdresse(String adresse) {
+      this.adresse = adresse;
+   }
+
+   public String getCp() {
+      return cp;
+   }
+
+   public void setCp(String cp) {
+      this.cp = cp;
+   }
+
+   public String getVille() {
+      return ville;
+   }
+
+   public void setVille(String ville) {
+      this.ville = ville;
    }
 
    public Batiment() {
    }
 
-   public Batiment(int id, int numero, Collection<Salle> salle) {
+   public Batiment(int id, String adresse, String cp, String ville, Collection<Salle> salle) {
       this.id = id;
-      this.numero = numero;
+      this.adresse = adresse;
+      this.cp = cp;
+      this.ville = ville;
       this.salle = salle;
    }
 
    @NotNull
-   /** @pdRoleInfo migr=no name=application.DAO.objets.Salle assc=association3 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.beans.Salle assc=association3 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Salle> salle;
    
    

@@ -1,20 +1,12 @@
 package application.viewer;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Pane;
-
-import java.io.IOException;
-
-import com.sun.media.jfxmedia.logging.Logger;
 
 import application.MainAppFX;
-import application.DAO.objets.Machine;
-
-import javafx.fxml.FXMLLoader;
+import application.objets.Machine;
 
 /**
 *

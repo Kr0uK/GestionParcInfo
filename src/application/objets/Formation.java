@@ -1,7 +1,7 @@
-package application.DAO.objets; /***********************************************************************
- * Module:  application.DAO.objets.Formation.java
+package application.objets; /***********************************************************************
+ * Module:  application.beans.Formation.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.DAO.objets.Formation
+ * Purpose: Defines the Class application.beans.Formation
  ***********************************************************************/
 
 
@@ -22,9 +22,9 @@ public class Formation {
    /** @pdOid 618e4ce0-e2a0-4e1e-9453-1310fd9e6547 */
    private String libelle;
    
-   /** @pdRoleInfo migr=no name=application.DAO.objets.Utilisateur assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.beans.Utilisateur assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Utilisateur> utilisateur;
-   /** @pdRoleInfo migr=no name=application.DAO.objets.Machine assc=association7 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.beans.Machine assc=association7 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Machine> machine;
    
    
@@ -65,7 +65,7 @@ public class Formation {
 
    /**
      * @return  *  @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorIndividu() {
+   public java.util.Iterator getIteratorUtilisateur() {
 
       if (utilisateur == null)
          utilisateur = new java.util.HashSet<Utilisateur>();
@@ -75,14 +75,14 @@ public class Formation {
    /** @pdGenerated default setter
      * @param newUtilisateur */
    public void setUtilisateur(java.util.Collection<Utilisateur> newUtilisateur) {
-      removeAllIndividu();
+      removeAllUtilisateur();
       for (java.util.Iterator iter = newUtilisateur.iterator(); iter.hasNext();)
-         addIndividu((Utilisateur)iter.next());
+         addUtilisateur((Utilisateur)iter.next());
    }
    
    /** @pdGenerated default add
      * @param newUtilisateur */
-   public void addIndividu(Utilisateur newUtilisateur) {
+   public void addUtilisateur(Utilisateur newUtilisateur) {
       if (newUtilisateur == null)
          return;
       if (this.utilisateur == null)
@@ -93,7 +93,7 @@ public class Formation {
    
    /** @pdGenerated default remove
      * @param oldUtilisateur */
-   public void removeIndividu(Utilisateur oldUtilisateur) {
+   public void removeUtilisateur(Utilisateur oldUtilisateur) {
       if (oldUtilisateur == null)
          return;
       if (this.utilisateur != null)
@@ -102,7 +102,7 @@ public class Formation {
    }
    
    /** @pdGenerated default removeAll */
-   public void removeAllIndividu() {
+   public void removeAllUtilisateur() {
       if (utilisateur != null)
          utilisateur.clear();
    }

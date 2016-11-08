@@ -1,7 +1,7 @@
-package application.DAO.objets; /***********************************************************************
- * Module:  application.DAO.objets.Utilisateur.java
+package application.objets; /***********************************************************************
+ * Module:  application.objets.Utilisateur.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.DAO.objets.Utilisateur
+ * Purpose: Defines the Class application.objets.Utilisateur
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
@@ -46,7 +46,7 @@ public class Utilisateur {
    private String telephone;
 
    @NotNull
-   /** @pdRoleInfo migr=no name=application.DAO.objets.Role assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Role assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    private java.util.Collection<Role> role;
 
 
@@ -187,7 +187,7 @@ public class Utilisateur {
       }
    }
    
-   /** @pdRoleInfo migr=no name=application.DAO.objets.Machine assc=association11 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.objets.Machine assc=association11 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Machine> machine;
    
    

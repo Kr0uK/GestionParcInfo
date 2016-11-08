@@ -1,7 +1,7 @@
-package application.DAO.objets; /***********************************************************************
- * Module:  application.DAO.objets.Composant.java
+package application.objets; /***********************************************************************
+ * Module:  application.beans.Composant.java
  * Author:  admin
- * Purpose: Defines the Class application.DAO.objets.Composant
+ * Purpose: Defines the Class application.beans.Composant
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
@@ -24,8 +24,6 @@ public class Composant {
    /** @pdOid 9123d616-2086-4cb6-b345-4eb144ec0899 */
    private String constructeur;
 
-
-
    @NotNull
    /** @pdOid 6f27cd51-2014-4b04-b910-a6c562a77208 */
    private String libelle;
@@ -33,6 +31,8 @@ public class Composant {
    @NotNull
    /** @pdOid aa778ffc-2127-47f3-ae51-83f20dc41e47 */
    private String details;
+
+   private int idMachine;
 
    public int getId() {
       return id;
@@ -74,14 +74,23 @@ public class Composant {
       this.details = details;
    }
 
+   public int getIdMachine() {
+      return idMachine;
+   }
+
+   public void setIdMachine(int idMachine) {
+      this.idMachine = idMachine;
+   }
+
    public Composant() {
    }
 
-   public Composant(int id, String reference, String constructeur, String libelle, String details) {
+   public Composant(int id, String reference, String constructeur, String libelle, String details, int idMachine) {
       this.id = id;
       this.reference = reference;
       this.constructeur = constructeur;
       this.libelle = libelle;
       this.details = details;
+      this.idMachine = idMachine;
    }
 }

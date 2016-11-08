@@ -4,11 +4,11 @@ package application.DAO; /******************************************************
  * Purpose: Defines the Class application.DAO.DAOConnection
  ***********************************************************************/
 
-import application.DAO.interfaces.IDAOConnection;
-import org.apache.commons.dbutils.DbUtils;
+import application.interfaces.IDAOConnection;
 
+import javax.sql.rowset.JdbcRowSet;
+import javax.sql.rowset.RowSetProvider;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -19,14 +19,15 @@ public class DAOConnection implements IDAOConnection {
     Connection conn = null;
 
     @Override
-    public Connection connexion() {
-
+    public JdbcRowSet connexion() {
         try {
-        // TODO : implémenter le truc du RowSet
-            DbUtils.loadDriver(DRIVER);
-            conn = DriverManager.getConnection(ADRESSE, USER, MDP);
+            Class.forName(DRIVER);
+            JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet();
+            rowSet.setUrl(ADRESSE);
+            rowSet.setUsername(USER);
+            rowSet.setPassword(MDP);
 
-            return conn;
+            return rowSet;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

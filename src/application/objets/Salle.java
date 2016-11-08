@@ -1,7 +1,7 @@
-package application.DAO.objets; /***********************************************************************
- * Module:  application.DAO.objets.Salle.java
+package application.objets; /***********************************************************************
+ * Module:  application.beans.Salle.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.DAO.objets.Salle
+ * Purpose: Defines the Class application.beans.Salle
  ***********************************************************************/
 
 import javax.validation.constraints.NotNull;
@@ -21,7 +21,7 @@ public class Salle {
    /** @pdOid f06e9882-c6c0-46ec-851b-f6cd37b14c81 */
    private String numero;
    
-   /** @pdRoleInfo migr=no name=application.DAO.objets.Machine assc=association2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
+   /** @pdRoleInfo migr=no name=application.beans.Machine assc=association2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Machine> machine;
 
 
