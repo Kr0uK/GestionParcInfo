@@ -22,7 +22,7 @@ public class DAOConnection implements IDAOConnection {
     public Connection connexion() {
 
         try {
-
+        // TODO : implémenter le truc du RowSet
             DbUtils.loadDriver(DRIVER);
             conn = DriverManager.getConnection(ADRESSE, USER, MDP);
 
