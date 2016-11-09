@@ -16,13 +16,15 @@ import java.sql.SQLException;
  */
 public class DAOConnection implements IDAOConnection {
 
-    Connection conn = null;
+   Connection conn = null;
+
+    JdbcRowSet rowSet = null;
 
     @Override
     public JdbcRowSet connexion() {
         try {
             Class.forName(DRIVER);
-            JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet();
+            rowSet = RowSetProvider.newFactory().createJdbcRowSet();
             rowSet.setUrl(ADRESSE);
             rowSet.setUsername(USER);
             rowSet.setPassword(MDP);
@@ -40,7 +42,7 @@ public class DAOConnection implements IDAOConnection {
     @Override
     public boolean fermer() {
         try {
-            conn.close();
+            rowSet.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

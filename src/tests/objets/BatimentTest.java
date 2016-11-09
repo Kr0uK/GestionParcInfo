@@ -1,49 +1,61 @@
 package tests.objets;
 
+import application.objets.Batiment;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
 import static org.junit.Assert.*;
 
 /**
- * Created by user on 03/11/2016.
+ * Created by Boris on 03/11/2016.
  */
 public class BatimentTest {
-    @org.junit.Test
+
+    private static Validator validator;
+
+
+    @BeforeClass
+    public static void setUp() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
+
+
+
+
+    @Test
     public void setId() throws Exception {
-
+        Batiment batiment = new Batiment();
     }
 
-    @org.junit.Test
-    public void setAdresse() throws Exception {
-
+    @Test
+    public void setSite() throws Exception {
+        Batiment batiment = new Batiment();
     }
 
-    @org.junit.Test
-    public void setCp() throws Exception {
-
-    }
-
-    @org.junit.Test
-    public void setVille() throws Exception {
-
-    }
-
-    @org.junit.Test
+    @Test
     public void setSalle() throws Exception {
-
+        Batiment batiment = new Batiment();
     }
 
-    @org.junit.Test
+    @Test
     public void addSalle() throws Exception {
-
+        Batiment batiment = new Batiment();
     }
 
-    @org.junit.Test
+    @Test
     public void removeSalle() throws Exception {
-
+        Batiment batiment = new Batiment();
     }
 
-    @org.junit.Test
+    @Test
     public void removeAllSalle() throws Exception {
-
+        Batiment batiment = new Batiment();
     }
+
 
 }

@@ -20,6 +20,20 @@ public class Site {
    @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un libellé valide")
    /** @pdOid c224e4a6-80ac-455c-b557-7dfa608d3f37 */
    private String libelle;
+
+   @NotNull
+   /** @pdOid 4cd9614e-d702-444c-9e07-7dcf8af70d31 */
+   private String adresse;
+
+   @NotNull
+   @Pattern(regexp = "[0-9]{5}", message = "Veuillez entrer un code postal valide")
+   /** @pdOid a254f799-4887-41f9-982d-8d65b743ff40 */
+   private String cp;
+
+   @NotNull
+   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer une ville valide")
+   /** @pdOid 8bfb47c5-ef02-4b63-a50e-3ea84c9d02d9 */
+   private String ville;
    
    /** @pdRoleInfo migr=no name=application.beans.Batiment assc=association4 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public java.util.Collection<Batiment> batiment;
@@ -41,13 +55,40 @@ public class Site {
       this.libelle = libelle;
    }
 
+
+   public String getAdresse() {
+      return adresse;
+   }
+
+   public void setAdresse(String adresse) {
+      this.adresse = adresse;
+   }
+
+   public String getCp() {
+      return cp;
+   }
+
+   public void setCp(String cp) {
+      this.cp = cp;
+   }
+
+   public String getVille() {
+      return ville;
+   }
+
+   public void setVille(String ville) {
+      this.ville = ville;
+   }
+
    public Site() {
    }
 
-   public Site(int id, String libelle, Collection<Batiment> batiment) {
-
+   public Site(int id, String libelle, String adresse, String cp, String ville, Collection<Batiment> batiment) {
       this.id = id;
       this.libelle = libelle;
+      this.adresse = adresse;
+      this.cp = cp;
+      this.ville = ville;
       this.batiment = batiment;
    }
 

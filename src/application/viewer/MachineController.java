@@ -66,11 +66,11 @@ public class MachineController {
 	 private void showDetails(Machine machine) {
 		 if (machine != null) {
 		 // Remplissage des labels avec les donn�es Machine de l'item selectionn� dans le tableview
-			 label1.setText(machine.getId());
+			 label1.setText(String.valueOf(machine.getId()));
 			 label2.setText(machine.getIdAfpa());
 			 label3.setText(machine.getIdUnique());
-			 label4.setText(machine.getDateAchat());
-			 label5.setText(machine.getDureeGarantie());
+			 label4.setText(String.valueOf(machine.getDateAchat()));
+			 label5.setText(String.valueOf(machine.getDureeGarantie()));
 			 label6.setText(machine.getAdresseIP());
 			 label7.setText(machine.getType());
 		 } else {
@@ -103,7 +103,7 @@ public class MachineController {
 		this.mainAppFX = mainAppFX;
 		 
 		// Affichage des donn�es en mode console : fonctionnel	
-		System.out.println(mainAppFX.getData().get(0).getAdresseIP());
+		//System.out.println(mainAppFX.getData().get(0).getAdresseIP());
 		 
 		// Ajout de la liste des donn�es observables dans le tableview " tableFX "
 		tableFX.setItems(mainAppFX.getData()); //TODO : les donn�es sont dispo, mais l'insertion dans le tableview merde...

@@ -12,4 +12,6 @@ public class LectureRB {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("application.tools.query", locale);
         return resourceBundle.getString(key);
     }
+
+
 }

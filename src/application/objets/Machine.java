@@ -8,11 +8,21 @@ package application.objets;
 //import java.util.Map;
 
 // IMPORT DES PROPERTIES :
-import javafx.beans.property.StringProperty;
-        import javafx.beans.property.SimpleStringProperty;
 
-        import javax.validation.constraints.NotNull;
+import application.DAO.DAOMachine;
+import application.tools.LectureRB;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
+import org.hibernate.validator.constraints.ScriptAssert;
+
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
 /*	PROPERTY :
  *	Avec JavaFX il est courant d'utiliser les Properties pour tous les champs de votre classe.
  *	Une Property (propriété) nous permet, par exemple, d'être automatiquement averti lorsque la
@@ -29,52 +39,57 @@ import javax.validation.constraints.Pattern;
  */
 public class Machine {
 
+    DAOMachine daoMachine = new DAOMachine();
 
     private int idLocal;
 
     //STRING - TODO : types variables a revoir
+
+
     @NotNull
-    @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
     private int id;
+
     @NotNull
-    @Pattern(regexp = "^[0-9]{3}\\s[0-9]{4}$", message = "Veuillez entrer un identifiant valide")
+    @Pattern(regexp = "^[0-9]{3}\\s[0-9]{4}$", message = "Veuillez entrer un identifiant Afpa valide")
     private String idAfpa;
+
     @NotNull
-    @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un identifiant valide")
+    @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un identifiant Unique valide")
     private String idUnique;
+
     @NotNull
     private String dateAchat;
-    @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer une durée valide")
-    private String dureeGarantie;
+
+
+    private int dureeGarantie;
+
     @NotNull
     @Pattern(regexp = "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", message = "Veuillez entrer une adresse IP valide")
     private String adresseIP;
+
     @NotNull
     @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer une valeur valide")
     private String type;
-    private String localOrigine;
+
+
+    private boolean pret;
+
+    @NotNull
+    private int localOrigine;
+
 
     // STRINGPROPERTY
     private StringProperty idSP;
-
     private StringProperty idAfpaSP;
-
     private StringProperty idUniqueSP;
-
     private StringProperty dateAchatSP;
-
     private StringProperty dureeGarantieSP;
-
     private StringProperty adresseIPSP;
-
     private StringProperty typeSP;
-
-    private SimpleStringProperty localOrigineSP;
+    private StringProperty localOrigineSP;
 
     // COMPOSANTS - TODO
-    /**
-     * @pdRoleInfo migr=no name=application.objets.Composant assc=association1 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation
-     */
+
     private java.util.Collection<Composant> composant;
 
 
@@ -172,7 +187,7 @@ public class Machine {
     }
 
     public void setDateAchatSP(String dateAchat) {
-        this.dateAchatSP.set(dateAchat);
+        this.dateAchatSP.set(String.valueOf(dateAchat));
     }
 
     public StringProperty dateAchatProperty() {
@@ -180,11 +195,11 @@ public class Machine {
     }
 
     // DUREEGARANTIE
-    public String getDureeGarantie() {
+    public int getDureeGarantie() {
         return dureeGarantie;
     }
 
-    public void setDureeGarantie(String dureeGarantie) {
+    public void setDureeGarantie(int dureeGarantie) {
         this.dureeGarantie = dureeGarantie;
     }
 
@@ -194,7 +209,7 @@ public class Machine {
     }
 
     public int getIntDureeGarantieSP() {
-        return Integer.parseInt(getDureeGarantie());
+        return getDureeGarantie();
     }
 
     public void setDureeGarantieSP(String dureeGarantie) {
@@ -253,27 +268,54 @@ public class Machine {
         return typeSP;
     }
 
-    public String getLocalOrigine() {
+    public int getLocalOrigine() {
         return localOrigine;
     }
 
-    public void setLocalOrigine(String localOrigine) {
+    public void setLocalOrigine(int localOrigine) {
         this.localOrigine = localOrigine;
     }
+
     public String getLocalOrigineSP() {
         return localOrigineSP.get();
     }
 
-    public void setLocalOrigineSP(String localOrigine) {
-        this.localOrigineSP.set(type);
+    public void setLocalOrigineSP(int localOrigine) {
+        this.localOrigineSP.set(String.valueOf(localOrigine));
     }
 
     public StringProperty localOrigineProperty() {
         return localOrigineSP;
     }
 
+    public int getIdLocal() {
+
+        return idLocal;
+
+    }
+
+
+    public void setIdLocal(int idLocal) {
+
+        this.idLocal = idLocal;
+
+    }
+
+    public boolean isPret() {
+
+        return pret;
+
+    }
+
+
+    public void setPret(boolean pret) {
+
+        this.pret = pret;
+
+    }
+
     // Requête d'ajout
-    //TODO les autres requetes pour tous les beans :(
+
     String reqAjout = "INSERT INTO " + Machine.class.getSimpleName().toUpperCase() + " VALUES (" + id + "," + idAfpa + "," + idUnique + "," + dateAchat + "," + dureeGarantie + "," + adresseIP + "," + type + ")";
 
     /*
@@ -282,44 +324,53 @@ public class Machine {
     public Machine() {
     }
 
-    public Machine(int id, String idAfpa, String idUnique, String dateAchat, String dureeGarantie, String adresseIP, String type, String localOrigine) {
+    public Machine(int id, int idLocal, String idUnique, String idAfpa, String dateAchat, int dureeGarantie, String type, String adresseIP, boolean pret, int localOrigine, Collection<Composant> composant) {
+
         this.id = id;
-        this.idAfpa = idAfpa;
+
+        this.idLocal = idLocal;
+
         this.idUnique = idUnique;
+
+        this.idAfpa = idAfpa;
+
         this.dateAchat = dateAchat;
+
         this.dureeGarantie = dureeGarantie;
-        this.adresseIP = adresseIP;
+
         this.type = type;
+
+        this.adresseIP = adresseIP;
+
+        this.pret = pret;
+
         this.localOrigine = localOrigine;
 
+        this.composant = composant;
+
+
         // CONVERSION EN TYPE D'OBJETS OBSERVABLES
-        this.idSP = new SimpleStringProperty("" + id);
+
+        this.idSP = new SimpleStringProperty(Integer.toString(id));
+
         this.idAfpaSP = new SimpleStringProperty(idAfpa);
+
         this.idUniqueSP = new SimpleStringProperty(idUnique);
+
         this.dateAchatSP = new SimpleStringProperty(dateAchat);
-        this.dureeGarantieSP = new SimpleStringProperty(dureeGarantie);
+
+        this.dureeGarantieSP = new SimpleStringProperty(Integer.toString(dureeGarantie));
+
         this.adresseIPSP = new SimpleStringProperty(adresseIP);
+
         this.typeSP = new SimpleStringProperty(type);
-        this.localOrigineSP = new SimpleStringProperty(localOrigine);
+
     }
-       /*
-       public Machine(String id, String idAfpa, String idUnique, Date dateAchat, String dureeGarantie, String adresseIP, String type, Collection<Composant> composant) {
-		  // CONVERSION EN TYPE D'OBJETS OBSERVABLES
-	      this.id = new SimpleStringProperty(id);
-	      this.idAfpa = new SimpleStringProperty(idAfpa);
-	      this.idUnique = new SimpleStringProperty(idUnique);
-	      this.dateAchat = new SimpleObjectProperty<java.util.Date>(dateAchat);
-	      this.dureeGarantie = new SimpleStringProperty(dureeGarantie);
-	      this.adresseIP = new SimpleStringProperty(adresseIP);
-	      this.type = new SimpleStringProperty(type);
-	      // ET DE COMPOSANTS
-	      this.composant = composant;
-	   }
-	   */
+
 
 
 	   /*
-	    *  COMPOSANTS
+        *  COMPOSANTS
 	    */
 
     /**
@@ -385,22 +436,65 @@ public class Machine {
     }
 
 
-    // TODO
-
     /**
      * @return *  @pdOid c048567c-b284-4a21-af5d-7e4f990bf0fe
      */
     public boolean estSousGarantie() {
-        // TODO: implement
-        return false;
+        Calendar calendar = Calendar.getInstance();
+        //calendar.setTime(this.getStringAchat());
+        int dateDebutGarantie = calendar.get(Calendar.YEAR);
+        int dateFinGarantie = dateDebutGarantie + getDureeGarantie();
+        int anneeEnCours = Year.now().getValue();
+        if (anneeEnCours > dateFinGarantie) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    // TODO : ?
+
 
     /**
      * @return *  @pdOid ed539b07-b49c-4883-8b95-773e5a3a6699
      */
     public boolean ipDispo() {
-        // TODO: implement
-        return false;
+        try {
+
+            // On récupère l'adresse IP de l'objet
+            String adresseIp = this.getAdresseIP(); // longueur max : 15
+
+            // on divise l'IP en octets pour les vérifier
+            String[] octetsIp = adresseIp.split("\\.");
+
+            // On vérifie que c'est une adresse valide
+            for (String octet : octetsIp) { // cas des trois premiers octets
+                int octetInt = Integer.parseInt(octet);
+                if (octet != octetsIp[3]) {
+                    if (octetInt < 0 || octetInt > 255) {
+                        return false;
+                    }
+                } else { // cas du dernier octet
+                    if (octetInt <= 0 || octetInt >= 255) {
+                        return false;
+                    }
+                }
+            }
+
+            //On vérifie par rapport à la BDD
+            Machine machineTemp = (daoMachine.lecture(LectureRB.lireRB("recupAdresseIP"), adresseIp + "\""));
+
+            if (machineTemp == null) { // Ici l'adresse est dispo
+                return true;
+            } else { //Ici l'adresse est déjà prise
+                return false;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return false;
+        }
     }
 }
+
+

@@ -1,6 +1,9 @@
 package application;
 
 import application.DAO.DAOConnection;
+import application.DAO.DAOMachine;
+import application.interfaces.IDAOHandler;
+import application.tools.LectureRB;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -10,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXMLLoader;
@@ -35,7 +39,7 @@ import application.viewer.MachineController;
 public class MainAppFX extends Application {
 
     static DAOConnection testco = new DAOConnection();
-    static DAOHandler daoHandler = new DAOHandler();
+    static DAOMachine daoMachine = new DAOMachine();
     private Stage primaryStage;
     private BorderPane rootLayout;
 
@@ -47,25 +51,18 @@ public class MainAppFX extends Application {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                // TODO : JEU D'ESSAI / R�cup�ration des donn�es SGBD pour affichage
-                Data.add(new Machine("1", "localhost", "localhost", "01/01/2000", "0", "127.0.0.1", "root"));
                 getDataMachine();
-
-                Data.add(new Machine("3", "lacolhost", "lacolhost", "21/12/2012", "0", "128.0.0.1", "root"));
-                //Data.add(new Machine("1","localhost", "localhost", null, "0", "127.0.0.1", "root", null));
-
-            }
+                            }
         });
 
     }
-    public static void getDataMachine(){
+    public void getDataMachine(){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-             List<Machine> liste =  daoHandler.lecture(new Machine());
-                for (Machine machine:liste) {
-                    Data.add(machine);
-                }
+
+             List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("lectureMachines"));
+                Data.addAll(liste);
 
             }});
     }
