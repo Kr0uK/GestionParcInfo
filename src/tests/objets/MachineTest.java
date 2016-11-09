@@ -1,6 +1,7 @@
 package tests.objets;
 
 import application.DAO.DAOMachine;
+import application.objets.CarteMere;
 import application.objets.Composant;
 import application.objets.Machine;
 import application.tools.LectureRB;
@@ -22,7 +23,10 @@ import static org.junit.Assert.*;
 public class MachineTest {
 
     private static Validator validator;
-    Machine machine = new Machine(1, 1, "kappa", "420 1337", "2016-11-01", 5, "Tablette", "192.168.45.2", false, 1, new ArrayList<Composant>());
+    //Machine machine = new Machine(1, 1, "kappa", "420 1337", "2016-11-01", 5, "Tablette", "192.168.1.3", false, 1, new ArrayList<Composant>());
+
+    Machine machine = new Machine(1, 1, "kappa", "420 1337", "2016-11-01", 5, "Tablette", "192.168.1.4", false, 1, new ArrayList<Composant>());
+    Composant test = new CarteMere(1, "merguez", "asus", "machin", "machine", "ATX");
     Set<ConstraintViolation<Machine>> constraintViolations = new Set<ConstraintViolation<Machine>>() {
         @Override
         public int size() {
@@ -89,7 +93,7 @@ public class MachineTest {
 
         }
     };
-    DAOMachine daoMachine = new DAOMachine();
+
 
     @BeforeClass
     public static void setUp() {
@@ -107,24 +111,24 @@ public class MachineTest {
 
     }
 
-    @Test
-    public void setComposant() throws Exception {
-
-    }
 
     @Test
     public void addComposant() throws Exception {
+
+
+        machine.addComposant(test);
 
     }
 
     @Test
     public void removeComposant() throws Exception {
-
+    machine.removeComposant(test);
     }
 
     @Test
     public void removeAllComposant() throws Exception {
 
+        machine.removeAllComposant();
     }
 
     @Test

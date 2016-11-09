@@ -18,6 +18,7 @@ import org.hibernate.validator.constraints.ScriptAssert;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import java.sql.SQLException;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -458,9 +459,8 @@ public class Machine {
      */
     public boolean ipDispo() {
         try {
-
             // On récupère l'adresse IP de l'objet
-            String adresseIp = this.getAdresseIP(); // longueur max : 15
+            String adresseIp = this.getAdresseIP();
 
             // on divise l'IP en octets pour les vérifier
             String[] octetsIp = adresseIp.split("\\.");
@@ -478,22 +478,18 @@ public class Machine {
                     }
                 }
             }
-
             //On vérifie par rapport à la BDD
-            Machine machineTemp = (daoMachine.lecture(LectureRB.lireRB("recupAdresseIP"), adresseIp + "\""));
-
-            if (machineTemp == null) { // Ici l'adresse est dispo
-                return true;
-            } else { //Ici l'adresse est déjà prise
-                return false;
-            }
-
-
-        } catch (Exception e) {
+            Machine machineTemp = daoMachine.lecture(LectureRB.lireRB("recupAdresseIP"), adresseIp + "\"");
+                if (machineTemp == null) { // Ici l'adresse est dispo
+                    return true;
+                } else { //Ici l'adresse est déjà prise
+                    return false;
+                }
+        }catch (Exception e) {
             e.printStackTrace();
-
             return false;
         }
+
     }
 }
 

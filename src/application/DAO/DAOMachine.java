@@ -94,16 +94,14 @@ public class DAOMachine implements IDAOHandler {
     @Override
     public <T> T lecture(String query, String id) {
         JdbcRowSet rowSet = conn.connexion();
-
         T machine = null;
-
+        Machine machineTemp = new Machine();
         try {
             rowSet.setCommand(query + id);
             rowSet.execute();
             rowSet.first();
 
-            Machine machineTemp = new Machine(1, 1, "4666", "6664", "2016-11-01", 5, "Tablette", "192.168.255.0", false, 1, new ArrayList<Composant>());
-
+            // Machine machineTemp = new Machine(1, 1, "4666", "6664", "2016-11-01", 5, "Tablette", "192.168.255.0", false, 1, new ArrayList<Composant>());
             machineTemp.setId(rowSet.getInt(1));
             machineTemp.setIdLocal(rowSet.getInt(2));
             machineTemp.setIdUnique(rowSet.getString(3));
@@ -114,13 +112,14 @@ public class DAOMachine implements IDAOHandler {
             machineTemp.setAdresseIP(rowSet.getString(8));
             machineTemp.setPret(rowSet.getBoolean(9));
             machineTemp.setLocalOrigine(rowSet.getInt(10));
-
-            machine = (T) machineTemp;
+            return machine = (T) machineTemp;
         } catch (SQLException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
+            return null;
+        }finally {
+            conn.fermer();
+
         }
-        conn.fermer();
-        return machine;
     }
 
     @Override
@@ -148,7 +147,7 @@ public class DAOMachine implements IDAOHandler {
                 boolean add = machines.add((T) machine);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+           e.printStackTrace();
         }
         conn.fermer();
         return machines;
