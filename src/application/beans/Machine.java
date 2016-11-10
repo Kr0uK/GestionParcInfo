@@ -45,10 +45,6 @@ public class Machine {
     DAOMachine daoMachine = new DAOMachine();
 
     private int idLocal;
-
-    //STRING - TODO : types variables a revoir
-
-
     @NotNull
     private int id;
 

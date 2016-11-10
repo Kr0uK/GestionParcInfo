@@ -53,14 +53,24 @@ public class MainAppFX extends Application {
     private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
     public static Font f;
 
+    private boolean TEST = false;
+
     public MainAppFX() {
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("query", "lectureMachines"));
-                DataMachine.addAll(liste);
-
+                if (TEST) {
+                    // JEU D'ESSAI HORS LIGNE
+                    DataMachine.add(new Machine(0,1, "localhost", "333 4444", "2016-10-10", 2,"PC", "127.0.0.1",false,1,new ArrayList<Composant>()));
+                    DataMachine.add(new Machine(1,1, "ANDEUXK", "365 2000", "1999-12-31", 1,"BUG", "4.5.1.6", false,1,new ArrayList<Composant>()));
+                    DataMachine.add(new Machine(2,1, "MAYA", "212 2012", "2012-12-21", 2,"MAYA", "21.12.20.12",false,1,new ArrayList<Composant>()));
+                    DataMachine.add(new Machine(3,1, "MIR", "222 1345", "1999-08-11", 2, "MIR", "48.86.2.33",false,1,new ArrayList<Composant>()));
+                } else {
+                    // JEU D'ESSAI BDD
+                    List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("query", "lectureMachines"));
+                    DataMachine.addAll(liste);
+                }
                 // On r�cup�re d'abord les donn�es a partir du SGBD pour permettre l'affichage
              //   getDataMachine();
 

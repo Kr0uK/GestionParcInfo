@@ -7,6 +7,7 @@ package application.dao; /******************************************************
 import application.beans.Machine;
 import application.interfaces.IDAOHandler;
 import application.tools.LectureRB;
+import application.tools.Verif;
 
 
 import javax.sql.rowset.JdbcRowSet;
@@ -21,11 +22,12 @@ public class DAOMachine implements IDAOHandler {
         JdbcRowSet rowSet = conn.connexion();
         Machine machineAdd = (Machine) objet;
         try {
+            Verif.verifier(machineAdd);
             rowSet.setCommand(query);
             rowSet.execute();
 
             rowSet.moveToInsertRow();
-            rowSet.updateInt(LectureRB.lireRB("champ", "localId"), machineAdd.getIdLocal());
+            rowSet.updateInt(LectureRB.lireRB("champ", "localId"), 1);
             rowSet.updateString(LectureRB.lireRB("champ", "machineIdUnique"), machineAdd.getIdUnique());
             rowSet.updateString(LectureRB.lireRB("champ", "machineIdAfpa"), machineAdd.getIdAfpa());
             rowSet.updateString(LectureRB.lireRB("champ", "machineDateAchat"), machineAdd.getDateAchat());
@@ -33,7 +35,8 @@ public class DAOMachine implements IDAOHandler {
             rowSet.updateString(LectureRB.lireRB("champ", "machineType"), machineAdd.getType());
             rowSet.updateString(LectureRB.lireRB("champ", "machineAdresseIP"), machineAdd.getAdresseIP());
             rowSet.updateBoolean(LectureRB.lireRB("champ", "machinePret"), machineAdd.isPret());
-            rowSet.updateInt(LectureRB.lireRB("champ", "localOrigine"), machineAdd.getIdLocal());
+            rowSet.updateInt(LectureRB.lireRB("champ", "localOrigine"), 1);
+
 
             rowSet.insertRow();
 
@@ -67,6 +70,7 @@ public class DAOMachine implements IDAOHandler {
         JdbcRowSet rowSet = conn.connexion();
         Machine machineUpdate = (Machine) objet;
         try {
+            Verif.verifier(machineUpdate);
             rowSet.setCommand(query + id);
             rowSet.execute();
             rowSet.first();

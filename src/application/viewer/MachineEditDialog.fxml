@@ -118,7 +118,7 @@
                         <Insets left="10.0" />
                      </padding></Label>
                   
-                                    <TextField fx:id="txtfld1" GridPane.columnIndex="1">
+                                    <TextField fx:id="txtfld1" disable="true" GridPane.columnIndex="1">
                      <font>
                         <Font name="Stencil" size="12.0" />
                      </font>
