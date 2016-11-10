@@ -3,6 +3,7 @@ package tests.objets;
 import application.objets.Composant;
 import application.objets.Machine;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -18,6 +19,7 @@ import static org.junit.Assert.*;
  * Created by Boris on 10/11/2016.
  */
 public class ComposantTest {
+    Composant composant = new Composant(4, "uuuu","dses","dfdsffd","fdsfdf",1);
     private static Validator validator;
     Set<ConstraintViolation<Composant>> constraintViolations = new Set<ConstraintViolation<Composant>>() {
         @Override
@@ -91,5 +93,14 @@ public class ComposantTest {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
+    @Test
+    public void checkComposant() throws Exception {
+        constraintViolations = validator.validate(composant);
+        for (ConstraintViolation<Composant> contraintes : constraintViolations) {
+            System.out.println(contraintes.getMessage());
+        }
+    }
+
+
 
 }

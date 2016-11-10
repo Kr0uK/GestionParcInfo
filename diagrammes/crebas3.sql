@@ -231,3 +231,6 @@ alter table UTILISER add constraint FK_UTILISER foreign key (UTIL_ID)
 alter table UTILISER add constraint FK_UTILISER2 foreign key (MACHINE_ID)
       references MACHINE (MACHINE_ID) on delete restrict on update restrict;
 
+      alter table COMPOSANT add constraint FK_CONTENIR foreign key (MACHINE_ID)
+      references MACHINE (MACHINE_ID) on delete restrict on update restrict;
+

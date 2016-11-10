@@ -4,6 +4,7 @@ package application.objets; /***************************************************
  * Purpose: Defines the Class application.beans.Ram
  ***********************************************************************/
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -13,7 +14,7 @@ import javax.validation.constraints.Pattern;
 public class Ram extends Composant {
 
     @NotNull
-    @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer une valeur valide")
+    @Min(1)
     /** @pdOid f1470625-2b39-40fb-a985-f4e4543dc105 */
     private int capaciteGo;
 
@@ -29,8 +30,8 @@ public class Ram extends Composant {
         super();
     }
 
-    public Ram(int capaciteGo) {
-        super();
+    public Ram(int id, String reference, String constructeur, String libelle, String details,int idMachine, int capaciteGo) {
+        super(id, reference, constructeur, libelle, details, idMachine);
         this.capaciteGo = capaciteGo;
     }
 }

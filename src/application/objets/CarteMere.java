@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 public class CarteMere extends Composant {
 
    @NotNull
-   @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un format de carte mère valide")
+   @Pattern(regexp = "[A-Z]{3}", message = "Veuillez entrer un format de carte mère valide")
    /** @pdOid e0d3ef73-1616-4bfb-84d1-b0d5fc28444e */
    private String format;
 
@@ -28,13 +28,9 @@ public class CarteMere extends Composant {
       super();
    }
 
-   public CarteMere(String format) {
-      super();
-      this.format = format;
-   }
 
-   public CarteMere(int id, String reference, String constructeur, String libelle, String details, String format) {
-      super();
+   public CarteMere(int id, String reference, String constructeur, String libelle, String details, int idMachine, String format) {
+      super(id, reference, constructeur, libelle, details, idMachine);
       this.format = format;
    }
 }
