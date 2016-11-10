@@ -19,11 +19,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collection;
+import java.util.*;
 /*	PROPERTY :
  *	Avec JavaFX il est courant d'utiliser les Properties pour tous les champs de votre classe.
  *	Une Property (propriété) nous permet, par exemple, d'être automatiquement averti lorsque la
@@ -89,7 +89,7 @@ public class Machine {
     private StringProperty typeSP;
     private StringProperty localOrigineSP;
 
-    // COMPOSANTS - TODO
+    // COMPOSANTS
 
     private java.util.Collection<Composant> composant;
 
@@ -440,16 +440,19 @@ public class Machine {
     /**
      * @return *  @pdOid c048567c-b284-4a21-af5d-7e4f990bf0fe
      */
-    public boolean estSousGarantie() {
+    public boolean estSousGarantie() throws ParseException {
+        String dateStr = this.getDateAchat();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+        Date date = format.parse(dateStr);
         Calendar calendar = Calendar.getInstance();
-        //calendar.setTime(this.getStringAchat());
+        calendar.setTime(date);
         int dateDebutGarantie = calendar.get(Calendar.YEAR);
         int dateFinGarantie = dateDebutGarantie + getDureeGarantie();
         int anneeEnCours = Year.now().getValue();
         if (anneeEnCours > dateFinGarantie) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
