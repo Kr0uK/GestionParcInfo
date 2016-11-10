@@ -4,6 +4,7 @@ import application.DAO.DAOConnection;
 import application.DAO.DAOMachine;
 import application.interfaces.IDAOHandler;
 import application.tools.LectureRB;
+import application.tools.Verif;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -148,6 +149,7 @@ public class MainAppFX extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
         launch(args);
     }
 
