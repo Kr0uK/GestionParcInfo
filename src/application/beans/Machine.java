@@ -1,34 +1,36 @@
-package application.objets;
+package application.beans;
 /***********************************************************************
  * Module:  application.objets.Machine.java
  * Author:  FREDERIC
  * Purpose: Defines the Class application.objets.Machine
  ***********************************************************************/
 
-//import java.util.Map;
-
-// IMPORT DES PROPERTIES :
-
-import application.DAO.DAOMachine;
-import application.tools.LectureRB;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleStringProperty;
-import org.hibernate.validator.constraints.ScriptAssert;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.*;
+//import java.util.Map;
+
+// IMPORT DES PROPERTIES :
+import application.beans.Composant;
+import application.dao.DAOMachine;
+import application.tools.LectureRB;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 /*	PROPERTY :
  *	Avec JavaFX il est courant d'utiliser les Properties pour tous les champs de votre classe.
- *	Une Property (propriété) nous permet, par exemple, d'être automatiquement averti lorsque la
- *	variable id ou toute autre variable a été modifiée.
- *	Ceci nous aide à maintenir la view synchronisée avec les données.
+ *	Une Property (propri�t�) nous permet, par exemple, d'�tre automatiquement averti lorsque la
+ *	variable id ou toute autre variable a �t� modifi�e.
+ *	Ceci nous aide � maintenir la view synchronis�e avec les donn�es.
  */
 
 //import javafx.beans.binding.Bindings;
@@ -61,7 +63,7 @@ public class Machine {
     @NotNull
     private String dateAchat;
 
-
+    @Min(0)
     private int dureeGarantie;
 
     @NotNull
@@ -105,6 +107,7 @@ public class Machine {
 
     public void setId(int id) {
         this.id = id;
+        this.setIdSP(id);
     }
 
     // StringProperty
@@ -136,6 +139,7 @@ public class Machine {
 
     public void setIdAfpa(String idAfpa) {
         this.idAfpa = idAfpa;
+        this.setIdAfpaSP(idAfpa);
     }
 
     // StringProperty
@@ -158,6 +162,7 @@ public class Machine {
 
     public void setIdUnique(String idUnique) {
         this.idUnique = idUnique;
+        this.setIdUniqueSP(idUnique);
     }
 
     // StringProperty
@@ -180,6 +185,7 @@ public class Machine {
 
     public void setDateAchat(String dateAchat) {
         this.dateAchat = dateAchat;
+        this.setDateAchatSP(dateAchat);
     }
 
     // StringProperty
@@ -202,6 +208,7 @@ public class Machine {
 
     public void setDureeGarantie(int dureeGarantie) {
         this.dureeGarantie = dureeGarantie;
+        this.setDureeGarantieSP(dureeGarantie);
     }
 
     // StringProperty
@@ -232,6 +239,7 @@ public class Machine {
 
     public void setAdresseIP(String adresseIP) {
         this.adresseIP = adresseIP;
+        this.setAdresseIPSP(adresseIP);
     }
 
     // StringProperty
@@ -254,6 +262,7 @@ public class Machine {
 
     public void setType(String type) {
         this.type = type;
+        this.setTypeSP(type);
     }
 
     // StringProperty
@@ -315,59 +324,39 @@ public class Machine {
 
     }
 
-    // Requête d'ajout
-
-    String reqAjout = "INSERT INTO " + Machine.class.getSimpleName().toUpperCase() + " VALUES (" + id + "," + idAfpa + "," + idUnique + "," + dateAchat + "," + dureeGarantie + "," + adresseIP + "," + type + ")";
-
     /*
      * CONSTRUCTEURS
      */
     public Machine() {
+        this.remplirSP();
     }
 
     public Machine(int id, int idLocal, String idUnique, String idAfpa, String dateAchat, int dureeGarantie, String type, String adresseIP, boolean pret, int localOrigine, Collection<Composant> composant) {
 
         this.id = id;
-
         this.idLocal = idLocal;
-
         this.idUnique = idUnique;
-
         this.idAfpa = idAfpa;
-
         this.dateAchat = dateAchat;
-
         this.dureeGarantie = dureeGarantie;
-
         this.type = type;
-
         this.adresseIP = adresseIP;
-
         this.pret = pret;
-
         this.localOrigine = localOrigine;
-
         this.composant = composant;
-
-
-        // CONVERSION EN TYPE D'OBJETS OBSERVABLES
-
-        this.idSP = new SimpleStringProperty(Integer.toString(id));
-
-        this.idAfpaSP = new SimpleStringProperty(idAfpa);
-
-        this.idUniqueSP = new SimpleStringProperty(idUnique);
-
-        this.dateAchatSP = new SimpleStringProperty(dateAchat);
-
-        this.dureeGarantieSP = new SimpleStringProperty(Integer.toString(dureeGarantie));
-
-        this.adresseIPSP = new SimpleStringProperty(adresseIP);
-
-        this.typeSP = new SimpleStringProperty(type);
-
+        this.remplirSP();
     }
 
+    public void remplirSP() {
+        // CONVERSION EN TYPE D'OBJETS OBSERVABLES
+        this.idSP = new SimpleStringProperty(String.valueOf(this.getId()));
+        this.idAfpaSP = new SimpleStringProperty(this.getIdAfpa());
+        this.idUniqueSP = new SimpleStringProperty(this.getIdUnique());
+        this.dateAchatSP = new SimpleStringProperty(this.getDateAchat());
+        this.dureeGarantieSP = new SimpleStringProperty(String.valueOf(this.getDureeGarantie()));
+        this.adresseIPSP = new SimpleStringProperty(this.getAdresseIP());
+        this.typeSP = new SimpleStringProperty(this.getType());
+    }
 
 
 	   /*
@@ -437,9 +426,6 @@ public class Machine {
     }
 
 
-    /**
-     * @return *  @pdOid c048567c-b284-4a21-af5d-7e4f990bf0fe
-     */
     public boolean estSousGarantie() throws ParseException {
         String dateStr = this.getDateAchat();
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
@@ -482,18 +468,16 @@ public class Machine {
                 }
             }
             //On vérifie par rapport à la BDD
-            Machine machineTemp = daoMachine.lecture(LectureRB.lireRB("recupAdresseIP"), adresseIp + "\"");
-                if (machineTemp == null) { // Ici l'adresse est dispo
-                    return true;
-                } else { //Ici l'adresse est déjà prise
-                    return false;
-                }
-        }catch (Exception e) {
+            Machine machineTemp = daoMachine.lecture(LectureRB.lireRB("query", "recupAdresseIP"), adresseIp + "\"");
+            if (machineTemp == null) { // Ici l'adresse est dispo
+                return true;
+            } else { //Ici l'adresse est déjà prise
+                return false;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
 
     }
 }
-
-

@@ -1,19 +1,15 @@
-package application.DAO;
+package application.dao; /***********************************************************************
+ * Module:  application.dao.DAOSalle.java
+ * Author:  RENAUD
+ * Purpose: Defines the Class application.dao.DAOSalle
+ ***********************************************************************/
 
-import application.objets.Composant;
-import application.objets.Machine;
 import application.interfaces.IDAOHandler;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by RENAUD on 08/11/2016.
- */
-public class DAOComposant implements IDAOHandler {
+/** @pdOid 48949297-0e27-4222-ae4f-02358912267c */
+public class DAOSalle implements IDAOHandler {
 
     @Override
     public <T> boolean ajouter(T objet, String query) {
@@ -35,8 +31,6 @@ public class DAOComposant implements IDAOHandler {
         return null;
     }
 
-
-
     @Override
     public <T> List<T> lecture(String query) {
         return null;
@@ -46,6 +40,4 @@ public class DAOComposant implements IDAOHandler {
     public <T> boolean verifier(T objet) {
         return false;
     }
-
-
 }

@@ -1,4 +1,4 @@
-package application.objets; /***********************************************************************
+package application.beans; /***********************************************************************
  * Module:  application.beans.Formation.java
  * Author:  RENAUD
  * Purpose: Defines the Class application.beans.Formation
@@ -8,6 +8,7 @@ package application.objets; /***************************************************
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Collection;
+
 
 /** @pdOid a11ac2b3-8aa8-4334-b2fb-57a3e07da044 */
 public class Formation {

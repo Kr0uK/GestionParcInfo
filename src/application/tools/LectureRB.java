@@ -7,11 +7,9 @@ import java.util.ResourceBundle;
  * Created by RENAUD on 08/11/2016.
  */
 public class LectureRB {
-    public static String lireRB(String key){
+    public static String lireRB(String rb, String key){
         Locale locale = new Locale("fr", "FR");
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("application.tools.query", locale);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("application.tools." + rb, locale);
         return resourceBundle.getString(key);
     }
-
-
 }

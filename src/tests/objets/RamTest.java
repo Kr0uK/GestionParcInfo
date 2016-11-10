@@ -1,7 +1,7 @@
 package tests.objets;
 
-import application.objets.Composant;
-import application.objets.Ram;
+import application.beans.Composant;
+import application.beans.Ram;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -12,8 +12,6 @@ import javax.validation.ValidatorFactory;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Boris on 03/11/2016.

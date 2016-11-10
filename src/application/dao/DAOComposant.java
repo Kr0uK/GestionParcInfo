@@ -1,15 +1,13 @@
-package application.DAO; /***********************************************************************
- * Module:  application.dao.DAOBatiment.java
- * Author:  RENAUD
- * Purpose: Defines the Class application.dao.DAOBatiment
- ***********************************************************************/
+package application.dao;
 
 import application.interfaces.IDAOHandler;
 
 import java.util.List;
 
-/** @pdOid 5deba7bc-222a-4be2-aa5d-20689d4fd332 */
-public class DAOBatiment implements IDAOHandler {
+/**
+ * Created by RENAUD on 08/11/2016.
+ */
+public class DAOComposant implements IDAOHandler {
 
 
     @Override
@@ -27,21 +25,30 @@ public class DAOBatiment implements IDAOHandler {
         return false;
     }
 
+
     @Override
     public <T> T lecture(String query, String id) {
         return null;
     }
 
-
     @Override
     public <T> List<T> lecture(String query) {
-        return null;
+        try {
+
+            List<T> tList = null;
+            //tList = (List<T>) composants;
+
+            return tList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            conn.fermer();
+        }
     }
 
     @Override
     public <T> boolean verifier(T objet) {
         return false;
     }
-
-
 }

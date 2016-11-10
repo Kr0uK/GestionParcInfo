@@ -4,7 +4,7 @@ package application.interfaces; /***********************************************
  * Purpose: Defines the Interface application.interfaces.IDAOHandler
  ***********************************************************************/
 
-import application.DAO.DAOConnection;
+import application.dao.DAOConnection;
 
 import java.util.List;
 

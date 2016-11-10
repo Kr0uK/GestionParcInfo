@@ -1,4 +1,4 @@
-package application.objets; /***********************************************************************
+package application.beans; /***********************************************************************
  * Module:  application.beans.Processeur.java
  * Author:  admin
  * Purpose: Defines the Class application.beans.Processeur
@@ -6,8 +6,6 @@ package application.objets; /***************************************************
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /** @pdOid 5d6517c4-b800-475d-9f03-aa10f3fba23c */
 public class Processeur extends Composant {

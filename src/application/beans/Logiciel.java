@@ -1,4 +1,4 @@
-package application.objets; /***********************************************************************
+package application.beans; /***********************************************************************
  * Module:  application.beans.Logiciel.java
  * Author:  RENAUD
  * Purpose: Defines the Class application.beans.Logiciel
@@ -6,7 +6,6 @@ package application.objets; /***************************************************
 
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 /**
  * @pdOid 1d702f3f-4f03-44d8-9fc1-4809d7fafb5c

@@ -1,4 +1,4 @@
-package application.objets; /***********************************************************************
+package application.beans; /***********************************************************************
  * Module:  application.beans.Site.java
  * Author:  RENAUD
  * Purpose: Defines the Class application.beans.Site

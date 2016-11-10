@@ -1,4 +1,4 @@
-package application.objets; /***********************************************************************
+package application.beans; /***********************************************************************
  * Module:  application.beans.CarteMere.java
  * Author:  RENAUD
  * Purpose: Defines the Class application.beans.CarteMere

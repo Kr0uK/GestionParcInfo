@@ -1,4 +1,4 @@
-package application.objets; /***********************************************************************
+package application.beans; /***********************************************************************
  * Module:  application.beans.Composant.java
  * Author:  admin
  * Purpose: Defines the Class application.beans.Composant

@@ -1,7 +1,6 @@
 package tests.objets;
 
-import application.objets.Composant;
-import application.objets.Logiciel;
+import application.beans.Logiciel;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

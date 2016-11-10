@@ -1,4 +1,4 @@
-package application.objets; /***********************************************************************
+package application.beans; /***********************************************************************
  * Module:  application.beans.Role.java
  * Author:  RENAUD
  * Purpose: Defines the Class application.beans.Role

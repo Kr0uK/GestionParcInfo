@@ -1,4 +1,4 @@
-package application.objets; /***********************************************************************
+package application.beans; /***********************************************************************
  * Module:  application.beans.Ram.java
  * Author:  admin
  * Purpose: Defines the Class application.beans.Ram
@@ -6,7 +6,6 @@ package application.objets; /***************************************************
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 /**
  * @pdOid d1b87622-3842-492a-8422-31b2a7f8be38

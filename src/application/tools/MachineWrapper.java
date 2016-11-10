@@ -1,6 +1,6 @@
 package application.tools;
 
-import application.objets.Machine;
+import application.beans.Machine;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

@@ -1,10 +1,8 @@
 package tests.objets;
 
-import application.DAO.DAOMachine;
-import application.objets.CarteMere;
-import application.objets.Composant;
-import application.objets.Machine;
-import application.tools.LectureRB;
+import application.beans.CarteMere;
+import application.beans.Composant;
+import application.beans.Machine;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -14,8 +12,6 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import java.util.*;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Boris on 03/11/2016.

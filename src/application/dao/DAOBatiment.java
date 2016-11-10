@@ -1,15 +1,15 @@
-package application.DAO; /***********************************************************************
- * Module:  application.dao.DAOSalle.java
+package application.dao; /***********************************************************************
+ * Module:  application.dao.DAOBatiment.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.dao.DAOSalle
+ * Purpose: Defines the Class application.dao.DAOBatiment
  ***********************************************************************/
 
 import application.interfaces.IDAOHandler;
 
 import java.util.List;
 
-/** @pdOid 48949297-0e27-4222-ae4f-02358912267c */
-public class DAOSalle implements IDAOHandler {
+/** @pdOid 5deba7bc-222a-4be2-aa5d-20689d4fd332 */
+public class DAOBatiment implements IDAOHandler {
 
     @Override
     public <T> boolean ajouter(T objet, String query) {
@@ -40,5 +40,4 @@ public class DAOSalle implements IDAOHandler {
     public <T> boolean verifier(T objet) {
         return false;
     }
-
 }

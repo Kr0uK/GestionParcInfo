@@ -1,22 +1,19 @@
-package application.DAO; /***********************************************************************
- * Module:  application.DAO.DAOConnection.java
+package application.dao; /***********************************************************************
+ * Module:  application.dao.DAOConnection.java
  * Author:  RENAUD
- * Purpose: Defines the Class application.DAO.DAOConnection
+ * Purpose: Defines the Class application.dao.DAOConnection
  ***********************************************************************/
 
 import application.interfaces.IDAOConnection;
 
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
  * @pdOid e1f67259-29a6-4ad8-8312-7ca59c54385f
  */
 public class DAOConnection implements IDAOConnection {
-
-   Connection conn = null;
 
     JdbcRowSet rowSet = null;
 
@@ -48,6 +45,5 @@ public class DAOConnection implements IDAOConnection {
             e.printStackTrace();
             return false;
         }
-
     }
 }

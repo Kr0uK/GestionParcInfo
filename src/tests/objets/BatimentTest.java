@@ -1,14 +1,12 @@
 package tests.objets;
 
-import application.objets.Batiment;
+import application.beans.Batiment;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Boris on 03/11/2016.
