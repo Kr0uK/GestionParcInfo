@@ -21,21 +21,21 @@
          <bottom>
             <ImageView fitHeight="180.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/bg_footer_popup.png" />
+                  <Image url="@../../res/bg_footer_popup.png" />
                </image>
             </ImageView>
          </bottom>
          <top>
             <ImageView fitHeight="36.0" fitWidth="400.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/bg_header.png" />
+                  <Image url="@../../res/bg_header.png" />
                </image>
             </ImageView>
          </top>
          <left>
             <ImageView fitHeight="201.0" fitWidth="17.0" pickOnBounds="true" BorderPane.alignment="TOP_LEFT">
                <image>
-                  <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/bg_left_repeat.png" />
+                  <Image url="@../../res/bg_left_repeat.png" />
                </image>
                <BorderPane.margin>
                   <Insets top="-1.0" />
@@ -45,7 +45,7 @@
          <right>
             <ImageView fitHeight="201.0" fitWidth="17.0" pickOnBounds="true" BorderPane.alignment="TOP_RIGHT">
                <image>
-                  <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/bg_right_repeat.png" />
+                  <Image url="@../../res/bg_right_repeat.png" />
                </image>
                <BorderPane.margin>
                   <Insets top="-1.0" />

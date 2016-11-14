@@ -1,5 +1,6 @@
 package application.viewer;
 
+import application.beans.Machine;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
@@ -11,7 +12,7 @@ import javafx.scene.control.TextField;
 import java.util.logging.Logger;
 
 import application.MainAppFX;
-import application.beans.Machine;
+
 
 /**
 *

@@ -14,16 +14,15 @@ import java.util.List;
 public class MachineWrapper {
 
 
+    private List<Machine> machines;
 
-        private List<Machine> machines;
-
-        @XmlElement(name = "machine")
+    @XmlElement(name = "machine")
     public List<Machine> getMachines() {
-            return machines;
-        }
-
-        public void setMachines(List<Machine> machine) {
-            this.machines = machine;
-        }
+        return machines;
     }
+
+    public void setMachines(List<Machine> machine) {
+        this.machines = machine;
+    }
+}
 

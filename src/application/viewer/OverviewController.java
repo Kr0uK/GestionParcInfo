@@ -11,7 +11,7 @@ import application.MainAppFX;
 public class OverviewController {
 		
 		 
-		// Rï¿½fï¿½rence pour les labels
+		// Référence pour les labels
 		@FXML
 		private Label label1;
 		@FXML
@@ -27,13 +27,13 @@ public class OverviewController {
 		@FXML
 		private Label label7;
 
-		// Rï¿½fï¿½rence ï¿½ l'application principale
+		// Référence à l'application principale
 		public static MainAppFX mainAppFX;
 
 
 	/**
 	 * Initialises la classe controller. 
-	 * Cette methode est automaticament appelï¿½e aprï¿½s le chargement du fichier FXML.
+	 * Cette methode est automaticament appelée après le chargement du fichier FXML.
 	 */
 	 @FXML
 	 private void initialize() {
@@ -42,7 +42,7 @@ public class OverviewController {
 	}
 	 
 	 /**
-	 * Appellï¿½ par l'application principale pour avoir une rï¿½fï¿½rence de retour sur elle-mï¿½me
+	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
 	 *
 	 * @param mainApp
 	 */
