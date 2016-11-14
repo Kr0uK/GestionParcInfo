@@ -29,14 +29,14 @@
                <top>
                   <ImageView fitHeight="90.0" fitWidth="573.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../../res/bg_header.png" />
+                        <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/bg_header.png" />
                      </image>
                   </ImageView>
                </top>
                <right>
                   <ImageView fitHeight="269.0" fitWidth="23.0" layoutY="500.0" pickOnBounds="true" BorderPane.alignment="TOP_LEFT">
                      <image>
-                        <Image url="@../../res/bg_right_repeat.png" />
+                        <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/bg_right_repeat.png" />
                      </image>
                      <BorderPane.margin>
                         <Insets left="1.0" top="-1.0" />
@@ -46,7 +46,7 @@
                <left>
                   <ImageView fitHeight="269.0" fitWidth="23.0" pickOnBounds="true" BorderPane.alignment="TOP_LEFT">
                      <image>
-                        <Image url="@../../res/bg_left_repeat.png" />
+                        <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/bg_left_repeat.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
@@ -59,7 +59,7 @@
                <bottom>
                   <ImageView fitHeight="281.0" fitWidth="573.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../../res/bg_footer.png" />
+                        <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/bg_footer.png" />
                      </image>
                      <BorderPane.margin>
                         <Insets left="-1.0" />
@@ -201,6 +201,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="ENTER" defaultButton="true" layoutX="86.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleENTER" opacity="0.0" text="o" />
   </children>
   <stylesheets>
     <URL value="@theme_Overview.css" />

@@ -23,11 +23,11 @@
                      <children>
                         <ImageView fitHeight="130.0" fitWidth="204.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../res/camembert.png" />
+                              <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/camembert.png" />
                            </image></ImageView>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="16.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../res/cheese.gif" />
+                              <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/cheese.gif" />
                            </image>
                         </ImageView>
                         <Label layoutX="20.0" layoutY="115.0" text="Un camenbert representant les stats" />
@@ -85,7 +85,7 @@
                               <Label fx:id="label7" text=" " GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <image>
-                                    <Image url="@../../res/money.gif" />
+                                    <Image url="@../../../../../Downloads/GestionParcInfo-master(5)/GestionParcInfo-master/src/res/money.gif" />
                                  </image>
                               </ImageView>
                   </children>
@@ -112,6 +112,6 @@
     <AnchorPane prefHeight="3.0" prefWidth="600.0" />
   </children>
   <stylesheets>
-    <URL value="@fxmloverview.css" />
+    <URL value="@theme_Overview.css" />
   </stylesheets>
 </AnchorPane>
