@@ -4,7 +4,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import application.DAO.objets.Machine;
+import application.beans.Machine;
 
 @XmlRootElement(name = "machines")
 public class MachineListWrapper {
