@@ -1,6 +1,5 @@
 package application.viewer;
 
-import application.beans.Machine;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
@@ -9,10 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import application.MainAppFX;
-
+import application.beans.Machine;
+import application.resources.Sound;
 
 /**
 *
@@ -45,10 +46,15 @@ public class MachineEditDialogController {
 	 @FXML
 	 private Button button1, button2;
 
-
+	 public Sound sound = new Sound();
+	 public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
 	 
 	 @FXML
 	 private void initialize() {
+		 if (player.getString("sound").equals("ON")) {	 
+		 	sound = new Sound("../../res/bitVALID.wav");
+		 	sound.Play();
+	 	 }
 	 }
 	 
 	 // STAGE
@@ -99,6 +105,10 @@ public class MachineEditDialogController {
 	 // VALIDATION ENVOI
 	 @FXML
 	 private void handleOk() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound("../../res/bitSTART.wav");
+			 sound.Play();
+		 }
 		 // Verification avant stockage
 		 if (isInputValid()) {	
 			 machine.setIdSP(txtfld1.getText());
@@ -117,6 +127,10 @@ public class MachineEditDialogController {
 	 // ANNULATION ENVOI
 	 @FXML
 	 private void handleCancel() {
+		 if (player.getString("sound").equals("ON")) {	
+			 sound = new Sound("../../res/bitCANCEL.wav");
+			 sound.Play();
+		 }
 		 dialogStage.close();
 	 }
 
@@ -124,31 +138,31 @@ public class MachineEditDialogController {
 	 private boolean isInputValid() {
 		 String errorMessage = "";
 		 if (txtfld1.getText() == null || txtfld1.getText().length() == 0) {
-			 errorMessage += Label1.getText().toUpperCase().toString()+" n�c�ssaire !\n";
+			 errorMessage += Label1.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld2.getText() == null || txtfld2.getText().length() == 0) {
-			 errorMessage += Label2.getText().toUpperCase().toString()+" n�c�ssaire !\n";
+			 errorMessage += Label2.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld3.getText() == null || txtfld3.getText().length() == 0) {
-			 errorMessage += Label3.getText().toUpperCase().toString()+" n�c�ssaire !\n";
+			 errorMessage += Label3.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld4.getText() == null || txtfld4.getText().length() == 0) {
-			 errorMessage += Label4.getText().toUpperCase().toString()+" n�c�ssaire !\n";
+			 errorMessage += Label4.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld5.getText() == null || txtfld5.getText().length() == 0) {
-			 errorMessage += Label5.getText().toUpperCase().toString()+" n�c�ssaire !\n";
+			 errorMessage += Label5.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }
 		 
 		 if (txtfld6.getText() == null || txtfld6.getText().length() == 0) {
-			 errorMessage += Label6.getText().toUpperCase().toString()+" n�c�ssaire !\n";
+			 errorMessage += Label6.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }  
 		 
 		 if (txtfld7.getText() == null || txtfld7.getText().length() == 0) {
-			 errorMessage += Label7.getText().toUpperCase().toString()+" n�c�ssaire !\n";
+			 errorMessage += Label7.getText().toUpperCase().toString()+" nécéssaire !\n";
 		 }/*
 		 else {
 		 // tenter de cast en int par exemple

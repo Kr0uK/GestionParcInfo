@@ -16,6 +16,7 @@ import javafx.scene.text.*;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import application.tools.Language;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,15 +27,7 @@ import java.util.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import application.tools.Language;
-/*
-import javafx.scene.layout.StackPane;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import java.util.Collection;
-import java.util.Date;
-*/
+
 
 
 import application.viewer.OverviewController;

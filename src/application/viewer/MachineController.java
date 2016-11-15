@@ -1,9 +1,10 @@
 package application.viewer;
 
 import application.MainAppFX;
-
-import application.beans.Composant;
 import application.beans.Machine;
+import application.resources.Sound;
+import application.beans.Composant;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -13,17 +14,13 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
 *
@@ -31,7 +28,7 @@ import java.awt.event.KeyListener;
 */
 public class MachineController {
 		
-		// Référence pour le tableview et les colonnes
+		// Réf�rence pour le tableview et les colonnes
 		@FXML
 		private TableView<Machine> tableFX;
 		@FXML
@@ -39,7 +36,7 @@ public class MachineController {
 		@FXML
 		private TableColumn<Machine, String> coltwo;
 		 
-		// Référence pour les labels
+		// Réf�rence pour les labels
 		@FXML
 		private Label label1;
 		@FXML
@@ -57,17 +54,18 @@ public class MachineController {
 
 		// Référence à l'application principale
 		public MainAppFX mainAppFX;
-		
+		public Sound sound = new Sound();
+		public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
+
 		@FXML
 		private Button START, SELECT, CANCEL;
 		@FXML
 		public static Button ENTER;
-		public static String btnSelected = "";	// Permet de determiner le boutton selectionner pour switchcase
+		public static String btnSelected = "";	// Permet de determiner le bouton selectionneé pour switchcase
 		@FXML
 		private ButtonBar btnBar;
 		@FXML
 		private Label labDet, Label1, Label2, Label3, Label4, Label5, Label6, Label7;
-
 
 	/**
 	 * Initialises la classe controller. 
@@ -75,13 +73,18 @@ public class MachineController {
 	 */
 	 @FXML
 	 private void initialize() {
-		// Initialise la tableFX avec deux colonnes
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
+			 sound.Play();
+		 }
+		 
+		 // Initialise la tableFX avec deux colonnes
 		 colone.setCellValueFactory(cellData -> cellData.getValue().idProperty()); 
 		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
 		 
-		// Nettoyage des details
+		 // Nettoyage des details
 		 showDetails(null);
-		 
+
 		 // Ajout d'un listener pour ecouter les changements :
 		 // Nous obtenons la selectedItemProperty de la table de machines et lui ajoutons un listener. 
 		 // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
@@ -141,11 +144,16 @@ public class MachineController {
 		 }
 	}
 	 
-	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le bouton d'ajout
+	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
 	 @FXML
 	 private void handleSTART() {
-		  btnSelected = "START";
-		  Machine newMachine = new Machine(0,0,"","","",0,"","",false,1,new ArrayList<Composant>());
+		  if (player.getString("sound").equals("ON")) {
+			  sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
+			  sound.Play();
+		  }
+		  btnSelected = "SELECT";
+		  Collection<Composant> lol = new ArrayList<Composant>();
+		 Machine newMachine = new Machine(0, 0, "", "", "", 0, "", "", false, 0, lol);
 		  boolean okClic = mainAppFX.showMachineEditDialog(newMachine);
 		  if (okClic) {
 			  mainAppFX.getData().add(newMachine);
@@ -155,6 +163,10 @@ public class MachineController {
 	 //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le bouton de modification
 	 @FXML
 	 private void handleSELECT() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
+			 sound.Play();
+		 }
 		 btnSelected = "SELECT";
 		 Machine selection = tableFX.getSelectionModel().getSelectedItem();
 		 if (selection != null) {
@@ -163,25 +175,30 @@ public class MachineController {
 				  showDetails(selection);
 			  }
 		 } else {
-			  // Si rien n'est séléctionné
+			  // Si rien n'est s�l�ctionn�
 			  Alert alert = new Alert(AlertType.WARNING);
 			  alert.initOwner(mainAppFX.getPrimaryStage());
 			  alert.setTitle("Aucune selection");
-			  alert.setHeaderText("Aucune donnée selectionnée");
+			  alert.setHeaderText("Aucune donn�e selectionn�e");
 			  alert.setContentText("Selectionnez une ligne dans la table");
 			  alert.showAndWait();
 		 }
 	 }
 
-	 // SUPPRIMER : Methode appelée lorsque l'utilisateur clique sur le boutton de suppression
+	 // SUPPRIMER : Methode appelée lorsque l'utilisateur clique sur le bouton de suppression
 	 @FXML
 	 private void handleCANCEL() {
+		  if (player.getString("sound").equals("ON")) {
+			  sound = new Sound(mainAppFX, "../../res/bitDELETE.wav");
+			  sound.Play();
+		  }
+		  //btnSelected = "CANCEL";
 		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
 		  if (selectedIndex >= 0) {
 			  // Une ligne a été séléctionnée
 			  tableFX.getItems().remove(selectedIndex);
 		  } else {
-			  // Aucune selection à supprimer...
+			  // Aucune selection � supprimer...
 			  Alert alert = new Alert(AlertType.WARNING);
 			  alert.initOwner(mainAppFX.getPrimaryStage());
 			  alert.setTitle("Erreur 404");
@@ -196,7 +213,11 @@ public class MachineController {
 	 // GAMEPAD
 	 @FXML
 	 private void handleENTER() {
-		 // Simule un clic sur l'un des boutons selectionné sur la droite du PAD
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
+			 sound.Play();
+		 }
+		 // Simule un clic sur l'un des boutons selectionn� sur la droite du PAD
 		 if (btnSelected != "") {
 			 switch (btnSelected.toUpperCase()) {
 			 	case "START" :
@@ -218,6 +239,10 @@ public class MachineController {
 	 }
 	 @FXML
 	 private void handleUP() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
+			 sound.Play();
+		 }
 		 // Permet de se deplacer vers le HAUT du TableView
 		 //tableFX.getFocusModel().focusPrevious();
 		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
@@ -225,12 +250,20 @@ public class MachineController {
 	 }	 
 	 @FXML
 	 private void handleDOWN() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
+			 sound.Play();
+		 }
 		 // Permet de se deplacer vers le BAS du TableView
 		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
 		 tableFX.getSelectionModel().select(Integer.parseInt(String.valueOf(focus.getId()))+1);
 	 }
 	 @FXML
 	 private void handleLEFT() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
+			 sound.Play();
+		 }
 		 // TODO - Permet de se deplacer vers la GAUCHE du ButtonBar	
 		 switch (btnSelected) {
 			 case "START" :
@@ -253,6 +286,10 @@ public class MachineController {
 	 }
 	 @FXML
 	 private void handleRIGHT() {
+		 if (player.getString("sound").equals("ON")) {
+			 sound = new Sound(mainAppFX, "../../res/bitMOVE.wav");
+			 sound.Play();
+		 }
 		 // TODO - Permet de se deplacer vers la DROITE du ButtonBar
 		 switch (btnSelected) {
 			 case "START" :
@@ -277,8 +314,8 @@ public class MachineController {
 	 private KeyEvent keyEvent;
 	 @FXML
 	 private void handlekeyPressed() {
-		 // Si la touche ENTREE est appuyée, on verifie si un bouton
-		 // est selectionné et on lance alors la methode adequate
+		 // Si la touche ENTREE est appuy�e, on verifie si un bouton 
+		 // est selectionn� et on lance alors la methode adequate
 		 //System.out.println(""+e);	
 		 //TODO
 	 }

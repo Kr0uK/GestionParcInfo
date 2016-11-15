@@ -208,8 +208,4 @@ public class DAOMachine implements IDAOHandler {
         }
     }
 
-    @Override
-    public <T> boolean verifier(T objet) {
-        return false;
-    }
 }

@@ -21,6 +21,5 @@ public interface IDAOHandler {
 
     <T> List<T> lecture(String query);
 
-    <T> boolean verifier(T objet);
 
 }

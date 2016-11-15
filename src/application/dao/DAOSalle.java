@@ -36,8 +36,5 @@ public class DAOSalle implements IDAOHandler {
         return null;
     }
 
-    @Override
-    public <T> boolean verifier(T objet) {
-        return false;
-    }
+
 }
