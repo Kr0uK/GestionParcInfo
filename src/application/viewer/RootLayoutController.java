@@ -31,7 +31,7 @@ public class RootLayoutController {
 			 lang = Language.getsetLang(new Locale("fr", "FR"));			 
 		 }
 		 mainAppFX.refreshRootLayout(LayoutActuel);
-		 System.out.println("(RootLayoutController) Langue d�finie sur : "+lang.toString());
+		 System.out.println("(RootLayoutController) Langue définie sur : "+lang.toString());
 	 }
 	 
 	 @FXML
@@ -51,7 +51,7 @@ public class RootLayoutController {
 		 Alert alert = new Alert(AlertType.INFORMATION);
 		 alert.setTitle(rsc.getString("titre"));
 		 alert.setHeaderText("Logiciel de Gestion de Parcs informatique");
-		 alert.setContentText("Auteurs : COUPEZ Fr�d�ric, Boris MOTZ, Renaud METZ");
+		 alert.setContentText("Auteurs : COUPEZ Frédéric, Boris MOTZ, Renaud METZ");
 		 alert.showAndWait();
 	 }
 	

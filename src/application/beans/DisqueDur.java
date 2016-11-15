@@ -4,6 +4,8 @@ package application.beans; /****************************************************
  * Purpose: Defines the Class application.beans.DisqueDur
  ***********************************************************************/
 
+import application.interfaces.IComposant;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -11,16 +13,14 @@ import javax.validation.constraints.Pattern;
 /**
  * @pdOid 33f611c4-528e-4aeb-9bf5-98798acda2b6
  */
-public class DisqueDur extends Composant {
+public class DisqueDur extends Composant implements IComposant {
 
     @NotNull
     @Pattern(regexp = "(SSD|HDD|FSH)", message = "Veuillez entrer une valeur valide.")
-    /** @pdOid 8ba508f1-8ef2-4f1f-bd7f-c9b6d1c7aad7 */
     private String format;
 
     @NotNull
     @Min(1)
-    /** @pdOid e2c22951-6756-4457-8441-d7eaec8d0e5a */
     private int stockageGo;
 
     public String getType() {

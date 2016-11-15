@@ -15,12 +15,10 @@ public class Formation {
 
    @NotNull
    @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
-   /** @pdOid 608bc400-8a70-41ed-9427-fd0240a722a5 */
    private int id;
 
    @NotNull
    @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un libellé valide")
-   /** @pdOid 618e4ce0-e2a0-4e1e-9453-1310fd9e6547 */
    private String libelle;
    
    /** @pdRoleInfo migr=no name=application.beans.Utilisateur assc=association6 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */

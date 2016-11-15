@@ -8,6 +8,8 @@ import application.interfaces.IDAOConnection;
 
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -15,31 +17,26 @@ import java.sql.SQLException;
  */
 public class DAOConnection implements IDAOConnection {
 
-    JdbcRowSet rowSet = null;
+    Connection conn = null;
 
     @Override
-    public JdbcRowSet connexion() {
+    public Connection connexion() {
         try {
             Class.forName(DRIVER);
-            rowSet = RowSetProvider.newFactory().createJdbcRowSet();
-            rowSet.setUrl(ADRESSE);
-            rowSet.setUsername(USER);
-            rowSet.setPassword(MDP);
+            conn = DriverManager.getConnection(ADRESSE,USER,MDP);
 
-            return rowSet;
+            return conn;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
-
-
     }
 
     @Override
     public boolean fermer() {
         try {
-            rowSet.close();
+            conn.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

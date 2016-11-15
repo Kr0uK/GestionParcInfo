@@ -15,7 +15,6 @@ public class Batiment {
 
     @NotNull
     @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
-    /** @pdOid 0b8ebf22-7006-47b4-a3d8-afa3a1fe07da */
     private int id;
 
     @NotNull
@@ -23,7 +22,6 @@ public class Batiment {
     private int site;
 
     @NotNull
-    /** @pdRoleInfo migr=no name=application.beans.Salle assc=association3 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
     public java.util.Collection<Salle> salle;
 
     public int getId() {

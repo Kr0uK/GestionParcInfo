@@ -4,15 +4,16 @@ package application.beans; /****************************************************
  * Purpose: Defines the Class application.beans.CarteMere
  ***********************************************************************/
 
+import application.interfaces.IComposant;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /** @pdOid c4da89b7-f727-476c-b028-3b0bd309f63b */
-public class CarteMere extends Composant {
+public class CarteMere extends Composant implements IComposant {
 
    @NotNull
    @Pattern(regexp = "[A-Z]{3}", message = "Veuillez entrer un format de carte mère valide")
-   /** @pdOid e0d3ef73-1616-4bfb-84d1-b0d5fc28444e */
    private String format;
 
    public String getFormat() {

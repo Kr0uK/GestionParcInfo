@@ -13,12 +13,10 @@ public class Salle {
 
    @NotNull
    @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
-   /** @pdOid ac352b46-d631-470d-aebd-4a93f4aad5c0 */
    private int id;
 
    @NotNull
    @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un numéro valide")
-   /** @pdOid f06e9882-c6c0-46ec-851b-f6cd37b14c81 */
    private String numero;
    
    /** @pdRoleInfo migr=no name=application.beans.Machine assc=association2 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */

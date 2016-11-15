@@ -31,7 +31,7 @@ import java.awt.event.KeyListener;
 */
 public class MachineController {
 		
-		// R�f�rence pour le tableview et les colonnes
+		// Référence pour le tableview et les colonnes
 		@FXML
 		private TableView<Machine> tableFX;
 		@FXML
@@ -39,7 +39,7 @@ public class MachineController {
 		@FXML
 		private TableColumn<Machine, String> coltwo;
 		 
-		// R�f�rence pour les labels
+		// Référence pour les labels
 		@FXML
 		private Label label1;
 		@FXML
@@ -55,7 +55,7 @@ public class MachineController {
 		@FXML
 		private Label label7;
 
-		// R�f�rence � l'application principale
+		// Référence à l'application principale
 		public MainAppFX mainAppFX;
 		
 		@FXML
@@ -71,7 +71,7 @@ public class MachineController {
 
 	/**
 	 * Initialises la classe controller. 
-	 * Cette methode est automaticament appel�e apr�s le chargement du fichier FXML.
+	 * Cette methode est automaticament appelée après le chargement du fichier FXML.
 	 */
 	 @FXML
 	 private void initialize() {
@@ -84,8 +84,8 @@ public class MachineController {
 		 
 		 // Ajout d'un listener pour ecouter les changements :
 		 // Nous obtenons la selectedItemProperty de la table de machines et lui ajoutons un listener. 
-		 // Chaque fois que l'utilisateur s�lectionne une machine dans la table, notre expression lambda est ex�cut�e.
-		 // Nous prenons la machine nouvellement s�lectionn�e pour la transmettre � la m�thode showDetails(...).
+		 // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
+		 // Nous prenons la machine nouvellement sélectionnée pour la transmettre à la méthode showDetails(...).
 		 tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
 	}
 	 
@@ -121,7 +121,7 @@ public class MachineController {
 		 
 		 // ATTRIBUTION DES DONNEES
 		 if (machine != null) {
-		 // Remplissage des labels avec les donn�es Machine de l'item selectionn� dans le tableview
+		 // Remplissage des labels avec les données Machine de l'item selectionné dans le tableview
 			 label1.setText(machine.getIdSP());
 			 label2.setText(machine.getIdAfpaSP());
 			 label3.setText(machine.getIdUniqueSP());
@@ -141,7 +141,7 @@ public class MachineController {
 		 }
 	}
 	 
-	 // AJOUTER : Methode appel�e lorsque l'utilisateur clique sur le boutton d'ajout
+	 // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le bouton d'ajout
 	 @FXML
 	 private void handleSTART() {
 		  btnSelected = "START";
@@ -152,7 +152,7 @@ public class MachineController {
 		  }
 	 }
 	 
-	 //  MODIFIER : Methode appel�e lorsque l'utilisateur clique sur le boutton de modification
+	 //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le bouton de modification
 	 @FXML
 	 private void handleSELECT() {
 		 btnSelected = "SELECT";
@@ -163,25 +163,25 @@ public class MachineController {
 				  showDetails(selection);
 			  }
 		 } else {
-			  // Si rien n'est s�l�ctionn�
+			  // Si rien n'est séléctionné
 			  Alert alert = new Alert(AlertType.WARNING);
 			  alert.initOwner(mainAppFX.getPrimaryStage());
 			  alert.setTitle("Aucune selection");
-			  alert.setHeaderText("Aucune donn�e selectionn�e");
+			  alert.setHeaderText("Aucune donnée selectionnée");
 			  alert.setContentText("Selectionnez une ligne dans la table");
 			  alert.showAndWait();
 		 }
 	 }
 
-	 // SUPPRIMER : Methode appel�e lorsque l'utilisateur clique sur le boutton de suppression
+	 // SUPPRIMER : Methode appelée lorsque l'utilisateur clique sur le boutton de suppression
 	 @FXML
 	 private void handleCANCEL() {
 		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
 		  if (selectedIndex >= 0) {
-			  // Une ligne a �t� s�l�ctionn�e
+			  // Une ligne a été séléctionnée
 			  tableFX.getItems().remove(selectedIndex);
 		  } else {
-			  // Aucune selection � supprimer...
+			  // Aucune selection à supprimer...
 			  Alert alert = new Alert(AlertType.WARNING);
 			  alert.initOwner(mainAppFX.getPrimaryStage());
 			  alert.setTitle("Erreur 404");
@@ -196,7 +196,7 @@ public class MachineController {
 	 // GAMEPAD
 	 @FXML
 	 private void handleENTER() {
-		 // Simule un clic sur l'un des boutons selectionn� sur la droite du PAD
+		 // Simule un clic sur l'un des boutons selectionné sur la droite du PAD
 		 if (btnSelected != "") {
 			 switch (btnSelected.toUpperCase()) {
 			 	case "START" :
@@ -277,14 +277,14 @@ public class MachineController {
 	 private KeyEvent keyEvent;
 	 @FXML
 	 private void handlekeyPressed() {
-		 // Si la touche ENTREE est appuy�e, on verifie si un bouton 
-		 // est selectionn� et on lance alors la methode adequate
+		 // Si la touche ENTREE est appuyée, on verifie si un bouton
+		 // est selectionné et on lance alors la methode adequate
 		 //System.out.println(""+e);	
 		 //TODO
 	 }
 	 
 	 /**
-	 * Appell� par l'application principale pour avoir une r�f�rence de retour sur elle-m�me
+	 * Appellé par l'application principale pour avoir une référence de retour sur elle-même
 	 *
 	 * @param mainApp
 	 */
@@ -292,7 +292,7 @@ public class MachineController {
 	 public void setMainAppFX(MainAppFX mainAppFX) {		
 		this.mainAppFX = mainAppFX; 
 		
-		// Ajout de la liste des donn�es observables dans le tableview " tableFX "
+		// Ajout de la liste des données observables dans le tableview " tableFX "
 		tableFX.setItems(mainAppFX.getData());
 		
 		// selection du premier element

@@ -13,12 +13,10 @@ public class Role {
 
    @NotNull
    @Pattern(regexp = "^[0-9]+", message = "Veuillez entrer un identifiant valide (chiffres uniquement)")
-   /** @pdOid 39976556-5d14-4041-a2ef-ff726af7aa40 */
    private int id;
 
    @NotNull
    @Pattern(regexp = "^[^0-9]+", message = "Veuillez entrer un rôle valide")
-   /** @pdOid 97bd4c44-aebc-4147-a4de-79909b9d4212 */
    private String libelle;
    
    /** @pdRoleInfo migr=no name=application.beans.Individu assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* side=A */

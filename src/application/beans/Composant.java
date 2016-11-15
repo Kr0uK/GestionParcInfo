@@ -1,13 +1,15 @@
 package application.beans; /***********************************************************************
  * Module:  application.beans.Composant.java
- * Author:  admin
+ * Author:  RENAUD
  * Purpose: Defines the Class application.beans.Composant
  ***********************************************************************/
+
+import application.interfaces.IComposant;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-public class Composant {
+public class Composant implements IComposant{
 
    @NotNull
    private int id;

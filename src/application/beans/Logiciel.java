@@ -5,15 +5,16 @@ package application.beans; /****************************************************
  ***********************************************************************/
 
 
+import application.interfaces.IComposant;
+
 import javax.validation.constraints.NotNull;
 
 /**
  * @pdOid 1d702f3f-4f03-44d8-9fc1-4809d7fafb5c
  */
-public class Logiciel extends Composant {
+public class Logiciel extends Composant implements IComposant {
 
     @NotNull
-    /** @pdOid 9fec35af-ac55-4a9b-8175-50947eb7a6e8 */
     private int architecture;
 
     public int getArchitecture() {

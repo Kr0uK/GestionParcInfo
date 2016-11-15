@@ -72,7 +72,7 @@ public class MainAppFX extends Application {
                     List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("query", "lectureMachines"));
                     DataMachine.addAll(liste);
                 }
-                // On r�cup�re d'abord les donn�es a partir du SGBD pour permettre l'affichage
+                // On récupère d'abord les données a partir du SGBD pour permettre l'affichage
              //   getDataMachine();
 
             }
@@ -81,7 +81,7 @@ public class MainAppFX extends Application {
     }
 
 
-    // R�cup�ration des donn�es dans une liste d'objets observables de type Machine
+    // Récupération des données dans une liste d'objets observables de type Machine
     public void getDataMachine() {
         Platform.runLater(new Runnable() {
             @Override
@@ -102,7 +102,7 @@ public class MainAppFX extends Application {
         // GESTION DE LA LANGUE
         ResourceBundle language = ResourceBundle.getBundle("application.resources.Lang");
         Language.setLang(new Locale(language.getString("lang"), language.getString("pays")));
-        System.out.println("(MainAppFX) Langue d�finie sur : "+Language.getLang().toString());
+        System.out.println("(MainAppFX) Langue définie sur : "+Language.getLang().toString());
         Language.setRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
 
         // GESTION DE LA POLICE D'ECRITURE
@@ -163,7 +163,7 @@ public class MainAppFX extends Application {
 
     public void refreshRootLayout(String LayoutActuel) {
         try {
-            // Chargement du layout racine � partir du fichier fxml
+            // Chargement du layout racine à partir du fichier fxml
 
             Language.setRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("viewer/RootLayout.fxml"), Language.getRsc());
@@ -198,7 +198,7 @@ public class MainAppFX extends Application {
             // charger cet apercu au centre du layout racine
             rootLayout.setCenter(overview);
 
-            // ajouts des donn�es dans le tableview controller
+            // ajouts des données dans le tableview controller
             switch (choixLayout) {
                 case "viewer/Machine.fxml" :
                     MachineController machineCtrl = loader.getController();
@@ -237,7 +237,7 @@ public class MainAppFX extends Application {
             MachineEDC.setDialogStage(dialogStage);
             MachineEDC.setMachine(machine);
 
-            // Montre la popup tant qu'elle n'est pas ferm�e
+            // Montre la popup tant qu'elle n'est pas fermée
             dialogStage.showAndWait();
             return MachineEDC.isOkClic();
         } catch (IOException e) {

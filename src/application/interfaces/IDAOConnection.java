@@ -6,6 +6,7 @@ package application.interfaces; /***********************************************
 
 
 import javax.sql.rowset.JdbcRowSet;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public interface IDAOConnection {
@@ -15,7 +16,7 @@ public interface IDAOConnection {
    final String MDP = "itparkmanager";
    final String DRIVER = "com.mysql.jdbc.Driver";
 
-   JdbcRowSet connexion();
+   Connection connexion();
 
    boolean fermer() throws SQLException;
 

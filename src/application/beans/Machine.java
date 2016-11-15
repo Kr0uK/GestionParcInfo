@@ -28,9 +28,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 /*	PROPERTY :
  *	Avec JavaFX il est courant d'utiliser les Properties pour tous les champs de votre classe.
- *	Une Property (propri�t�) nous permet, par exemple, d'�tre automatiquement averti lorsque la
- *	variable id ou toute autre variable a �t� modifi�e.
- *	Ceci nous aide � maintenir la view synchronis�e avec les donn�es.
+ *	Une Property (propriété) nous permet, par exemple, d'être automatiquement averti lorsque la
+ *	variable id ou toute autre variable a été modifiée.
+ *	Ceci nous aide à maintenir la view synchronisée avec les données.
  */
 
 //import javafx.beans.binding.Bindings;

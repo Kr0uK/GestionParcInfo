@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by user on 10/11/2016.
+ * Created by Boris on 10/11/2016.
  */
 public class Verif {
 
