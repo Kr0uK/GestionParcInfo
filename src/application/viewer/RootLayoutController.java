@@ -6,23 +6,27 @@ import java.util.ResourceBundle;
 import application.MainAppFX;
 import application.beans.Machine;
 import application.tools.Language;
-import application.resources.Sound;
+import application.tools.Sound;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+*
+* @author Neo_Ryu
+*/
 public class RootLayoutController {
 	 private static MainAppFX mainAppFX;
 	 private static Locale lang;
 	 private static ResourceBundle rsc;
-	 private static String LayoutActuel;
+	 private static String layoutActuel;
 	 private Sound sound = new Sound();
 	 public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
 	
 	 public static void setMainApp(MainAppFX mainApp, String choixLayout) {
 		 mainAppFX = mainApp;
-		 LayoutActuel = choixLayout;
+		 layoutActuel = choixLayout;
 		 lang = Language.getLang();
 		 rsc = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", lang));
 	 }	 
@@ -33,13 +37,12 @@ public class RootLayoutController {
 			 sound = new Sound(mainAppFX, "../../res/bitLANG.wav");
 			 sound.Play();
 		 }
-		 ResourceBundle language = ResourceBundle.getBundle("application.Config");
 		 if (lang.toString().equals("fr_FR")) {			 
 			 lang = Language.getsetLang(new Locale("en", "EN"));
 		 } else {
 			 lang = Language.getsetLang(new Locale("fr", "FR"));			 
 		 }
-		 mainAppFX.refreshRootLayout(LayoutActuel);
+		 mainAppFX.refreshRootLayout(layoutActuel);
 		 System.out.println("(RootLayoutController) Langue d�finie sur : "+lang.toString());
 	 }
 	 
@@ -49,8 +52,8 @@ public class RootLayoutController {
 			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
 			 sound.Play();
 		 }
-		 LayoutActuel = "viewer/Overview.fxml";
-		 mainAppFX.showOverview(LayoutActuel);
+		 layoutActuel = "viewer/Overview.fxml";
+		 mainAppFX.showOverview(layoutActuel);
 	 }
 	 
 	 @FXML
@@ -59,8 +62,8 @@ public class RootLayoutController {
 			 sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
 			 sound.Play();
 		 }
-		 LayoutActuel = "viewer/Machine.fxml";
-		 mainAppFX.showOverview(LayoutActuel);		 
+		 layoutActuel = "viewer/Machine.fxml";
+		 mainAppFX.showOverview(layoutActuel);		 
 	 }
 	 
 	 @FXML
@@ -92,7 +95,7 @@ public class RootLayoutController {
 							System.out.println("EXIT");
 							System.exit(0);	
 						} catch (InterruptedException e) {
-							e.printStackTrace(); // TODO
+							e.printStackTrace(); // TODO LOGGER
 						}
 		           }
 			}).start();	

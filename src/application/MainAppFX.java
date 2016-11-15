@@ -2,7 +2,6 @@ package application;
 
 import application.beans.Composant;
 import application.beans.Machine;
-import application.dao.DAOConnection;
 import application.dao.DAOMachine;
 import application.tools.LectureRB;
 import application.viewer.RootLayoutController;
@@ -10,7 +9,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.*;
 import javafx.scene.image.Image;
@@ -66,7 +64,7 @@ public class MainAppFX extends Application {
                     DataMachine.addAll(liste);
                 }
                 // On récupère d'abord les données a partir du SGBD pour permettre l'affichage
-             //   getDataMachine();
+                //   getDataMachine();
 
             }
         });
@@ -127,15 +125,11 @@ public class MainAppFX extends Application {
     public void initRootLayout(String choixLayout) {
         try {
             // Chargement du layout racine à partir du fichier fxml
-            //ResourceBundle bundle = ResourceBundle.getBundle("/resources/UIResources");
-
-
             ResourceBundle bundle = Language.getsetRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("viewer/RootLayout.fxml"), bundle);
             loader.setLocation(MainAppFX.class.getResource("viewer/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
             loader.setController(this);
-
 
             // Montrer la scene contenant le layout racine
             Scene scene = new Scene(rootLayout);
@@ -143,8 +137,6 @@ public class MainAppFX extends Application {
             primaryStage.setScene(scene);
 
             // Accorder au controller un acces a MainAppFX
-            //RootLayoutController controller = loader.getController();
-            //controller.setMainApp(this);
             RootLayoutController.setMainApp(this, choixLayout);
 
             // Affichage de la scene dans le stage
@@ -157,7 +149,6 @@ public class MainAppFX extends Application {
     public void refreshRootLayout(String LayoutActuel) {
         try {
             // Chargement du layout racine à partir du fichier fxml
-
             Language.setRsc(ResourceBundle.getBundle("application.resources.UIResources", Language.getLang()));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("viewer/RootLayout.fxml"), Language.getRsc());
             loader.setLocation(MainAppFX.class.getResource("viewer/RootLayout.fxml"));
@@ -165,11 +156,9 @@ public class MainAppFX extends Application {
             loader.setController(this);
 
             // Montrer la scene contenant le layout racine
-
             Scene scene = new Scene(rootLayout);
             scene.getStylesheets().addAll(this.getClass().getResource("viewer/theme_RootLayout.css").toExternalForm());
             primaryStage.setScene(scene);
-
 
             // Accorder au controller un acces a MainAppFX
             RootLayoutController.setMainApp(this, LayoutActuel);
@@ -252,6 +241,4 @@ public class MainAppFX extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-    // 47 / 84
 }

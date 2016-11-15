@@ -3,6 +3,10 @@ package application.tools;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+*
+* @author Neo_Ryu
+*/
 public class Language {
 
 	public Language() {}
