@@ -104,7 +104,7 @@ public class ComposantController {
 	}
 	 
 	// AFFICHAGE DE DETAILS DANS LE GRIDVIEW
-	private  void showDetails(Composant composant) {
+	private void showDetails(Composant composant) {
 		// CONFIGURATION DES BOUTTONS
 		 START.setFont(MainAppFX.f);
 		 SELECT.setFont(MainAppFX.f);
