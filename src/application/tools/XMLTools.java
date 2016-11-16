@@ -14,15 +14,13 @@ import java.util.Iterator;
 public class XMLTools {
 
 
-
     // Write a XML file from an Object
 
-    public static <T> void writeXML(T object, String fileName){
+    public static <T> void writeXML(T object, String fileName) {
 
         XMLEncoder encoder = null;
 
         ArrayList<T> objects = new ArrayList<>();
-
 
 
         // Try to read and recover the object in the XML file
@@ -33,7 +31,7 @@ public class XMLTools {
 
             Iterator<T> iterator = tempObjects.iterator();
 
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
 
                 T tempObject = iterator.next();
 
@@ -43,23 +41,22 @@ public class XMLTools {
 
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
             System.out.println("No XML file created before");
 
         }
 
 
-
         // Check if the attribute object is an Array or an Object
 
-        try{
+        try {
 
             ArrayList<T> tempObjects = (ArrayList) object;
 
             Iterator<T> iterator = tempObjects.iterator();
 
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
 
                 T tempObject = iterator.next();
 
@@ -69,7 +66,7 @@ public class XMLTools {
 
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
             // Add the object in the ArrayList if it's not a Array
 
@@ -78,13 +75,11 @@ public class XMLTools {
         }
 
 
-
-        try{
+        try {
 
             // Open encoder from the file
 
             encoder = new XMLEncoder(new FileOutputStream(fileName));
-
 
 
             //objects.add(object);
@@ -95,7 +90,7 @@ public class XMLTools {
 
             encoder.flush();
 
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
 
             System.out.println("File not found");
 
@@ -108,7 +103,6 @@ public class XMLTools {
         }
 
     }
-
 
 
     // Read a XML file and transfer it in an Object
@@ -129,11 +123,10 @@ public class XMLTools {
 
             // Put the XML object in an Object
 
-            object = (T)decoder.readObject();
+            object = (T) decoder.readObject();
 
 
-
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
 
             System.out.println("File not found");
 

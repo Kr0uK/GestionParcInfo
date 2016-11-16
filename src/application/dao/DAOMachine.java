@@ -5,7 +5,10 @@ package application.dao; /******************************************************
  ***********************************************************************/
 
 import application.beans.Machine;
+import application.interfaces.IComposant;
 import application.interfaces.IDAOHandler;
+import application.tools.ComposantFactory;
+import application.tools.LectureRB;
 import application.tools.Verif;
 
 import java.sql.*;
@@ -16,6 +19,7 @@ public class DAOMachine implements IDAOHandler {
 
     /**
      * Ajout un objet de type machine dans la bdd
+     *
      * @param objet une machine
      * @param query le nom de la procédure stockée
      * @return true si l'insertion est réussi ou false si elle n'a pas réussi
@@ -56,8 +60,9 @@ public class DAOMachine implements IDAOHandler {
 
     /**
      * Suppression d'une machine dans la bdd
+     *
      * @param query le nom de la procédure stockée
-     * @param id de la machine a supprimer
+     * @param id    de la machine a supprimer
      * @return true si la suppression est réussi ou false si elle n'a pas réussi
      */
     @Override
@@ -82,9 +87,10 @@ public class DAOMachine implements IDAOHandler {
 
     /**
      * Modification d'une machine dans la bdd
+     *
      * @param objet une machine
      * @param query nom de la procédure stockée
-     * @param id de la machine a modifier
+     * @param id    de la machine a modifier
      * @return true  si la modification est réussi ou false si elle n'a pas réussi
      */
     @Override
@@ -125,8 +131,9 @@ public class DAOMachine implements IDAOHandler {
 
     /**
      * Lecture d'une machine dans la bdd
+     *
      * @param query nom de la procédure stockée
-     * @param id de la machine
+     * @param id    de la machine
      * @return une machine
      */
     @Override
@@ -155,6 +162,8 @@ public class DAOMachine implements IDAOHandler {
             machineTemp.setAdresseIP(rs.getString(8));
             machineTemp.setPret(rs.getBoolean(9));
             machineTemp.setLocalOrigine(rs.getInt(10));
+            machineTemp.setComposant(getComposantsMachine(rs.getInt(1)));
+
 
             //Cast de la machine en T
             return (T) machineTemp;
@@ -169,6 +178,7 @@ public class DAOMachine implements IDAOHandler {
 
     /**
      * Lecture de toutes les machines de la bdd
+     *
      * @param query nom de la procédure stockée
      * @return une list de machine
      */
@@ -196,6 +206,7 @@ public class DAOMachine implements IDAOHandler {
                 machineTemp.setAdresseIP(rs.getString(8));
                 machineTemp.setPret(rs.getBoolean(9));
                 machineTemp.setLocalOrigine(rs.getInt(10));
+                machineTemp.setComposant(getComposantsMachine(rs.getInt(1)));
                 machines.add((T) machineTemp);
             }
             return machines;
@@ -208,4 +219,24 @@ public class DAOMachine implements IDAOHandler {
         }
     }
 
+    public <T> List<T> getComposantsMachine(int id) {
+        ComposantFactory composantFactory = new ComposantFactory();
+        try {
+            List<T> composants = new ArrayList<T>();
+            CallableStatement cs = conn.connexion().prepareCall(LectureRB.lireRB("query", "lectureComposants"));
+            cs.setInt(1, id);
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()) {
+                composants.add((T)composantFactory.getComposant(rs));
+            }
+            return composants;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            //Fermeture de la connexion
+            conn.fermer();
+        }
+
+    }
 }

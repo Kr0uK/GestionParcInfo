@@ -943,8 +943,8 @@
         <condition property="app-with-external-preloader-jar">
             <and>
                 <isset property="app-with-preloader"/>
-                <isset property="javafx.preloader.type"/>
-                <equals arg1="${javafx.preloader.type}" arg2="jar" trim="true"/>
+                <isset property="javafx.preloader.format"/>
+                <equals arg1="${javafx.preloader.format}" arg2="jar" trim="true"/>
             </and>
         </condition>
         <condition property="app-without-preloader">
@@ -1452,7 +1452,7 @@
 
     <target name="-check-dist-lib-exists">
         <deploy-defines/>
-        <available file="${jfx.deployment.dir}${file.separator}lib" type="dir" property="dist.lib.exists"/>
+        <available file="${jfx.deployment.dir}${file.separator}lib" format="dir" property="dist.lib.exists"/>
     </target>
     <target name="-check-jfx-deployment-jar-current-nolib" depends="-check-dist-lib-exists" unless="dist.lib.exists">
         <uptodate property="jfx-deployment-jar-current" targetfile="${jfx.deployment.dir}${file.separator}${jfx.deployment.jar}" >
@@ -1584,7 +1584,7 @@
 
     <target name="-javafx-init-signing">
         <condition property="generated.key.signing">
-            <equals arg1="${javafx.signing.type}" arg2="self" trim="true"/>
+            <equals arg1="${javafx.signing.format}" arg2="self" trim="true"/>
         </condition>
     </target>
 
@@ -1606,7 +1606,7 @@
         <condition property="is.signing.unsafe">
             <or>
                 <not><isset property="javafx.signed.true"/></not>
-                <not><equals arg1="${javafx.signing.type}" arg2="key" casesensitive="false" trim="true"/></not>
+                <not><equals arg1="${javafx.signing.format}" arg2="key" casesensitive="false" trim="true"/></not>
             </or>
         </condition>
     </target>
@@ -2215,7 +2215,7 @@
                     }
                     // native packaging (time consuming, thus applied in explicit build only)
                     var nativeEnabled = new String(project.getProperty("do.build.native.package"));
-                    var nativeType = new String(project.getProperty("javafx.native.bundling.type"));
+                    var nativeType = new String(project.getProperty("javafx.native.bundling.format"));
                     var projStateRun = new String(project.getProperty("project.state.running"));
                     var projStateDbg = new String(project.getProperty("project.state.debugging"));
                     var projStatePrf = new String(project.getProperty("project.state.profiling"));
@@ -3452,11 +3452,11 @@
     <target name="jfx-build-native-noscript" depends="-set-do-build-native-package, -check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, jfx-rebuild-noscript"/>
 
     <target name="build-native">
-        <property name="javafx.native.bundling.type" value="${native.bundling.type}"/>
+        <property name="javafx.native.bundling.format" value="${native.bundling.format}"/>
         <antcall target="jfx-build-native"/>
     </target>
     <target name="build-native-noscript">
-        <property name="javafx.native.bundling.type" value="${native.bundling.type}"/>        
+        <property name="javafx.native.bundling.format" value="${native.bundling.format}"/>
         <antcall target="jfx-build-native-noscript"/>
     </target>
     
@@ -3498,44 +3498,44 @@
         <antcall target="-post-jfx-native"/>
     </target>
 
-    <target name="-check-native-bundling-type" depends="-check-operating-system" if="do.build.native.package">
+    <target name="-check-native-bundling-format" depends="-check-operating-system" if="do.build.native.package">
         <condition property="need.Inno.presence">
             <and>
                 <isset property="running.on.windows"/>
-                <isset property="javafx.native.bundling.type"/>
+                <isset property="javafx.native.bundling.format"/>
                 <or>
-                    <equals arg1="${javafx.native.bundling.type}" arg2="all" casesensitive="false"/>
-                    <equals arg1="${javafx.native.bundling.type}" arg2="installer" casesensitive="false"/>
-                    <equals arg1="${javafx.native.bundling.type}" arg2="exe" casesensitive="false"/>
+                    <equals arg1="${javafx.native.bundling.format}" arg2="all" casesensitive="false"/>
+                    <equals arg1="${javafx.native.bundling.format}" arg2="installer" casesensitive="false"/>
+                    <equals arg1="${javafx.native.bundling.format}" arg2="exe" casesensitive="false"/>
                 </or>
             </and>
         </condition>
         <condition property="need.WiX.presence">
             <and>
                 <isset property="running.on.windows"/>
-                <isset property="javafx.native.bundling.type"/>
+                <isset property="javafx.native.bundling.format"/>
                 <or>
-                    <equals arg1="${javafx.native.bundling.type}" arg2="all" casesensitive="false"/>
-                    <equals arg1="${javafx.native.bundling.type}" arg2="installer" casesensitive="false"/>
-                    <equals arg1="${javafx.native.bundling.type}" arg2="msi" casesensitive="false"/>
+                    <equals arg1="${javafx.native.bundling.format}" arg2="all" casesensitive="false"/>
+                    <equals arg1="${javafx.native.bundling.format}" arg2="installer" casesensitive="false"/>
+                    <equals arg1="${javafx.native.bundling.format}" arg2="msi" casesensitive="false"/>
                 </or>
             </and>
         </condition>
         <condition property="need.dpkg.presence">
             <and>
                 <isset property="running.on.unix"/>
-                <isset property="javafx.native.bundling.type"/>
+                <isset property="javafx.native.bundling.format"/>
                 <or>
-                    <equals arg1="${javafx.native.bundling.type}" arg2="deb" casesensitive="false"/>
+                    <equals arg1="${javafx.native.bundling.format}" arg2="deb" casesensitive="false"/>
                 </or>
             </and>
         </condition>
         <condition property="need.rpmbuild.presence">
             <and>
                 <isset property="running.on.unix"/>
-                <isset property="javafx.native.bundling.type"/>
+                <isset property="javafx.native.bundling.format"/>
                 <or>
-                    <equals arg1="${javafx.native.bundling.type}" arg2="rpm" casesensitive="false"/>
+                    <equals arg1="${javafx.native.bundling.format}" arg2="rpm" casesensitive="false"/>
                 </or>
             </and>
         </condition>
@@ -3544,7 +3544,7 @@
         <echo message="need.dpkg.presence:${need.dpkg.presence}" level="verbose"/>
         <echo message="need.rpmbuild.presence:${need.rpmbuild.presence}" level="verbose"/>
     </target>
-    <target name="-check-Inno-presence" depends="-check-native-bundling-type" if="need.Inno.presence">
+    <target name="-check-Inno-presence" depends="-check-native-bundling-format" if="need.Inno.presence">
         <local name="exec-output"/>
         <local name="exec-error"/>
         <local name="exec-result"/>
@@ -3562,7 +3562,7 @@
             </and></not>
         </condition>
     </target>
-    <target name="-check-WiX-presence" depends="-check-native-bundling-type" if="need.WiX.presence">
+    <target name="-check-WiX-presence" depends="-check-native-bundling-format" if="need.WiX.presence">
         <local name="exec-output"/>
         <local name="exec-error"/>
         <local name="exec-result"/>
@@ -3578,7 +3578,7 @@
             </not>
         </condition>
     </target>
-    <target name="-check-dpkg-presence" depends="-check-native-bundling-type" if="need.dpkg.presence">
+    <target name="-check-dpkg-presence" depends="-check-native-bundling-format" if="need.dpkg.presence">
         <local name="exec.which.dpkg.result"/>
         <local name="exec.which.dpkg.output"/>
         <exec executable="command" failifexecutionfails="false" failonerror="false" resultproperty="exec.which.dpkg.result" outputproperty="exec.which.dpkg.output">
@@ -3593,7 +3593,7 @@
             </and></not>
         </condition>
     </target>
-    <target name="-check-rpmbuild-presence" depends="-check-native-bundling-type" if="need.rpmbuild.presence">
+    <target name="-check-rpmbuild-presence" depends="-check-native-bundling-format" if="need.rpmbuild.presence">
         <local name="exec.which.rpmbuild.result"/>
         <local name="exec.which.rpmbuild.output"/>
         <exec executable="command" failifexecutionfails="false" failonerror="false" resultproperty="exec.which.rpmbuild.result" outputproperty="exec.which.rpmbuild.output">
@@ -3706,7 +3706,7 @@
             <arg line="${application.args}"/>
             <syspropertyset>
                 <propertyref prefix="run-sys-prop."/>
-                <mapper from="run-sys-prop.*" to="*" type="glob"/>
+                <mapper from="run-sys-prop.*" to="*" format="glob"/>
             </syspropertyset>
         </java>
         <antcall target="-remove-temp-run-dir"/>
@@ -3730,7 +3730,7 @@
             <arg line="${application.args}"/>
             <syspropertyset>
                 <propertyref prefix="run-sys-prop."/>
-                <mapper from="run-sys-prop.*" to="*" type="glob"/>
+                <mapper from="run-sys-prop.*" to="*" format="glob"/>
             </syspropertyset>
         </java>
         <antcall target="-remove-temp-run-dir"/>
@@ -3754,7 +3754,7 @@
             <srcfiles dir="${basedir}${file.separator}nbproject" includes="**${file.separator}*"/>
         </uptodate>
         <echo message="jfx.deployment.jar.newer.than.nbproject = ${jfx.deployment.jar.newer.than.nbproject}" level="verbose"/>
-        <available file="${jfx.deployment.dir}${file.separator}${jfx.deployment.jar}" type="file" property="jfx.deployment.jar.exists"/>
+        <available file="${jfx.deployment.dir}${file.separator}${jfx.deployment.jar}" format="file" property="jfx.deployment.jar.exists"/>
         <condition property="request.clean.due.to.config.change">
             <and>
                 <isset property="jfx.deployment.jar.exists"/>

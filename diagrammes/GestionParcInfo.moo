@@ -197,7 +197,7 @@ CheckSeverity=Yes
 FixRequested=Yes
 CheckRequested=Yes
 
-[FolderOptions\CheckModel\Classe\Constructor return type]
+[FolderOptions\CheckModel\Classe\Constructor return format]
 CheckSeverity=No
 FixRequested=Yes
 CheckRequested=Yes
@@ -622,7 +622,7 @@ CheckSeverity=Yes
 FixRequested=No
 CheckRequested=Yes
 
-[FolderOptions\CheckModel\Classe.Opération\Return type assignment]
+[FolderOptions\CheckModel\Classe.Opération\Return format assignment]
 CheckSeverity=No
 FixRequested=Yes
 CheckRequested=Yes
@@ -835,7 +835,7 @@ CheckSeverity=Yes
 FixRequested=No
 CheckRequested=Yes
 
-[FolderOptions\CheckModel\Interface.Opération\Return type assignment]
+[FolderOptions\CheckModel\Interface.Opération\Return format assignment]
 CheckSeverity=No
 FixRequested=Yes
 CheckRequested=Yes
@@ -4731,8 +4731,8 @@ DAT 1476779876</a:History>
 </o:Attribute>
 <o:Attribute Id="o79">
 <a:ObjectID>10B0D178-156A-4D1D-A648-D9AFEB4C708F</a:ObjectID>
-<a:Name>type</a:Name>
-<a:Code>type</a:Code>
+<a:Name>format</a:Name>
+<a:Code>format</a:Code>
 <a:CreationDate>1476779876</a:CreationDate>
 <a:Creator>RENAUD</a:Creator>
 <a:ModificationDate>1476779975</a:ModificationDate>
