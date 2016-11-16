@@ -30,8 +30,8 @@ public class CarteMere extends Composant implements IComposant {
    }
 
 
-   public CarteMere(int id, String reference, String constructeur, String libelle, String details, int idMachine, String format) {
-      super(id, reference, constructeur, libelle, details, idMachine);
+   public CarteMere(int id, String reference, String constructeur, String libelle, String details, int idMachine, String type, String format) {
+      super(id, reference, constructeur, libelle, details, idMachine,type);
       this.format = format;
    }
 }

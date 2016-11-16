@@ -24,10 +24,12 @@ public class Composant implements IComposant{
    @NotNull
    private String libelle;
 
+
    @NotNull
    private String details;
 
    private int idMachine;
+   private String type;
 
    public int getId() {
       return id;
@@ -77,15 +79,25 @@ public class Composant implements IComposant{
       this.idMachine = idMachine;
    }
 
+   public String getType() {
+      return type;
+   }
+
+   public void setType(String type) {
+      this.type = type;
+   }
+
+
    public Composant() {
    }
 
-   public Composant(int id, String reference, String constructeur, String libelle, String details, int idMachine) {
+   public Composant(int id, String reference, String constructeur, String libelle, String details, int idMachine,String type) {
       this.id = id;
       this.reference = reference;
       this.constructeur = constructeur;
       this.libelle = libelle;
       this.details = details;
       this.idMachine = idMachine;
+      this.type = type;
    }
 }

@@ -29,8 +29,8 @@ public class Logiciel extends Composant implements IComposant {
         super();
     }
 
-    public Logiciel(int id, String reference, String constructeur, String libelle, String details,int idMachine, int architecture) {
-        super(id, reference, constructeur, libelle, details, idMachine);
+    public Logiciel(int id, String reference, String constructeur, String libelle, String details,int idMachine,String type, int architecture) {
+        super(id, reference, constructeur, libelle, details, idMachine,type);
         this.architecture = architecture;
     }
 }

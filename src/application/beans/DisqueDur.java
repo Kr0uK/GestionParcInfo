@@ -44,8 +44,8 @@ public class DisqueDur extends Composant implements IComposant {
     }
 
 
-    public DisqueDur(int id, String reference, String constructeur, String libelle, String details,int idMachine, String format, int stockageGo) {
-        super(id, reference, constructeur, libelle, details, idMachine);
+    public DisqueDur(int id, String reference, String constructeur, String libelle, String details,int idMachine,String type, String format, int stockageGo) {
+        super(id, reference, constructeur, libelle, details, idMachine,type);
         this.format = format;
         this.stockageGo = stockageGo;
     }

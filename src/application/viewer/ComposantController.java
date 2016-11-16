@@ -1,7 +1,9 @@
 package application.viewer;
 
 import application.MainAppFX;
+import application.beans.CarteMere;
 import application.beans.Machine;
+import application.interfaces.IComposant;
 import application.tools.Sound;
 import application.beans.Composant;
 import javafx.event.ActionEvent;
@@ -85,14 +87,14 @@ public class ComposantController {
 			 sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
 			 sound.Play();
 		 }
-		 /*
+
 		 // Initialise la tableFX avec deux colonnes
 		 colone.setCellValueFactory(cellData -> cellData.getValue().idProperty()); 
 		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
 		 
 		 // Nettoyage des details
 		 showDetails(null);
-
+/*
 		 // Ajout d'un listener pour ecouter les changements :
 		 // Nous obtenons la selectedItemProperty de la table de machines et lui ajoutons un listener. 
 		 // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
@@ -102,7 +104,7 @@ public class ComposantController {
 	}
 	 
 	// AFFICHAGE DE DETAILS DANS LE GRIDVIEW
-	private void showDetails(Machine machine) {
+	private  void showDetails(Composant composant) {
 		// CONFIGURATION DES BOUTTONS
 		 START.setFont(MainAppFX.f);
 		 SELECT.setFont(MainAppFX.f);
@@ -132,17 +134,20 @@ public class ComposantController {
 		 Label7.setFont(MainAppFX.f);
 		 
 		 // ATTRIBUTION DES DONNEES
-		 if (machine != null) {
-		 // Remplissage des labels avec les données Machine de l'item selectionné dans le tableview
-			 label1.setText(machine.getIdSP());
-			 label2.setText(machine.getIdAfpaSP());
-			 label3.setText(machine.getIdUniqueSP());
-			 label4.setText(machine.getDateAchatSP());
-			 label5.setText(machine.getDureeGarantieSP());
-			 label6.setText(machine.getAdresseIPSP());
-			 label7.setText(machine.getTypeSP());
+		 if (composant != null) {
+		 // Remplissage des labels avec les données Composant de l'item selectionné dans le tableview
+
+			 // Les champs de l'objet Composant
+			 label1.setText(String.valueOf(composant.getId()));
+			 label2.setText(composant.getLibelle());
+			 label3.setText(composant.getReference());
+			 label4.setText(composant.getConstructeur());
+			 label5.setText(composant.getDetails());
+			 label6.setText(composant.getType());
+
+
 		 } else {
-		 // Machine est null, on retire tout le texte
+		 // Composant est null, on retire tout le texte
 			 label1.setText("");
 			 label2.setText("");
 			 label3.setText("");

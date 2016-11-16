@@ -40,8 +40,8 @@ public class Processeur extends Composant implements IComposant {
       super();
    }
 
-   public Processeur(int id, String reference, String constructeur, String libelle, String details, int idMachine, int coeurs, int frequence) {
-      super(id, reference, constructeur, libelle, details, idMachine);
+   public Processeur(int id, String reference, String constructeur, String libelle, String details, int idMachine,String type, int coeurs, int frequence) {
+      super(id, reference, constructeur, libelle, details, idMachine,type);
       this.coeurs = coeurs;
       this.frequence = frequence;
    }

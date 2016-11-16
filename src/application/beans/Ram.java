@@ -30,8 +30,8 @@ public class Ram extends Composant implements IComposant {
         super();
     }
 
-    public Ram(int id, String reference, String constructeur, String libelle, String details,int idMachine, int capaciteGo) {
-        super(id, reference, constructeur, libelle, details, idMachine);
+    public Ram(int id, String reference, String constructeur, String libelle, String details,int idMachine,String type, int capaciteGo) {
+        super(id, reference, constructeur, libelle, details, idMachine,type);
         this.capaciteGo = capaciteGo;
     }
 }
