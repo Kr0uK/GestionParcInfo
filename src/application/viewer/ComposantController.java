@@ -87,7 +87,7 @@ public class ComposantController {
 			 sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
 			 sound.Play();
 		 }
-
+/*
 		 // Initialise la tableFX avec deux colonnes
 		 colone.setCellValueFactory(cellData -> cellData.getValue().idProperty()); 
 		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
