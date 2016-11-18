@@ -23,11 +23,11 @@ public class DisqueDur extends Composant implements IComposant {
     @Min(1)
     private int stockageGo;
 
-    public String getType() {
+    public String getFormat() {
         return format;
     }
 
-    public void setType(String type) {
+    public void setFormat(String type) {
         this.format = type;
     }
 
