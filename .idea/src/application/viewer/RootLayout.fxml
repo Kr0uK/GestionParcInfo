@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- @author Neo_Ryu -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="514.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewer.RootLayoutController">
+  <!-- TODO Add Nodes -->
+  <top>
+    <MenuBar>
+      <menus>
+        <Menu mnemonicParsing="false" text="%root_file">
+          <items>
+          	<MenuItem mnemonicParsing="false" text="Importer XML" />
+          	<MenuItem mnemonicParsing="false" text="Exporter XML" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+          	<MenuItem fx:id="IntroLayout" mnemonicParsing="false" onAction="#handleAccueil" text="%root_file_main" />
+            <MenuItem fx:id="MachineLayout" mnemonicParsing="false" onAction="#handleMachine" text="%root_file_machine" />
+                  <MenuItem fx:id="EXIT" mnemonicParsing="false" onAction="#handleExit" text="%root_file_exit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="%root_config">
+          <items>
+            <MenuItem mnemonicParsing="false" text="%root_config_db" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="%root_config_skin" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLangue" text="%root_config_lang" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="%root_help">
+          <items>
+          	<MenuItem mnemonicParsing="false" text="%root_help_use" />
+            <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="%root_help_about" />
+          </items>
+        </Menu>
+      </menus>
+      <BorderPane.margin>
+        <Insets />
+      </BorderPane.margin>
+    </MenuBar>
+  </top>  
+</BorderPane>

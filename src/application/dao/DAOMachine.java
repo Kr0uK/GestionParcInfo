@@ -5,11 +5,9 @@ package application.dao; /******************************************************
  ***********************************************************************/
 
 import application.beans.Machine;
-import application.interfaces.IComposant;
 import application.interfaces.IDAOHandler;
 import application.tools.ComposantFactory;
 import application.tools.LectureRB;
-import application.tools.Verif;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,6 +15,7 @@ import java.util.List;
 
 public class DAOMachine implements IDAOHandler {
 
+    LectureRB lrb = new LectureRB();
     /**
      * Ajout un objet de type machine dans la bdd
      *
@@ -29,22 +28,11 @@ public class DAOMachine implements IDAOHandler {
         //Cast du parametre T en machine
         Machine machineAdd = (Machine) objet;
         try {
-            //Verification si le bean est juste TODO déplacé ?
-            Verif.verifier(machineAdd);
-
             //Ouverture de la connexion et préparation du call
             CallableStatement cs = conn.connexion().prepareCall(query);
 
             //Ajout des parametres dans le callablestatement avant l'exécution du call
-            cs.setInt(1, 1);
-            cs.setString(2, machineAdd.getIdUnique());
-            cs.setString(3, machineAdd.getIdAfpa());
-            cs.setString(4, machineAdd.getDateAchat());
-            cs.setInt(5, machineAdd.getDureeGarantie());
-            cs.setString(6, machineAdd.getType());
-            cs.setString(7, machineAdd.getAdresseIP());
-            cs.setBoolean(8, machineAdd.isPret());
-            cs.setInt(9, 1);
+            getMachine(machineAdd, cs);
 
             //Call de l'ajout d'une machine
             cs.execute();
@@ -57,7 +45,6 @@ public class DAOMachine implements IDAOHandler {
             conn.fermer();
         }
     }
-
     /**
      * Suppression d'une machine dans la bdd
      *
@@ -97,22 +84,11 @@ public class DAOMachine implements IDAOHandler {
     public <T> boolean modifier(T objet, String query, String id) {
         Machine machineUpdate = (Machine) objet;
         try {
-            //Verification si le bean est juste TODO déplacé ?
-            Verif.verifier(machineUpdate);
-
             //Ouverture de la connexion et préparation du call
             CallableStatement cs = conn.connexion().prepareCall(query);
 
             //Ajout des parametres dans le callablestatement avant l'exécution du call
-            cs.setInt(1, 1);
-            cs.setString(2, machineUpdate.getIdUnique());
-            cs.setString(3, machineUpdate.getIdAfpa());
-            cs.setString(4, machineUpdate.getDateAchat());
-            cs.setInt(5, machineUpdate.getDureeGarantie());
-            cs.setString(6, machineUpdate.getType());
-            cs.setString(7, machineUpdate.getAdresseIP());
-            cs.setBoolean(8, machineUpdate.isPret());
-            cs.setInt(9, 1);
+            getMachine(machineUpdate, cs);
 
             //ID de la machine a modifier
             cs.setString(10, id);
@@ -151,19 +127,8 @@ public class DAOMachine implements IDAOHandler {
             rs.first();
 
             //Remplissage de l'objet machine
-            Machine machineTemp = new Machine();
-            machineTemp.setId(rs.getInt(1));
-            machineTemp.setIdLocal(rs.getInt(2));
-            machineTemp.setIdUnique(rs.getString(3));
-            machineTemp.setIdAfpa(rs.getString(4));
-            machineTemp.setDateAchat(rs.getString(5));
-            machineTemp.setDureeGarantie(rs.getInt(6));
-            machineTemp.setType(rs.getString(7));
-            machineTemp.setAdresseIP(rs.getString(8));
-            machineTemp.setPret(rs.getBoolean(9));
-            machineTemp.setLocalOrigine(rs.getInt(10));
+            Machine machineTemp = setMachine(rs);
             machineTemp.setComposant(getComposantsMachine(rs.getInt(1)));
-
 
             //Cast de la machine en T
             return (T) machineTemp;
@@ -195,17 +160,7 @@ public class DAOMachine implements IDAOHandler {
 
             //Ajout des resultats de la requete dans des objets machine puis ajouts dans la list T
             while (rs.next()) {
-                Machine machineTemp = new Machine();
-                machineTemp.setId(rs.getInt(1));
-                machineTemp.setIdLocal(rs.getInt(2));
-                machineTemp.setIdUnique(rs.getString(3));
-                machineTemp.setIdAfpa(rs.getString(4));
-                machineTemp.setDateAchat(rs.getString(5));
-                machineTemp.setDureeGarantie(rs.getInt(6));
-                machineTemp.setType(rs.getString(7));
-                machineTemp.setAdresseIP(rs.getString(8));
-                machineTemp.setPret(rs.getBoolean(9));
-                machineTemp.setLocalOrigine(rs.getInt(10));
+                Machine machineTemp = setMachine(rs);
                 machineTemp.setComposant(getComposantsMachine(rs.getInt(1)));
                 machines.add((T) machineTemp);
             }
@@ -219,11 +174,52 @@ public class DAOMachine implements IDAOHandler {
         }
     }
 
+    /**
+     * Donne les données aux CallableStatement
+     * @param machine a ajouter ou modifier
+     * @param cs CallableStatement qui recupére les odnnées
+     * @throws SQLException
+     */
+    private void getMachine(Machine machine, CallableStatement cs) throws SQLException {
+        cs.setInt(1, 1);
+        cs.setString(2, machine.getIdUnique());
+        cs.setString(3, machine.getIdAfpa());
+        cs.setString(4, machine.getDateAchat());
+        cs.setInt(5, machine.getDureeGarantie());
+        cs.setString(6, machine.getType());
+        cs.setString(7, machine.getAdresseIP());
+        cs.setBoolean(8, machine.isPret());
+        cs.setInt(9, 1);
+    }
+
+
+    /**
+     * Récupère les données du Resultset
+     * @param rs resultat de la requete
+     * @return machine
+     * @throws SQLException
+     */
+    private Machine setMachine(ResultSet rs) throws SQLException {
+        Machine machineTemp = new Machine();
+        machineTemp.setId(rs.getInt(1));
+        machineTemp.setIdLocal(rs.getInt(2));
+        machineTemp.setIdUnique(rs.getString(3));
+        machineTemp.setIdAfpa(rs.getString(4));
+        machineTemp.setDateAchat(rs.getString(5));
+        machineTemp.setDureeGarantie(rs.getInt(6));
+        machineTemp.setType(rs.getString(7));
+        machineTemp.setAdresseIP(rs.getString(8));
+        machineTemp.setPret(rs.getBoolean(9));
+        machineTemp.setLocalOrigine(rs.getInt(10));
+        machineTemp.setComposant(new ArrayList<>());
+        return machineTemp;
+    }
+
     public <T> List<T> getComposantsMachine(int id) {
         ComposantFactory composantFactory = new ComposantFactory();
         try {
             List<T> composants = new ArrayList<T>();
-            CallableStatement cs = conn.connexion().prepareCall(LectureRB.lireRB("query", "lectureComposants"));
+            CallableStatement cs = conn.connexion().prepareCall(lrb.lireRB("query", "lectureComposants"));
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
