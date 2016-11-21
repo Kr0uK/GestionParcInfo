@@ -2,7 +2,12 @@ package application.viewer;
 
 import application.MainAppFX;
 import application.beans.*;
+import application.dao.DAOMachine;
+import application.tools.ComposantFactory;
+import application.tools.LectureRB;
 import application.tools.Sound;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,8 +16,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Neo_Ryu
@@ -21,11 +33,11 @@ public class ComposantController {
 
     // Référence pour le tableview et les colonnes
     @FXML
-    private TableView<Machine> tableFX;
+    private TableView<Composant> tableFX;
     @FXML
-    private TableColumn<Machine, String> colone;
+    private TableColumn<Composant, String> colone;
     @FXML
-    private TableColumn<Machine, String> coltwo;
+    private TableColumn<Composant, String> coltwo;
 
     // Référence pour les labels
     @FXML
@@ -42,11 +54,18 @@ public class ComposantController {
     private Label label6;
     @FXML
     private Label label7;
+    @FXML
+    private Label label8;
+    @FXML
+    private Label label9;
+
 
     // Référence à l'application principale
     public MainAppFX mainAppFX;
     public Sound sound = new Sound();
     public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
+
+    // priva
 
     @FXML
     private Button START, SELECT, CANCEL, SWITCH;
@@ -56,7 +75,7 @@ public class ComposantController {
     @FXML
     private ButtonBar btnBar;
     @FXML
-    private Label labDet, Label1, Label2, Label3, Label4, Label5, Label6, Label7;
+    private Label labDet, Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9;
 
     /**
      * Initialises la classe controller.
@@ -68,20 +87,25 @@ public class ComposantController {
             sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
             sound.Play();
         }
-/*
-         // Initialise la tableFX avec deux colonnes
-		 colone.setCellValueFactory(cellData -> cellData.getValue().idProperty());
-		 coltwo.setCellValueFactory(cellData -> cellData.getValue().adresseIPProperty());
 
-		 // Nettoyage des details
-		 showDetails(null);
-/*
-		 // Ajout d'un listener pour ecouter les changements :
-		 // Nous obtenons la selectedItemProperty de la table de machines et lui ajoutons un listener.
-		 // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
-		 // Nous prenons la machine nouvellement sélectionnée pour la transmettre à la méthode showDetails(...).
-		 tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
-		 */
+
+        // Initialise la tableFX avec deux colonnes
+        colone.setCellValueFactory(cellData -> {
+            return cellData.getValue().idSPProperty();
+        });
+        coltwo.setCellValueFactory(cellData -> {
+            return cellData.getValue().typeSPProperty();
+        });
+
+        // Nettoyage des details
+        showDetails(null);
+
+        // Ajout d'un listener pour ecouter les changements :
+        // Nous obtenons la selectedItemProperty de la table de machines et lui ajoutons un listener.
+        // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
+        // Nous prenons la machine nouvellement sélectionnée pour la transmettre à la méthode showDetails(...).
+        tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
+
     }
 
     // AFFICHAGE DE DETAILS DANS LE GRIDVIEW
@@ -107,6 +131,8 @@ public class ComposantController {
         label5.setFont(MainAppFX.f);
         label6.setFont(MainAppFX.f);
         label7.setFont(MainAppFX.f);
+        //  label8.setFont(MainAppFX.f);
+        //   label9.setFont(MainAppFX.f);
         labDet.setFont(MainAppFX.f);
         Label1.setFont(MainAppFX.f);
         Label2.setFont(MainAppFX.f);
@@ -115,6 +141,8 @@ public class ComposantController {
         Label5.setFont(MainAppFX.f);
         Label6.setFont(MainAppFX.f);
         Label7.setFont(MainAppFX.f);
+        //   Label8.setFont(MainAppFX.f);
+        //   Label9.setFont(MainAppFX.f);
 
         // ATTRIBUTION DES DONNEES
         if (composant != null) {
@@ -126,8 +154,14 @@ public class ComposantController {
                 label3.setText(carteMere.getReference());
                 label4.setText(carteMere.getConstructeur());
                 label5.setText(carteMere.getDetails());
-                label6.setText(carteMere.getType());
-                label7.setText((carteMere.getFormat()));
+                label6.setText(String.valueOf(carteMere.getIdMachine()));
+                label7.setText(carteMere.getType());
+                Label8.setText("%lab_format");
+                label8.setText((carteMere.getFormat()));
+                Label9.setText("");
+                label9.setText("");
+                Label9.setDisable(true);
+                label9.setDisable(true);
             } else if (composant instanceof Ram) {
                 Ram ram = (Ram) composant;
                 label1.setText(String.valueOf(ram.getId()));
@@ -135,8 +169,14 @@ public class ComposantController {
                 label3.setText(ram.getReference());
                 label4.setText(ram.getConstructeur());
                 label5.setText(ram.getDetails());
-                label6.setText(ram.getType());
-                label7.setText(String.valueOf(ram.getCapaciteGo()));
+                label6.setText(String.valueOf(ram.getIdMachine()));
+                label7.setText(ram.getType());
+                Label8.setText("");
+                label8.setText(String.valueOf(ram.getCapaciteGo()));
+                Label9.setText("");
+                label9.setText("");
+                Label9.setDisable(true);
+                label9.setDisable(true);
             } else if (composant instanceof DisqueDur) {
                 DisqueDur disqueDur = (DisqueDur) composant;
                 label1.setText(String.valueOf(disqueDur.getId()));
@@ -144,9 +184,46 @@ public class ComposantController {
                 label3.setText(disqueDur.getReference());
                 label4.setText(disqueDur.getConstructeur());
                 label5.setText(disqueDur.getDetails());
-                label6.setText(disqueDur.getType());
-                label7.setText(disqueDur.getFormat());
-                label8.setText(String.valueOf(disqueDur.getStockageGo()));
+                label6.setText(String.valueOf(disqueDur.getIdMachine()));
+                label7.setText(disqueDur.getType());
+                label8.setText(disqueDur.getFormat());
+                label9.setText(String.valueOf(disqueDur.getStockageGo()));
+            } else if (composant instanceof Logiciel) {
+                Logiciel logiciel = (Logiciel) composant;
+                label1.setText(String.valueOf(logiciel.getId()));
+                label2.setText(logiciel.getLibelle());
+                label3.setText(logiciel.getReference());
+                label4.setText(logiciel.getConstructeur());
+                label5.setText(logiciel.getDetails());
+                label6.setText(String.valueOf(logiciel.getIdMachine()));
+                label7.setText(logiciel.getType());
+                label8.setText(String.valueOf(logiciel.getArchitecture()));
+                Label9.setText("");
+                label9.setText("");
+                Label9.setDisable(true);
+                label9.setDisable(true);
+            } else if (composant instanceof Processeur) {
+                Processeur processeur = (Processeur) composant;
+                label1.setText(String.valueOf(processeur.getId()));
+                label2.setText(processeur.getLibelle());
+                label3.setText(processeur.getReference());
+                label4.setText(processeur.getConstructeur());
+                label5.setText(processeur.getDetails());
+                label6.setText(String.valueOf(processeur.getIdMachine()));
+                label7.setText(processeur.getType());
+                label8.setText(String.valueOf(processeur.getCoeurs()));
+                label9.setText(String.valueOf(processeur.getFrequence()));
+            } else if (composant instanceof SystemeExploitation) {
+                SystemeExploitation systemeExploitation = (SystemeExploitation) composant;
+                label1.setText(String.valueOf(systemeExploitation.getId()));
+                label2.setText(systemeExploitation.getLibelle());
+                label3.setText(systemeExploitation.getReference());
+                label4.setText(systemeExploitation.getConstructeur());
+                label5.setText(systemeExploitation.getDetails());
+                label6.setText(String.valueOf(systemeExploitation.getIdMachine()));
+                label7.setText(systemeExploitation.getType());
+                label8.setText(systemeExploitation.getFormat());
+                label9.setText(String.valueOf(systemeExploitation.getArchitecture()));
             } else {
                 // Remplissage des labels avec les données Composant de l'item selectionné dans le tableview
                 // Les champs de l'objet Composant
@@ -155,8 +232,16 @@ public class ComposantController {
                 label3.setText(composant.getReference());
                 label4.setText(composant.getConstructeur());
                 label5.setText(composant.getDetails());
-                label6.setText(composant.getFormat());
-
+                label6.setText(String.valueOf(composant.getIdMachine()));
+                label7.setText(composant.getType());
+                Label8.setText("");
+                label8.setText("");
+                Label9.setText("");
+                label9.setText("");
+                Label8.setDisable(true);
+                Label9.setDisable(true);
+                label8.setDisable(true);
+                label9.setDisable(true);
             }
         } else {
             // Composant est null, on retire tout le texte
@@ -167,6 +252,8 @@ public class ComposantController {
             label5.setText("");
             label6.setText("");
             label7.setText("");
+            label8.setText("");
+            label9.setText("");
         }
 
     }
@@ -198,7 +285,7 @@ public class ComposantController {
         }
         btnSelected = "SELECT";
          /*
-		 Machine selection = tableFX.getSelectionModel().getSelectedItem();
+         Machine selection = tableFX.getSelectionModel().getSelectedItem();
 		 if (selection != null) {
 			  boolean okClic = mainAppFX.showMachineEditDialog(selection);
 			  if (okClic) {
@@ -387,15 +474,17 @@ public class ComposantController {
         this.mainAppFX = mainAppFX;
 
         // Ajout de la liste des données observables dans le tableview " tableFX "
-		/*tableFX.setItems(mainAppFX.getData());
-		
-		// selection du premier element
-		try {
-			tableFX.getSelectionModel().select(0);
-		} catch (NullPointerException e) {
-			Logger.getLogger(MachineController.class.getName()).log(Level.SEVERE, null, e);
-		}	
-		*/
+        //tableFX.setItems();
+
+        // selection du premier element
+        try {
+            tableFX.getSelectionModel().select(0);
+        } catch (NullPointerException e) {
+            Logger.getLogger(MachineController.class.getName()).log(Level.SEVERE, null, e);
+        }
+
 
     }
+
+
 }

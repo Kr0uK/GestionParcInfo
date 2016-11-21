@@ -18,7 +18,6 @@ public class ComposantFactory {
             String typeComposant = rs.getString(7);
             // S'il est vide, on renvoie null
             if (typeComposant == null)
-
                 // On gère chaque cas spécifique
             if (typeComposant.equalsIgnoreCase("RAM")) {
                 return new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(12),rs.getString(7), rs.getInt(8));
