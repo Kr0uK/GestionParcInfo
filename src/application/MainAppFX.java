@@ -62,9 +62,6 @@ public class MainAppFX extends Application {
                     DataMachine.add(new Machine(1,1, "ANDEUXK", "365 2000", "1999-12-31", 1,"BUG", "4.5.1.6", false,1,new ArrayList<Composant>()));
                     DataMachine.add(new Machine(2,1, "MAYA", "212 2012", "2012-12-21", 2,"MAYA", "21.12.20.12",false,1,new ArrayList<Composant>()));
                     DataMachine.add(new Machine(3,1, "MIR", "222 1345", "1999-08-11", 2, "MIR", "48.86.2.33",false,1,new ArrayList<Composant>()));
-                } else {
-                    List<Machine> liste = daoMachine.lecture();
-                    DataMachine.addAll(liste);
                     CarteMere cm = new CarteMere(1, "test", "MOI", "test", "test", 3, "Carte Mere", "ATX");
                     DisqueDur dd = new DisqueDur(1, "test", "MOI", "test", "test", 3, "Disque Dur", "SSD", 540);
                     Logiciel logiciel = new Logiciel(1, "test", "MOI", "test", "test", 3, "Disque Dur", 64);
@@ -72,6 +69,9 @@ public class MainAppFX extends Application {
                     Ram ram= new Ram(1, "test", "MOI", "test", "test", 3, "Ram", 4);
                     SystemeExploitation os= new SystemeExploitation(1, "test", "MOI", "test", "test", 8, "OS", "W10", 4);
                     Composant composant = new Composant(1, "test", "MOI", "test", "test", 3, "OS");
+                } else {
+                    List<Machine> liste = daoMachine.lecture();
+                    DataMachine.addAll(liste);
                 }
                 // On récupère d'abord les données a partir du SGBD pour permettre l'affichage
                 //   getDataMachine();
@@ -133,19 +133,14 @@ public class MainAppFX extends Application {
             // Mettre dans Config.properties : Sound = ON
             choixLayout = "viewer/Splash.fxml";
         } else {
-            // TODO : Page que l'on souhaite voir s'ouvrir au démarrage ici
-            choixLayout = "viewer/Machine.fxml";
-        }
 
+            choixLayout = "viewer/Overview.fxml";
+        }
 
         // On affiche les layouts
         initRootLayout(choixLayout);
         showOverview(choixLayout);
-
     }
-
-
-
 
     public void initRootLayout(String choixLayout) {
         try {

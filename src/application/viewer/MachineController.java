@@ -90,6 +90,8 @@ public class MachineController {
             sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
             sound.Play();
         }
+        tableFX.getSelectionModel().setCellSelectionEnabled(true);
+        tableFX.setEditable(true);
 
         // Initialise la tableFX avec deux colonnes
         colone.setCellValueFactory(cellData -> cellData.getValue().idProperty());
@@ -322,7 +324,6 @@ public class MachineController {
         }
     }
 
-    // TODO - Bug avec les données issues de la database...
     @FXML
     private void handleUP() {
         if (player.getString("sound").equals("ON")) {
@@ -330,12 +331,9 @@ public class MachineController {
             sound.Play();
         }
         // Permet de se deplacer vers le HAUT du TableView
-        //tableFX.getFocusModel().focusPrevious();
-        Machine focus = tableFX.getSelectionModel().getSelectedItem();
-        tableFX.getSelectionModel().select(focus.getId() - 1);
+        scrollTableFX(true);
     }
 
-    // TODO - Bug avec les données issues de la database...
     @FXML
     private void handleDOWN() {
         if (player.getString("sound").equals("ON")) {
@@ -343,8 +341,22 @@ public class MachineController {
             sound.Play();
         }
         // Permet de se deplacer vers le BAS du TableView
-        Machine focus = tableFX.getSelectionModel().getSelectedItem();
-        tableFX.getSelectionModel().select(focus.getId() + 1);
+        scrollTableFX(false);
+    }
+
+    // METHODE PERMETTANT DE NAVIGUER DANS LE TABLEVIEW
+    private void scrollTableFX(Boolean dir) {
+        int Index = tableFX.getSelectionModel().getSelectedIndex();
+        if(Index <= tableFX.getItems().size()) {
+            if (dir) {	// TRUE = handleUP()
+                Index--;
+            } else {	// FALSE = handleDOWN()
+                Index++;
+            }
+            tableFX.scrollTo(Index);
+            tableFX.getFocusModel().focus(Index);
+            tableFX.getSelectionModel().select(Index);
+        }
     }
 
     // TODO - Revoir le systeme de switch tranquillou au calme... =)
@@ -354,7 +366,9 @@ public class MachineController {
             sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
             sound.Play();
         }
+
         idMachineSelect = tableFX.getSelectionModel().getSelectedItem().getId();
+        // Permet de switcher entre les fenetres MACHINE et COMPOSANT
         mainAppFX.showOverview("viewer/Composant.fxml");
     }
 

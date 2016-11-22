@@ -46,7 +46,7 @@ public class ComposantController {
     @FXML
     private TableColumn<Composant, String> coltwo;
 
-    private  ObservableList<Composant> DataComposant = FXCollections.observableArrayList();
+    private ObservableList<Composant> DataComposant = FXCollections.observableArrayList();
 
     // Référence pour les labels
     @FXML
@@ -87,7 +87,7 @@ public class ComposantController {
     private Label labDet, Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9;
 
     /**
-     * Initialises la classe controller.
+     * Initialise la classe controller.
      * Cette methode est automatiquement appelée après le chargement du fichier FXML.
      */
     @FXML
@@ -96,10 +96,8 @@ public class ComposantController {
             sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
             sound.Play();
         }
-        List<Composant> liste = daoComposant.lecture();
+        List<Composant> liste = daoComposant.lecture(idMachineSelect);
         DataComposant.addAll(liste);
-
-
 
 
         // Initialise la tableFX avec deux colonnes
@@ -120,6 +118,7 @@ public class ComposantController {
         tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
 
     }
+
     public ObservableList<Composant> getDataComposant() {
         return DataComposant;
     }
@@ -158,19 +157,6 @@ public class ComposantController {
         Label7.setFont(MainAppFX.f);
         Label8.setFont(MainAppFX.f);
         Label9.setFont(MainAppFX.f);
-/*
-        Label8.setText("");
-        Label9.setText("");
-        label1.setText("");
-        label2.setText("");
-        label3.setText("");
-        label4.setText("");
-        label5.setText("");
-        label6.setText("");
-        label7.setText("");
-        label8.setText("");
-        label9.setText("");
-        */
 
         // ATTRIBUTION DES DONNEES
         if (composant != null) {
@@ -183,7 +169,7 @@ public class ComposantController {
                 label5.setText(carteMere.getDetails());
                 label6.setText(String.valueOf(carteMere.getIdMachine()));
                 label7.setText(carteMere.getType());
-                Label8.setText(LectureRB.lireRB("UIResources","lab_cm_format"));
+                Label8.setText(LectureRB.lireRB("UIResources", "lab_cm_format"));
                 label8.setText((carteMere.getFormat()));
                 Label9.setText("");
                 label9.setText("");
@@ -196,7 +182,7 @@ public class ComposantController {
                 label5.setText(ram.getDetails());
                 label6.setText(String.valueOf(ram.getIdMachine()));
                 label7.setText(ram.getType());
-                Label8.setText(LectureRB.lireRB("UIResources","lab_capacite"));
+                Label8.setText(LectureRB.lireRB("UIResources", "lab_capacite"));
                 label8.setText(String.valueOf(ram.getCapaciteGo()));
                 Label9.setText("");
                 label9.setText("");
@@ -209,9 +195,9 @@ public class ComposantController {
                 label5.setText(disqueDur.getDetails());
                 label6.setText(String.valueOf(disqueDur.getIdMachine()));
                 label7.setText(disqueDur.getType());
-                Label8.setText(LectureRB.lireRB("UIResources","lab_dd_format"));
+                Label8.setText(LectureRB.lireRB("UIResources", "lab_dd_format"));
                 label8.setText(disqueDur.getFormat());
-                Label9.setText(LectureRB.lireRB("UIResources","lab_capacite"));
+                Label9.setText(LectureRB.lireRB("UIResources", "lab_capacite"));
                 label9.setText(String.valueOf(disqueDur.getStockageGo()));
             } else if (composant instanceof Logiciel) {
                 Logiciel logiciel = (Logiciel) composant;
@@ -222,7 +208,7 @@ public class ComposantController {
                 label5.setText(logiciel.getDetails());
                 label6.setText(String.valueOf(logiciel.getIdMachine()));
                 label7.setText(logiciel.getType());
-                Label8.setText(LectureRB.lireRB("UIResources","lab_architecture"));
+                Label8.setText(LectureRB.lireRB("UIResources", "lab_architecture"));
                 label8.setText(String.valueOf(logiciel.getArchitecture()));
                 Label9.setText("");
                 label9.setText("");
@@ -235,9 +221,9 @@ public class ComposantController {
                 label5.setText(processeur.getDetails());
                 label6.setText(String.valueOf(processeur.getIdMachine()));
                 label7.setText(processeur.getType());
-                Label8.setText(LectureRB.lireRB("UIResources","lab_coeurs"));
+                Label8.setText(LectureRB.lireRB("UIResources", "lab_coeurs"));
                 label8.setText(String.valueOf(processeur.getCoeurs()));
-                Label8.setText(LectureRB.lireRB("UIResources","lab_frequence"));
+                Label8.setText(LectureRB.lireRB("UIResources", "lab_frequence"));
                 label9.setText(String.valueOf(processeur.getFrequence()));
             } else if (composant instanceof SystemeExploitation) {
                 SystemeExploitation systemeExploitation = (SystemeExploitation) composant;
@@ -248,9 +234,9 @@ public class ComposantController {
                 label5.setText(systemeExploitation.getDetails());
                 label6.setText(String.valueOf(systemeExploitation.getIdMachine()));
                 label7.setText(systemeExploitation.getType());
-                Label8.setText(LectureRB.lireRB("UIResources","lab_architecture"));
+                Label8.setText(LectureRB.lireRB("UIResources", "lab_architecture"));
                 label8.setText(systemeExploitation.getFormat());
-                Label9.setText(LectureRB.lireRB("UIResources","lab_architecture"));
+                Label9.setText(LectureRB.lireRB("UIResources", "lab_architecture"));
                 label9.setText(String.valueOf(systemeExploitation.getArchitecture()));
             } else {
                 // Remplissage des labels avec les données Composant de l'item selectionné dans le tableview
@@ -334,7 +320,7 @@ public class ComposantController {
             sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
             sound.Play();
         }
-		  /*
+          /*
 		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
 		  if (selectedIndex >= 0) {
 			  // Une ligne a été séléctionnée
@@ -449,7 +435,6 @@ public class ComposantController {
         }
     }
 
-    // TODO - Bug avec les données issues de la database...
     @FXML
     private void handleUP() {
         if (player.getString("sound").equals("ON")) {
@@ -457,14 +442,9 @@ public class ComposantController {
             sound.Play();
         }
         // Permet de se deplacer vers le HAUT du TableView
-        //tableFX.getFocusModel().focusPrevious();
-		 /*
-		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
-		 tableFX.getSelectionModel().select(focus.getId()-1);
-		 */
+        scrollTableFX(true);
     }
 
-    // TODO - Bug avec les données issues de la database...
     @FXML
     private void handleDOWN() {
         if (player.getString("sound").equals("ON")) {
@@ -472,19 +452,32 @@ public class ComposantController {
             sound.Play();
         }
         // Permet de se deplacer vers le BAS du TableView
-		 /*
-		 Machine focus = tableFX.getSelectionModel().getSelectedItem();
-		 tableFX.getSelectionModel().select(focus.getId()+1);
-		 */
+        scrollTableFX(false);
     }
 
-    // TODO - Revoir le systeme de switch tranquillou au calme... =)
+    // METHODE PERMETTANT DE NAVIGUER DANS LE TABLEVIEW
+    private void scrollTableFX(Boolean dir) {
+        int taille = tableFX.getItems().size();
+        int Index = tableFX.getSelectionModel().getSelectedIndex();
+        if(Index <= taille) {
+            if (dir) {	// TRUE = handleUP()
+                Index--;
+            } else {	// FALSE = handleDOWN()
+                Index++;
+            }
+            tableFX.scrollTo(Index);
+            tableFX.getFocusModel().focus(Index);
+            tableFX.getSelectionModel().select(Index);
+        }
+    }
+
     @FXML
     private void handleSWITCH() {
         if (player.getString("sound").equals("ON")) {
             sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
             sound.Play();
         }
+        // Permet de switcher entre les fenetres MACHINE et COMPOSANT
         mainAppFX.showOverview("viewer/Machine.fxml");
     }
 
