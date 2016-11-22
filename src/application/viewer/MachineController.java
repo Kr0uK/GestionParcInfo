@@ -82,7 +82,7 @@ public class MachineController {
 
     /**
      * Initialises la classe controller.
-     * Cette methode est automaticament appelée après le chargement du fichier FXML.
+     * Cette methode est automatiquement appelée après le chargement du fichier FXML.
      */
     @FXML
     private void initialize() {
@@ -169,7 +169,7 @@ public class MachineController {
         Machine newMachine = new Machine(0, 0, "", "", "", 0, "", "", false, 0, lol);
         boolean okClic = mainAppFX.showMachineEditDialog(newMachine);
         if (okClic) {
-            daoMachine.ajouter(newMachine, lrb.lireRB("query", "insertionMachine"));
+            daoMachine.ajouter(newMachine);
             mainAppFX.getDataMachine();
         }
     }
@@ -187,7 +187,7 @@ public class MachineController {
             boolean okClic = mainAppFX.showMachineEditDialog(selection);
             if (okClic) {
                 showDetails(selection);
-                daoMachine.modifier(selection, lrb.lireRB("query", "modificationMachine"), Integer.toString(tableFX.getSelectionModel().getSelectedItem().getId()));
+                daoMachine.modifier(selection, Integer.toString(tableFX.getSelectionModel().getSelectedItem().getId()));
             }
         } else {
             // Si rien n'est séléctionné
@@ -225,7 +225,7 @@ public class MachineController {
                     sound = new Sound(mainAppFX, "../../res/bitDELETE.wav");
                     sound.Play();
                 }
-                daoMachine.supprimer(lrb.lireRB("query", "supressionMachine"), Integer.toString(tableFX.getSelectionModel().getSelectedItem().getId()));
+                daoMachine.supprimer(Integer.toString(tableFX.getSelectionModel().getSelectedItem().getId()));
                 tableFX.getItems().remove(selectedIndex);
 
             } else {            // Bouton CANCEL ou fermeture de la fenetre

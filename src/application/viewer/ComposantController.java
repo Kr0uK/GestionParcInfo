@@ -2,6 +2,7 @@ package application.viewer;
 
 import application.MainAppFX;
 import application.beans.*;
+import application.dao.DAOComposant;
 import application.dao.DAOMachine;
 import application.interfaces.IComposant;
 import application.tools.ComposantFactory;
@@ -35,6 +36,7 @@ import static application.viewer.MachineController.idMachineSelect;
 public class ComposantController {
 
     static DAOMachine daoMachine = new DAOMachine();
+    static DAOComposant daoComposant = new DAOComposant();
 
     // Référence pour le tableview et les colonnes
     @FXML
@@ -94,7 +96,7 @@ public class ComposantController {
             sound = new Sound(mainAppFX, "../../res/bitVALID.wav");
             sound.Play();
         }
-        List<Composant> liste = daoMachine.getComposantsMachine(idMachineSelect);
+        List<Composant> liste = daoComposant.lecture();
         DataComposant.addAll(liste);
 
 

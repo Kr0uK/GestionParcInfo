@@ -1,7 +1,6 @@
 package application;
 
-import application.beans.Composant;
-import application.beans.Machine;
+import application.beans.*;
 import application.dao.DAOMachine;
 import application.tools.LectureRB;
 import application.tools.Video;
@@ -64,9 +63,15 @@ public class MainAppFX extends Application {
                     DataMachine.add(new Machine(2,1, "MAYA", "212 2012", "2012-12-21", 2,"MAYA", "21.12.20.12",false,1,new ArrayList<Composant>()));
                     DataMachine.add(new Machine(3,1, "MIR", "222 1345", "1999-08-11", 2, "MIR", "48.86.2.33",false,1,new ArrayList<Composant>()));
                 } else {
-                    // JEU D'ESSAI BDD
-                    List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("query", "lectureMachines"));
+                    List<Machine> liste = daoMachine.lecture();
                     DataMachine.addAll(liste);
+                    CarteMere cm = new CarteMere(1, "test", "MOI", "test", "test", 3, "Carte Mere", "ATX");
+                    DisqueDur dd = new DisqueDur(1, "test", "MOI", "test", "test", 3, "Disque Dur", "SSD", 540);
+                    Logiciel logiciel = new Logiciel(1, "test", "MOI", "test", "test", 3, "Disque Dur", 64);
+                    Processeur processeur= new Processeur(1, "test", "MOI", "test", "test", 3, "Disque Dur", 4, 3);
+                    Ram ram= new Ram(1, "test", "MOI", "test", "test", 3, "Ram", 4);
+                    SystemeExploitation os= new SystemeExploitation(1, "test", "MOI", "test", "test", 8, "OS", "W10", 4);
+                    Composant composant = new Composant(1, "test", "MOI", "test", "test", 3, "OS");
                 }
                 // On récupère d'abord les données a partir du SGBD pour permettre l'affichage
                 //   getDataMachine();
@@ -82,7 +87,7 @@ public class MainAppFX extends Application {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                List<Machine> liste = daoMachine.lecture(LectureRB.lireRB("query", "lectureMachines"));
+                List<Machine> liste = daoMachine.lecture();
                 DataMachine.addAll(liste);
             }
         });

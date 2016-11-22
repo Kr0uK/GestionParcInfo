@@ -4,7 +4,6 @@ package application.dao; /******************************************************
  * Purpose: Defines the Class application.dao.DAOMachine
  ***********************************************************************/
 
-import application.beans.Composant;
 import application.beans.Machine;
 import application.interfaces.IDAOHandler;
 import application.tools.ComposantFactory;
@@ -16,21 +15,18 @@ import java.util.List;
 
 public class DAOMachine implements IDAOHandler {
 
-    LectureRB lrb = new LectureRB();
     /**
      * Ajout un objet de type machine dans la bdd
-     *
      * @param objet une machine
-     * @param query le nom de la procédure stockée
      * @return true si l'insertion est réussi ou false si elle n'a pas réussi
      */
     @Override
-    public <T> boolean ajouter(T objet, String query) {
+    public <T> boolean ajouter(T objet) {
         //Cast du parametre T en machine
         Machine machineAdd = (Machine) objet;
         try {
             //Ouverture de la connexion et préparation du call
-            CallableStatement cs = conn.connexion().prepareCall(query);
+            CallableStatement cs = conn.connexion().prepareCall(lrb.lireRB("query", "insertionMachine"));
 
             //Ajout des parametres dans le callablestatement avant l'exécution du call
             getMachine(machineAdd, cs);
@@ -46,47 +42,19 @@ public class DAOMachine implements IDAOHandler {
             conn.fermer();
         }
     }
-    /**
-     * Suppression d'une machine dans la bdd
-     *
-     * @param query le nom de la procédure stockée
-     * @param id    de la machine a supprimer
-     * @return true si la suppression est réussi ou false si elle n'a pas réussi
-     */
-    @Override
-    public boolean supprimer(String query, String id) {
-        try {
-            //Ouverture de la connexion et préparation du call
-            CallableStatement cs = conn.connexion().prepareCall(query);
-            //ID de la machine a supprimer
-            cs.setString(1, id);
-
-            //Call de la suppression d'une machine
-            cs.execute();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            //Fermeture de la connexion
-            conn.fermer();
-        }
-    }
 
     /**
      * Modification d'une machine dans la bdd
-     *
      * @param objet une machine
-     * @param query nom de la procédure stockée
-     * @param id    de la machine a modifier
+     * @param id de la machine a modifier
      * @return true  si la modification est réussi ou false si elle n'a pas réussi
      */
     @Override
-    public <T> boolean modifier(T objet, String query, String id) {
+    public <T> boolean modifier(T objet, String id) {
         Machine machineUpdate = (Machine) objet;
         try {
             //Ouverture de la connexion et préparation du call
-            CallableStatement cs = conn.connexion().prepareCall(query);
+            CallableStatement cs = conn.connexion().prepareCall(lrb.lireRB("query", "modificationMachine"));
 
             //Ajout des parametres dans le callablestatement avant l'exécution du call
             getMachine(machineUpdate, cs);
@@ -107,35 +75,24 @@ public class DAOMachine implements IDAOHandler {
     }
 
     /**
-     * Lecture d'une machine dans la bdd
-     *
-     * @param query nom de la procédure stockée
-     * @param id    de la machine
-     * @return une machine
+     * Suppression d'une machine dans la bdd
+     * @param id    de la machine a supprimer
+     * @return true si la suppression est réussi ou false si elle n'a pas réussi
      */
     @Override
-    public <T> T lecture(String query, String id) {
+    public boolean supprimer(String id) {
         try {
             //Ouverture de la connexion et préparation du call
-            CallableStatement cs = conn.connexion().prepareCall(query);
-            //ID de la machine a lire
-            cs.setInt(1, Integer.parseInt(id));
+            CallableStatement cs = conn.connexion().prepareCall(lrb.lireRB("query", "supressionMachine"));
+            //ID de la machine a supprimer
+            cs.setString(1, id);
 
-            //Stockage du résultat de la requete dans un resultset
-            ResultSet rs = cs.executeQuery();
-
-
-            rs.first();
-
-            //Remplissage de l'objet machine
-            Machine machineTemp = setMachine(rs);
-            machineTemp.setComposant(getComposantsMachine(rs.getInt(1)));
-
-            //Cast de la machine en T
-            return (T) machineTemp;
-        } catch (SQLException e) {
+            //Call de la suppression d'une machine
+            cs.execute();
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         } finally {
             //Fermeture de la connexion
             conn.fermer();
@@ -144,17 +101,14 @@ public class DAOMachine implements IDAOHandler {
 
     /**
      * Lecture de toutes les machines de la bdd
-     *
-     * @param query nom de la procédure stockée
      * @return une list de machine
      */
-    @Override
-    public <T> List<T> lecture(String query) {
+    public List<Machine> lecture() {
         //List de T qui contiendra les machines
-        List<T> machines = new ArrayList<>();
+        List<Machine> machines = new ArrayList<>();
         try {
             //Ouverture de la connexion et préparation du call
-            CallableStatement cs = conn.connexion().prepareCall(query);
+            CallableStatement cs = conn.connexion().prepareCall(lrb.lireRB("query", "lectureMachines"));
 
             //Stockage du résultat de la requete dans un resultset
             ResultSet rs = cs.executeQuery();
@@ -162,8 +116,7 @@ public class DAOMachine implements IDAOHandler {
             //Ajout des resultats de la requete dans des objets machine puis ajouts dans la list T
             while (rs.next()) {
                 Machine machineTemp = setMachine(rs);
-                machineTemp.setComposant(getComposantsMachine(rs.getInt(1)));
-                machines.add((T) machineTemp);
+                machines.add(machineTemp);
             }
             return machines;
         } catch (SQLException e) {
@@ -216,26 +169,30 @@ public class DAOMachine implements IDAOHandler {
         return machineTemp;
     }
 
-    public <T extends Composant> List<T> getComposantsMachine(int id) {
-        ComposantFactory composantFactory = new ComposantFactory();
+    /**
+     * Compte le nombre de ligne dans la bdd par rapport a une adresse IP
+     * @param adresseIP adresseIP a verifier
+     * @return le nombre d'adresse
+     */
+    public int machineIP(String adresseIP){
         try {
-            List<T> composants = new ArrayList<T>();
-            CallableStatement cs = conn.connexion().prepareCall(lrb.lireRB("query", "lectureComposants"));
-            cs.setInt(1, id);
-            ResultSet rs = cs.executeQuery();
-            while (rs.next()) {
-                T composant = (T) composantFactory.getComposant(rs);
-                composants.add(composant);
+            //Ouverture de la connexion et préparation du call
+            CallableStatement cs = conn.connexion().prepareCall(lrb.lireRB("query", "countAdresseIP"));
+            cs.setString(1, adresseIP);
 
-            }
-            return composants;
-        } catch (Exception e) {
+            //Stockage du résultat de la requete dans un resultset
+            ResultSet rs = cs.executeQuery();
+
+            rs.first();
+
+            //Nombre de machine avec cette adresse ip
+            return rs.getInt(1);
+        } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return 0;
         } finally {
             //Fermeture de la connexion
             conn.fermer();
         }
-
     }
 }
