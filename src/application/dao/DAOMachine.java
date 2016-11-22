@@ -4,6 +4,7 @@ package application.dao; /******************************************************
  * Purpose: Defines the Class application.dao.DAOMachine
  ***********************************************************************/
 
+import application.beans.Composant;
 import application.beans.Machine;
 import application.interfaces.IDAOHandler;
 import application.tools.ComposantFactory;
@@ -215,7 +216,7 @@ public class DAOMachine implements IDAOHandler {
         return machineTemp;
     }
 
-    public <T> List<T> getComposantsMachine(int id) {
+    public <T extends Composant> List<T> getComposantsMachine(int id) {
         ComposantFactory composantFactory = new ComposantFactory();
         try {
             List<T> composants = new ArrayList<T>();
@@ -223,7 +224,9 @@ public class DAOMachine implements IDAOHandler {
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
-                composants.add((T)composantFactory.getComposant(rs));
+                T composant = (T) composantFactory.getComposant(rs);
+                composants.add(composant);
+
             }
             return composants;
         } catch (Exception e) {

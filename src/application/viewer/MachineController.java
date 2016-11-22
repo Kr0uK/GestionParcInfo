@@ -38,11 +38,12 @@ import java.util.logging.Logger;
 public class MachineController {
 
 
+    public static int idMachineSelect;
     DAOMachine daoMachine = new DAOMachine();
     LectureRB lrb = new LectureRB();
     // Référence pour le tableview et les colonnes
     @FXML
-    private TableView<Machine> tableFX;
+    public TableView<Machine> tableFX;
     @FXML
     private TableColumn<Machine, String> colone;
     @FXML
@@ -353,6 +354,7 @@ public class MachineController {
             sound = new Sound(mainAppFX, "../../res/bitMENU.wav");
             sound.Play();
         }
+        idMachineSelect = tableFX.getSelectionModel().getSelectedItem().getId();
         mainAppFX.showOverview("viewer/Composant.fxml");
     }
 

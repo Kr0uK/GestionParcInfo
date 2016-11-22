@@ -46,6 +46,7 @@ public class MainAppFX extends Application {
     private BorderPane rootLayout;
 
     private ObservableList<Machine> DataMachine = FXCollections.observableArrayList();
+    private ObservableList<Composant> DataComposant = FXCollections.observableArrayList();
 
     public static Font f;
 
@@ -87,10 +88,13 @@ public class MainAppFX extends Application {
         });
 
     }
+
     public ObservableList<Machine> getData() {
 
         return DataMachine;
     }
+
+
 
 
 
