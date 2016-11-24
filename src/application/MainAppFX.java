@@ -32,7 +32,7 @@ import javafx.scene.media.MediaView;
  *
  * @author Neo_Ryu
  */
-public class MainAppFX extends Application {
+public class MainAppFX <T extends Composant> extends Application{
 
 
     static DAOMachine daoMachine = new DAOMachine();
@@ -251,8 +251,8 @@ public class MainAppFX extends Application {
         }
     }
 
-    //TODO
-    public <T extends Composant> boolean showComposantEditDialog(T composant) {
+
+    public boolean showComposantEditDialog(T composant) {
         try {
             // Charge le fichier FXML et creation d'un nouveau stage dans une popup
             FXMLLoader loader = new FXMLLoader();

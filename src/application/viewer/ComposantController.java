@@ -26,7 +26,7 @@ import static application.viewer.MachineController.idMachineSelect;
 /**
  * @author Neo_Ryu
  */
-public class ComposantController {
+public class ComposantController<T extends Composant> {
 
     static DAOMachine daoMachine = new DAOMachine();
     static DAOComposant daoComposant = new DAOComposant();
@@ -109,7 +109,7 @@ public class ComposantController {
         // Nous obtenons la selectedItemProperty de la table de machines et lui ajoutons un listener.
         // Chaque fois que l'utilisateur sélectionne une machine dans la table, notre expression lambda est exécutée.
         // Nous prenons la machine nouvellement sélectionnée pour la transmettre à la méthode showDetails(...).
-        tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails(newValeur));
+        tableFX.getSelectionModel().selectedItemProperty().addListener((observable, oldValeur, newValeur) -> showDetails((T) newValeur));
 
     }
 
@@ -118,7 +118,7 @@ public class ComposantController {
     }
 
     // AFFICHAGE DE DETAILS DANS LE GRIDVIEW
-    private <T extends Composant> void showDetails(T composant) {
+    private  void showDetails(T composant) {
 
         // CONFIGURATION DES BOUTTONS
         START.setFont(MainAppFX.f);
@@ -264,13 +264,13 @@ public class ComposantController {
 
     // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
     @FXML
-    private <T extends Composant> void handleSTART() {
+    private void handleSTART() {
         if (player.getString("sound").equals("ON")) {
             sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
             sound.Play();
         }
         btnSelected = "SELECT";
-        IComposant composant = null;
+        IComposant composant = new Composant();
 
 
         boolean okClic = mainAppFX.showComposantEditDialog((T) composant);
@@ -282,7 +282,7 @@ public class ComposantController {
 
     //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le bouton de modification
     @FXML
-    private <T extends Composant> void handleSELECT() {
+    private void handleSELECT() {
         if (player.getString("sound").equals("ON")) {
             sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
             sound.Play();
