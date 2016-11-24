@@ -2,6 +2,7 @@ package application.viewer;
 
 import application.dao.DAOMachine;
 import application.tools.LectureRB;
+import application.tools.Verif;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
@@ -39,6 +40,8 @@ public class MachineEditDialogController {
 	private Stage dialogStage;
 	private Machine machine;
 	private boolean okClic = false;
+	private static ResourceBundle rsc = ResourceBundle.getBundle("application.resources.UIResources");
+	public static String errorMessage;
 
 	@FXML
 	private Label Label1, Label2, Label3, Label4, Label5, Label6, Label7;
@@ -132,7 +135,7 @@ public class MachineEditDialogController {
 
 	// VERIFICATION
 	private boolean isInputValid() {
-		String errorMessage = "";
+		errorMessage = "";
 		if (txtfld1.getText() == null || txtfld1.getText().length() == 0) {
 			errorMessage += Label1.getText().toUpperCase().toString() + " nécéssaire !\n";
 		}

@@ -12,19 +12,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -73,6 +66,7 @@ public class ComposantController {
     public MainAppFX mainAppFX;
     public Sound sound = new Sound();
     public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
+    private static ResourceBundle rsc = ResourceBundle.getBundle("application.resources.UIResources");
 
     // priva
 
@@ -234,7 +228,7 @@ public class ComposantController {
                 label5.setText(systemeExploitation.getDetails());
                 label6.setText(String.valueOf(systemeExploitation.getIdMachine()));
                 label7.setText(systemeExploitation.getType());
-                Label8.setText(LectureRB.lireRB("UIResources", "lab_architecture"));
+                Label8.setText(LectureRB.lireRB("UIResources", "lab_type"));
                 label8.setText(systemeExploitation.getFormat());
                 Label9.setText(LectureRB.lireRB("UIResources", "lab_architecture"));
                 label9.setText(String.valueOf(systemeExploitation.getArchitecture()));
@@ -270,47 +264,47 @@ public class ComposantController {
 
     // AJOUTER : Methode appelée lorsque l'utilisateur clique sur le boutton d'ajout
     @FXML
-    private void handleSTART() {
+    private <T extends Composant> void handleSTART() {
         if (player.getString("sound").equals("ON")) {
             sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
             sound.Play();
         }
         btnSelected = "SELECT";
-          /*
-          Collection<Composant> lol = new ArrayList<Composant>();
-		 Machine newMachine = new Machine(0, 0, "", "", "", 0, "", "", false, 0, lol);
-		  boolean okClic = mainAppFX.showMachineEditDialog(newMachine);
-		  if (okClic) {
-			  mainAppFX.getData().add(newMachine);
-		  }
-		  */
+        IComposant composant = null;
+
+
+        boolean okClic = mainAppFX.showComposantEditDialog((T) composant);
+        if (okClic) {
+              DataComposant.add((T) composant);
+        }
+
     }
 
     //  MODIFIER : Methode appelée lorsque l'utilisateur clique sur le bouton de modification
     @FXML
-    private void handleSELECT() {
+    private <T extends Composant> void handleSELECT() {
         if (player.getString("sound").equals("ON")) {
             sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
             sound.Play();
         }
         btnSelected = "SELECT";
-         /*
-         Machine selection = tableFX.getSelectionModel().getSelectedItem();
-		 if (selection != null) {
-			  boolean okClic = mainAppFX.showMachineEditDialog(selection);
-			  if (okClic) {
-				  showDetails(selection);
-			  }
-		 } else {
-			  // Si rien n'est séléctionné
-			  Alert alert = new Alert(AlertType.WARNING);
-			  alert.initOwner(mainAppFX.getPrimaryStage());
-			  alert.setTitle("Aucune selection");
-			  alert.setHeaderText("Aucune donnée selectionnée");
-			  alert.setContentText("Selectionnez une ligne dans la table");
-			  alert.showAndWait();
-		 }
-		 */
+
+        T selection = (T) tableFX.getSelectionModel().getSelectedItem();
+        if (selection != null) {
+            boolean okClic = mainAppFX.showComposantEditDialog(selection);
+            if (okClic) {
+                showDetails(selection);
+            }
+        } else {
+            // Si rien n'est séléctionné
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainAppFX.getPrimaryStage());
+            alert.setTitle("Aucune selection");
+            alert.setHeaderText("Aucune donnée selectionnée");
+            alert.setContentText("Selectionnez une ligne dans la table");
+            alert.showAndWait();
+        }
+
     }
 
     // SUPPRIMER : Methode appelée lorsque l'utilisateur clique sur le bouton de suppression
@@ -321,7 +315,7 @@ public class ComposantController {
             sound.Play();
         }
           /*
-		  int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
+          int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
 		  if (selectedIndex >= 0) {
 			  // Une ligne a été séléctionnée
 			  Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -459,10 +453,10 @@ public class ComposantController {
     private void scrollTableFX(Boolean dir) {
         int taille = tableFX.getItems().size();
         int Index = tableFX.getSelectionModel().getSelectedIndex();
-        if(Index <= taille) {
-            if (dir) {	// TRUE = handleUP()
+        if (Index <= taille) {
+            if (dir) {    // TRUE = handleUP()
                 Index--;
-            } else {	// FALSE = handleDOWN()
+            } else {    // FALSE = handleDOWN()
                 Index++;
             }
             tableFX.scrollTo(Index);

@@ -88,6 +88,7 @@ public class Verif {
         if (constraintViolations.size() > 0) {
             for (ConstraintViolation<T> contraintes : constraintViolations) {
                 System.out.println(contraintes.getMessage());
+                // errorMessage += Label7.getText().toUpperCase().toString() + " nécéssaire !\n";
             }
             return false;
         } else {

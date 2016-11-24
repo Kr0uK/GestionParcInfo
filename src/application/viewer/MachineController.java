@@ -41,6 +41,7 @@ public class MachineController {
     public static int idMachineSelect;
     DAOMachine daoMachine = new DAOMachine();
     LectureRB lrb = new LectureRB();
+    private static ResourceBundle rsc = ResourceBundle.getBundle("application.resources.UIResources");
     // Référence pour le tableview et les colonnes
     @FXML
     public TableView<Machine> tableFX;

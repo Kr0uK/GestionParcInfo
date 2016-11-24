@@ -4,8 +4,7 @@ import application.beans.*;
 import application.dao.DAOMachine;
 import application.tools.LectureRB;
 import application.tools.Video;
-import application.viewer.RootLayoutController;
-import application.viewer.SplashController;
+import application.viewer.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -28,10 +27,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaView;
-import application.viewer.OverviewController;
-import application.viewer.ComposantController;
-import application.viewer.MachineController;
-import application.viewer.MachineEditDialogController;
 
 /**
  *
@@ -250,6 +245,37 @@ public class MainAppFX extends Application {
             // Montre la popup tant qu'elle n'est pas fermée
             dialogStage.showAndWait();
             return MachineEDC.isOkClic();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //TODO
+    public <T extends Composant> boolean showComposantEditDialog(T composant) {
+        try {
+            // Charge le fichier FXML et creation d'un nouveau stage dans une popup
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainAppFX.class.getResource("viewer/ComposantEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Creation du Stage
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("ITpark Manager Editor");
+            dialogStage.getIcons().add(new Image("@../../res/itmp.png"));
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Configure l'objet (machine) dans un controlleur
+            ComposantEditDialogController ComposantEDC = loader.getController();
+            ComposantEDC.setDialogStage(dialogStage);
+            ComposantEDC.setComposant(composant);
+
+            // Montre la popup tant qu'elle n'est pas fermée
+            dialogStage.showAndWait();
+            return ComposantEDC.isOkClic();
         } catch (IOException e) {
             e.printStackTrace();
             return false;
