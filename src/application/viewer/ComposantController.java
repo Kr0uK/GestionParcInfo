@@ -269,9 +269,8 @@ public class ComposantController<T extends Composant> {
             sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
             sound.Play();
         }
-        btnSelected = "SELECT";
         IComposant composant = new Composant();
-
+        btnSelected = "START";
 
         boolean okClic = mainAppFX.showComposantEditDialog((T) composant);
         if (okClic) {

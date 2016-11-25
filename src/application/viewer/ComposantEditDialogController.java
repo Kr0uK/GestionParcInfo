@@ -21,7 +21,6 @@ import static application.viewer.ComposantEditDialogController.TypeComposants.*;
  */
 public class ComposantEditDialogController<T extends Composant> {
 
-    //TODO
     protected String btnSelected;
     private static ResourceBundle rsc = ResourceBundle.getBundle("application.resources.UIResources");
 
