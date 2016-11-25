@@ -1,34 +1,31 @@
 package application.viewer;
 
+
 import application.MainAppFX;
 import application.tools.Sound;
+
+import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.effect.Effect;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-
-import java.awt.Label;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import javax.swing.*;
 import javafx.scene.media.*;
 import javafx.scene.media.MediaPlayer.Status;
-import javafx.util.Duration;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
+import java.io.File;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.util.Duration;
+import javax.swing.*;
+
+import javafx.scene.image.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 
 /**
@@ -58,16 +55,8 @@ public class SplashController extends JFrame {
 		 @FXML		private MediaView mediaView;
 		 @FXML		private FlowPane paneVideo;
 		 @FXML		private HBox mediaBar;
-		 
-		 	private final boolean lectureBoucle = false;
-		    private boolean lectureStop = false;
-		    private boolean rembobiner = false;
 		    
-	    private Slider timeSlider;
-	    private Label playTime;
-	    private Slider volumeSlider;
-		
-		// Boutons
+	    // Boutons
 		@FXML private Button START, SELECT, CANCEL, SKIP;
 		@FXML public static Button ENTER;
 		public static String btnSelected = "";	// Permet de determiner le bouton selectionneé pour switchcase
@@ -114,6 +103,7 @@ public class SplashController extends JFrame {
 				 try {
 					 System.out.println("Video via chemin local : "+player.getString("intro").toString());
 					 File fichier = new File(player.getString("intro").toString());	
+					 file = fichier;
 					 setVID_URL(fichier.toURI().toString());				 
 				 } catch (IllegalArgumentException e) {
 					 setVID_URL(file.toURI().toString());
@@ -168,11 +158,6 @@ public class SplashController extends JFrame {
 						             || status == Status.READY
 						             || status == Status.STOPPED)
 						          {
-						             // Rembobiner
-						             if (rembobiner) {
-						            	 mediaPlayer.seek(mediaPlayer.getStartTime());
-						            	 rembobiner = false;
-						             }
 						             mediaPlayer.play();
 						          } 
 						          START.setDisable(true);
@@ -217,6 +202,20 @@ public class SplashController extends JFrame {
 						        CANCEL.setDisable(true);
 					         }
 					   });
+					  
+					  SKIP.setOnAction(new EventHandler<ActionEvent>() {
+						    public void handle(ActionEvent e) {
+						        Status status = mediaPlayer.getStatus();
+						        if (status == Status.UNKNOWN  || status == Status.HALTED)
+						        {
+						           // ne rien faire
+						           return;
+						        } else {
+						        	mediaPlayer.stop();	
+						        	handleSKIP();
+						        }
+					         }
+					   });
 				  }
 		      }); 
 			  
@@ -230,34 +229,48 @@ public class SplashController extends JFrame {
 			  
 			  mediaPlayer.setOnEndOfMedia(new Runnable() {
 				  @Override public void run() {
+					  //System.out.println(file.toURI().toString());
+					  if (file.toURI().toString().toLowerCase().contains("SEGA".toLowerCase())){						  
+						  System.out.println("> SEGA, C'EST PLUS FORT QUE TOI !");
+				  	  }
+					  if (file.toURI().toString().toLowerCase().contains("ORACLE".toLowerCase())){						  
+						  System.out.println("> ORACLE : Hardware and Software - Engineered to Work Together");
+				  	  }
 					  skipVideo();
 				  }
-			  });	
-    	  /*} else {
-    		  Combo.add("RIGHT");
-    		  Combo.add("DOWN");
-    		  Combo.add("RIGHT");
-	    	  new Thread(new Runnable() {
-	   	           @Override
-	   	           public void run() {
-	   					try {
-	   						Thread.sleep(270);
-	   						hackCombo();
-	   					} catch (InterruptedException e) {
-	   						e.printStackTrace(); // TODO LOGGER
-	   					}
-	   	           }
-	   		 }).start();  
-    		 
-    	  }
-		  	 */ 
-      }  
+			  });
+      }
+	// Chargement de la page d'intro/post-intro
+	public String getPageIntro(){
+		ResourceBundle config = ResourceBundle.getBundle("application.Config");
+		String page = "viewer/Overview.fxml";
+		if (!config.getString("boot").isEmpty()) {
+			switch (config.getString("boot")) {
+				case "INTRO" :
+					// Lecture en boucle de la vidéo d'introduction ! :D
+					page = "viewer/Splash.fxml";
+					break;
+				case "MACHINE" :
+					page = "viewer/Machine.fxml";
+					break;
+				case "COMPOSANT" :
+					page = "viewer/Composant.fxml";
+					break;
+				case "ACCUEIL" :
+				case "MAIN" :
+				default :
+					page = "viewer/Overview.fxml";
+					break;
+			}
+		}
+
+		return page;
+	}
       
       private void skipVideo() {
-    	  System.out.println("SEGA, C'EST PLUS FORT QUE TOI !");
-		  // PAGE QUI S'OUVRIRA A LA SUITE DE LA VIDEO		  
-		  mainAppFX.showOverview("viewer/Machine.fxml");
-		  //mainAppFX.showOverview("viewer/Overview.fxml");	//TODO
+    	// PAGE QUI S'OUVRIRA A LA SUITE DE LA VIDEO
+    	  mainAppFX.Reflexivite();
+		  mainAppFX.showOverview(mainAppFX.getPageIntro());
       }
       
      // SKIP : Methode appelée lorsque l'utilisateur clique sur le boutton pour passer la video
@@ -302,63 +315,72 @@ public class SplashController extends JFrame {
 		  btnSelected = "CANCEL";
 	 } 
 	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
 	 // GAMEPAD
 	 @FXML
 	 private void handleENTER() {
 		 hackCombo();
 	 }
 	 	 
+	 int pressENTER = 0;
 	 private void hackCombo() {
 		 if (!Combo.isEmpty()) {
-			// STREET FIGHTERS - Hadoken (Ryu)
-			 if ((Combo.get(0) == "DOWN") 
-			  && (Combo.get(1) == "RIGHT")) {
-				 hackComboSound("../../res/bitHadoken.wav",1300,"@../../res/Hadoken.gif"); 
-				 // TODO - IMAGE...
-			 } 
-			// STREET FIGHTERS - Shoryuken (Ryu)
-			 if ((Combo.get(0) == "RIGHT") 
-			  && (Combo.get(1) == "DOWN") 
-			  && (Combo.get(2) == "RIGHT")) {
-				 hackComboSound("../../res/bitShoryuken.wav",2500,""); 
-			 } 
-			// GALAGA - Challenge Completed
-			 else if (
-			     (Combo.get(0) == "UP") 
-			  && (Combo.get(1) == "DOWN") 
-			  && (Combo.get(2) == "UP")
-			  && (Combo.get(3) == "DOWN")) {
-				 hackComboSound("../../res/bitABOUT.wav",6300,"");
-			 } 
-			// On nettoie la liste Combo si on foire en appuyant sur ENTER
-			 else {
+			 
+			 // AFFICHAGE COMBO
+			 System.out.print("[GamePad] > ");
+			 for (int i = 0 ; i < Combo.size() ; i++) {
+				 System.out.print(Combo.get(i)+" + ");
+			 }
+			 System.out.println(pressENTER+1 +"x[ENTER]");
+			 
+			 try {
+				// STREET FIGHTERS - Metsu-Hadoken (Ryu)
+				 if ((Combo.get(0) == "DOWN") 
+				  && (Combo.get(1) == "RIGHT")
+				  && (Combo.get(2) == "DOWN") 
+				  && (Combo.get(3) == "RIGHT")) {
+					 pressENTER++;
+					 if (pressENTER >= 3) {
+						 hackComboVideo("metsuhadoken.mp4",10000);
+						 System.out.println("[CHEATCODE] METSU HADOKEN ! (Ryu - Street Fighters)");
+						 pressENTER = 0;
+					 }
+				 } 
+				// STREET FIGHTERS - Hadoken (Ryu)
+				 else if ((pressENTER == 0) 
+				  && (Combo.get(0) == "DOWN") 
+				  && (Combo.get(1) == "RIGHT")) {
+					 hackComboSound("../../res/bitHadoken.wav",1300); 
+					 //hackComboPicture("Hadoken.gif", 1300);
+					 // TODO - IMAGE...
+				 } 
+				// STREET FIGHTERS - Shoryuken (Ryu)
+				 else if ((Combo.get(0) == "RIGHT") 
+				  && (Combo.get(1) == "DOWN") 
+				  && (Combo.get(2) == "RIGHT")) {
+					 hackComboSound("../../res/bitShoryuken.wav",2500); 
+				 } 
+				// GALAGA - Challenge Completed
+				 else if (
+				     (Combo.get(0) == "UP") 
+				  && (Combo.get(1) == "DOWN") 
+				  && (Combo.get(2) == "UP")
+				  && (Combo.get(3) == "DOWN")) {
+					 hackComboSound("../../res/bitABOUT.wav",6300);
+				 } 
+				// On nettoie la liste Combo si on foire en appuyant sur ENTER
+				 else {
+					 if (pressENTER == 0) {
+						 Combo.clear();
+					 }
+				 }
+			 } catch (IndexOutOfBoundsException e) {
 				 Combo.clear();
 			 }
 		 }
 	 }	 
 		 
-	 private void hackComboSound(String son, int duree, String imgURL) {
-		 
-		 // TODO - Probleme affichage image
-		 if (!imgURL.isEmpty()) {
-			 mediaView.setVisible(false);
-			 imgAnim.toFront();
-			 imgAnim.setVisible(true);
-			 System.out.println("IMAGE VIEW");
-			 Image imgBG = new Image(imgURL, true);	
-			 imgAnim.setImage(imgBG);
-		 }
-		 
+	 private void hackComboSound(String son, int duree) {
+	 
 		 SKIP.setDisable(true);
 		 START.setDisable(true);
          SELECT.setDisable(true);
@@ -366,8 +388,7 @@ public class SplashController extends JFrame {
          CANCEL.setDisable(false);
          CANCEL.requestFocus();
          CANCEL.isPressed();
-         // TODO - mediaPlayer.stop();
-          
+         // TODO - mediaPlayer.stop();          
          */
          CANCEL.setDisable(true);
          sound = new Sound(mainAppFX, son);
@@ -379,18 +400,82 @@ public class SplashController extends JFrame {
 						Thread.sleep(duree);
 						START.setDisable(false);
 						SKIP.setDisable(false);
-						if (!imgURL.isEmpty()) {
-							imgAnim.setVisible(false);
-							mediaView.setVisible(true);
-						}
-						Combo.clear();
+						
 					} catch (InterruptedException e) {
 						e.printStackTrace(); // TODO LOGGER
 					}
 	           }
-		 }).start();            
+		 }).start(); 
+         Combo.clear();
 	 }
 	 
+	 private void hackComboVideo(String video, int duree) {
+		 
+		 SKIP.setDisable(true);
+		 START.setDisable(true);
+         SELECT.setDisable(true);
+         CANCEL.setDisable(true);
+         
+         File fichier = new File((String) "src/res/"+video);	
+		 setVID_URL(fichier.toURI().toString());				 
+         initFX();
+         
+         new Thread(new Runnable() {
+	           @Override
+	           public void run() {
+					try {
+						Thread.sleep(duree);
+						START.setDisable(false);
+						SKIP.setDisable(false);						
+					} catch (InterruptedException e) {
+						e.printStackTrace(); // TODO LOGGER
+					}
+	           }
+		 }).start(); 
+         Combo.clear();
+	 }
+	 
+	 private void hackComboPicture(String imgURL, int duree) {		 
+		 String path = "\\bin\\res\\";
+	     MainAppFX.explorer(path);
+	    	
+		 // TODO - Probleme affichage image
+		 /*
+		 mediaView.setVisible(false);
+		 imgAnim.toFront();
+		 imgAnim.setVisible(true);
+		 System.out.println("IMAGE VIEW");
+		 Image imgBG = new Image(imgURL, true);	
+		 imgAnim.setImage(imgBG);
+		 */
+		 
+		 if(!true) {
+			 SwingUtilities.invokeLater(new Runnable(){
+		            public void run(){
+		            	//TODO - javax.imageio.IIOException: Can't read input file!
+		        	    ImagePanel lol = new ImagePanel();
+		        	    lol.Init(lol.createImage(imgURL));
+		            }
+		      });
+		 }
+		 
+         new Thread(new Runnable() {
+	           @Override
+	           public void run() {
+					try {
+						Thread.sleep(duree);						
+						if (!imgURL.isEmpty()) {
+							imgAnim.setVisible(false);
+							mediaView.setVisible(true);
+						}
+						
+					} catch (InterruptedException e) {
+						e.printStackTrace(); // TODO LOGGER
+					}
+	           }
+		 }).start(); 
+         Combo.clear();
+	 }
 	 
 	 
 	 @FXML
@@ -492,5 +577,6 @@ public class SplashController extends JFrame {
 	 */     
 	 public void setMainAppFX(MainAppFX mainApp) {		
 			mainAppFX = mainApp; 
+			mainAppFX.Reflexivite();
 	 }
 }

@@ -281,7 +281,50 @@ public class MainAppFX <T extends Composant> extends Application{
             return false;
         }
     }
+    // Chargement de la page d'intro/post-intro
+    public String getPageIntro(){
+        ResourceBundle config = ResourceBundle.getBundle("application.Config");
+        String page = "viewer/Overview.fxml";
+        if (!config.getString("boot").isEmpty()) {
+            switch (config.getString("boot")) {
+                case "INTRO" :
+                    // Lecture en boucle de la vidéo d'introduction ! :D
+                    page = "viewer/Splash.fxml";
+                    break;
+                case "MACHINE" :
+                    page = "viewer/Machine.fxml";
+                    break;
+                case "COMPOSANT" :
+                    page = "viewer/Composant.fxml";
+                    break;
+                case "ACCUEIL" :
+                case "MAIN" :
+                default :
+                    page = "viewer/Overview.fxml";
+                    break;
+            }
+        }
 
+        return page;
+    }
+
+
+    // [DEBUG MODE] Methode permettant l'affichage des ressources disponibles dans le dossier visé
+    // MainAppFX.explorer("\\bin\\res\\");
+    public static void explorer(String path) {
+        System.out.println("\n"+System.getProperty("user.dir")+path +" :");
+        File files = new File(System.getProperty("user.dir")+path);
+        for (File file : files.listFiles()) System.out.println("fichier : " + file.getName());
+    }
+    public String c;		// Nom de la classe
+    public String m; 	// Nom de la methode
+    public void Reflexivite() {
+        Throwable t = new Throwable();
+        t.fillInStackTrace();
+        StackTraceElement s = t.getStackTrace()[1];
+        c = s.getClassName();	// STRING
+        m = s.getMethodName();	// STRING
+    }
 
 
     public Stage getPrimaryStage() {

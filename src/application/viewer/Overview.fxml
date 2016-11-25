@@ -6,6 +6,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -71,16 +72,7 @@
                 <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="66.0">
                            <children>
-                              <ImageView fitHeight="271.0" fitWidth="208.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <image>
-                                    <Image url="@../../res/camembert.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="271.0" fitWidth="208.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <image>
-                                    <Image url="@../../res/camembert.png" />
-                                 </image>
-                              </ImageView>
+                              <PieChart fx:id="camembert" layoutX="1.0" layoutY="1.0" prefHeight="347.0" prefWidth="365.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="340.0">
@@ -90,7 +82,7 @@
                                     <Insets left="5.0" />
                                  </padding>
                               </Label>
-                      <GridPane layoutY="20.0" prefHeight="245.0" prefWidth="307.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="20.0">
+                      <GridPane fx:id="gdPane" layoutY="20.0" prefHeight="245.0" prefWidth="307.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="20.0">
                         <children>
                           <Label fx:id="Label1" text="Stat1">
                             <GridPane.margin>
@@ -136,8 +128,8 @@
                                     <Label fx:id="label7" text=" " GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         </children>
                         <columnConstraints>
-                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="223.0" />
+                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="84.0" />
                         </columnConstraints>
                         <rowConstraints>
                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
