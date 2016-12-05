@@ -40,8 +40,6 @@ public class MachineEditDialogController {
 	private Stage dialogStage;
 	private Machine machine;
 	private boolean okClic = false;
-	private static ResourceBundle rsc = ResourceBundle.getBundle("application.resources.UIResources");
-	public static String errorMessage;
 
 	@FXML
 	private Label Label1, Label2, Label3, Label4, Label5, Label6, Label7;
@@ -108,15 +106,15 @@ public class MachineEditDialogController {
 	// VALIDATION ENVOI
 	@FXML
 	private void handleOk() {
+		machine.setId(Integer.parseInt(txtfld1.getText()));
+		machine.setIdAfpa(txtfld2.getText());
+		machine.setIdUnique(txtfld3.getText());
+		machine.setDateAchat(txtfld4.getText());
+		machine.setDureeGarantie(Integer.parseInt(txtfld5.getText()));
+		machine.setAdresseIP(txtfld6.getText());
+		machine.setType(txtfld7.getText());
 		// Verification avant stockage
 		if (isInputValid()) {
-			machine.setId(Integer.parseInt(txtfld1.getText()));
-			machine.setIdAfpa(txtfld2.getText());
-			machine.setIdUnique(txtfld3.getText());
-			machine.setDateAchat(txtfld4.getText());
-			machine.setDureeGarantie(Integer.parseInt(txtfld5.getText()));
-			machine.setAdresseIP(txtfld6.getText());
-			machine.setType(txtfld7.getText());
 
 			okClic = true;
 			dialogStage.close();
@@ -135,37 +133,9 @@ public class MachineEditDialogController {
 
 	// VERIFICATION
 	private boolean isInputValid() {
-		errorMessage = "";
-		if (txtfld1.getText() == null || txtfld1.getText().length() == 0) {
-			errorMessage += Label1.getText().toUpperCase().toString() + " nécéssaire !\n";
-		}
-
-		if (txtfld2.getText() == null || txtfld2.getText().length() == 0) {
-			errorMessage += Label2.getText().toUpperCase().toString() + " nécéssaire !\n";
-		}
-
-		if (txtfld3.getText() == null || txtfld3.getText().length() == 0) {
-			errorMessage += Label3.getText().toUpperCase().toString() + " nécéssaire !\n";
-		}
-
-		if (txtfld4.getText() == null || txtfld4.getText().length() == 0) {
-			errorMessage += Label4.getText().toUpperCase().toString() + " nécéssaire !\n";
-		}
-
-		if (txtfld5.getText() == null || txtfld5.getText().length() == 0) {
-			errorMessage += Label5.getText().toUpperCase().toString() + " nécéssaire !\n";
-		}
-
-		if (txtfld6.getText() == null || txtfld6.getText().length() == 0) {
-			errorMessage += Label6.getText().toUpperCase().toString() + " nécéssaire !\n";
-		}
-
-		if (txtfld7.getText() == null || txtfld7.getText().length() == 0) {
-			errorMessage += Label7.getText().toUpperCase().toString() + " nécéssaire !\n";
-		}
-
+		Alert alert = new Alert(AlertType.ERROR);
 		// Affichage d'un message d'erreur si la taille de la chaine est superieur a 0
-		if (errorMessage.length() == 0) {
+		if (Verif.verifier(machine, alert) && machine.ipDispo(alert)) {
 			if (player.getString("sound").equals("ON")) {
 				sound = new Sound("../../res/bitSTART.wav");
 				sound.Play();
@@ -176,11 +146,9 @@ public class MachineEditDialogController {
 				sound = new Sound("../../res/bitCANCEL.wav");
 				sound.Play();
 			}
-			Alert alert = new Alert(AlertType.ERROR);
 			alert.initOwner(dialogStage);
 			alert.setTitle("Champs manquants ou incorrects");
 			alert.setHeaderText("Veuillez remplir correctement les champs...");
-			alert.setContentText(errorMessage);
 			alert.showAndWait();
 			return false;
 		}

@@ -68,7 +68,7 @@ public class ComposantController<T extends Composant> {
     public static ResourceBundle player = ResourceBundle.getBundle("application.Config");
     private static ResourceBundle rsc = ResourceBundle.getBundle("application.resources.UIResources");
 
-    // priva
+
 
     @FXML
     private Button START, SELECT, CANCEL, SWITCH;
@@ -118,7 +118,7 @@ public class ComposantController<T extends Composant> {
     }
 
     // AFFICHAGE DE DETAILS DANS LE GRIDVIEW
-    private  void showDetails(T composant) {
+    private void showDetails(T composant) {
 
         // CONFIGURATION DES BOUTTONS
         START.setFont(MainAppFX.f);
@@ -274,7 +274,8 @@ public class ComposantController<T extends Composant> {
 
         boolean okClic = mainAppFX.showComposantEditDialog((T) composant);
         if (okClic) {
-              DataComposant.add((T) composant);
+            DataComposant.add((T) composant);
+            daoComposant.ajouter(composant);
         }
 
     }
@@ -293,6 +294,7 @@ public class ComposantController<T extends Composant> {
             boolean okClic = mainAppFX.showComposantEditDialog(selection);
             if (okClic) {
                 showDetails(selection);
+                daoComposant.modifier(selection, Integer.toString(tableFX.getSelectionModel().getSelectedItem().getId()));
             }
         } else {
             // Si rien n'est séléctionné
@@ -313,42 +315,42 @@ public class ComposantController<T extends Composant> {
             sound = new Sound(mainAppFX, "../../res/bitENTER.wav");
             sound.Play();
         }
-          /*
-          int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
-		  if (selectedIndex >= 0) {
-			  // Une ligne a été séléctionnée
-			  Alert alert = new Alert(AlertType.CONFIRMATION);
-			  alert.initOwner(mainAppFX.getPrimaryStage());
-			  alert.setTitle("Confirmation de suppression");
-			  alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette donnée ?");
-			  alert.setContentText("Une suppression est définitive, confirmer ?");
-			  ButtonType buttonTypeConfirm = new ButtonType("CONFIRMER");
-			  ButtonType buttonTypeCancel = new ButtonType("ANNULER", ButtonData.CANCEL_CLOSE);
-			  alert.getButtonTypes().setAll(buttonTypeConfirm, buttonTypeCancel);
-			  Optional<ButtonType> result = alert.showAndWait();
-			  if (result.get() == buttonTypeConfirm){	// Bouton CONFIRMER
-				  if (player.getString("sound").equals("ON")) {
-					  sound = new Sound(mainAppFX, "../../res/bitDELETE.wav");
-					  sound.Play();
-				  }
-				  tableFX.getItems().remove(selectedIndex);
-				  // TODO : SQL DELETE
-			  } else { 			// Bouton CANCEL ou fermeture de la fenetre
-				  if (player.getString("sound").equals("ON")) {
-					  sound = new Sound(mainAppFX, "../../res/bitCANCEL.wav");
-					  sound.Play();
-				  }
-			  }	
-		  } else {
-			  // Aucune selection à supprimer...
-			  Alert alert = new Alert(AlertType.WARNING);
-			  alert.initOwner(mainAppFX.getPrimaryStage());
-			  alert.setTitle("Erreur 404");
-			  alert.setHeaderText("Aucune donnée à supprimer");
-			  alert.setContentText("Veuillez selectionner une ligne dans le tableau !");
-			  alert.showAndWait();
-		  }
-		  */
+
+        int selectedIndex = tableFX.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            // Une ligne a été séléctionnée
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initOwner(mainAppFX.getPrimaryStage());
+            alert.setTitle("Confirmation de suppression");
+            alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette donnée ?");
+            alert.setContentText("Une suppression est définitive, confirmer ?");
+            ButtonType buttonTypeConfirm = new ButtonType("CONFIRMER");
+            ButtonType buttonTypeCancel = new ButtonType("ANNULER", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeConfirm, buttonTypeCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeConfirm) {    // Bouton CONFIRMER
+                if (player.getString("sound").equals("ON")) {
+                    sound = new Sound(mainAppFX, "../../res/bitDELETE.wav");
+                    sound.Play();
+                }
+                tableFX.getItems().remove(selectedIndex);
+                daoComposant.supprimer(Integer.toString(tableFX.getSelectionModel().getSelectedItem().getId()));
+            } else {            // Bouton CANCEL ou fermeture de la fenetre
+                if (player.getString("sound").equals("ON")) {
+                    sound = new Sound(mainAppFX, "../../res/bitCANCEL.wav");
+                    sound.Play();
+                }
+            }
+        } else {
+            // Aucune selection à supprimer...
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainAppFX.getPrimaryStage());
+            alert.setTitle("Erreur 404");
+            alert.setHeaderText("Aucune donnée à supprimer");
+            alert.setContentText("Veuillez selectionner une ligne dans le tableau !");
+            alert.showAndWait();
+        }
+
     }
 
 

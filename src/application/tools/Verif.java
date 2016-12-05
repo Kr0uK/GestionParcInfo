@@ -1,5 +1,8 @@
 package application.tools;
 
+import application.viewer.MachineEditDialogController;
+import javafx.scene.control.Alert;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -13,7 +16,7 @@ import java.util.Set;
  */
 public class Verif {
 
-    public static <T> boolean verifier(T objet) {
+    public static <T> boolean verifier(T objet, Alert alert) {
 
         Validator validator;
         Set<ConstraintViolation<T>> constraintViolations = new Set<ConstraintViolation<T>>() {
@@ -85,11 +88,12 @@ public class Verif {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
         constraintViolations = validator.validate(objet);
+        String errorMessage = "";
         if (constraintViolations.size() > 0) {
             for (ConstraintViolation<T> contraintes : constraintViolations) {
-                System.out.println(contraintes.getMessage());
-                // errorMessage += Label7.getText().toUpperCase().toString() + " nécéssaire !\n";
+                errorMessage += contraintes.getMessage() + "\n";
             }
+            alert.setContentText(errorMessage);
             return false;
         } else {
             return true;

@@ -22,6 +22,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.control.Alert;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -439,10 +440,10 @@ public class Machine {
     }
 
 
-    /**TODO refaire la methode
+    /**
      * @return *  @pdOid ed539b07-b49c-4883-8b95-773e5a3a6699
      */
-    public boolean ipDispo() {
+    public boolean ipDispo(Alert alert) {
         try {
             // On récupère l'adresse IP de l'objet
             String adresseIp = this.getAdresseIP();
@@ -455,10 +456,12 @@ public class Machine {
                 int octetInt = Integer.parseInt(octet);
                 if (octet != octetsIp[3]) {
                     if (octetInt < 0 || octetInt > 255) {
+                        alert.setContentText("Mauvaise adresse ip");
                         return false;
                     }
                 } else { // cas du dernier octet
                     if (octetInt <= 0 || octetInt >= 255) {
+                        alert.setContentText("Mauvaise adresse ip");
                         return false;
                     }
                 }
@@ -467,6 +470,7 @@ public class Machine {
             if (daoMachine.machineIP(adresseIp) == 0) { // Ici l'adresse est dispo
                 return true;
             } else { //Ici l'adresse est déjà prise
+                alert.setContentText("Adresse prise");
                 return false;
             }
         } catch (Exception e) {

@@ -129,7 +129,7 @@ public class MachineTest {
 
     @Test
     public void ipDispo() throws Exception {
-        System.out.println(machine.ipDispo());
+        //System.out.println(machine.ipDispo());
     }
 
 

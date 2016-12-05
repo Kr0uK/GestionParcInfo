@@ -393,10 +393,10 @@ is divided into following sections:
                     <test methods="@{testmethods}" name="@{testincludes}" todir="${build.test.results.dir}"/>
                     <syspropertyset>
                         <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" format="glob"/>
+                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
                     </syspropertyset>
-                    <formatter format="brief" usefile="false"/>
-                    <formatter format="xml"/>
+                    <formatter type="brief" usefile="false"/>
+                    <formatter type="xml"/>
                     <jvmarg value="-ea"/>
                     <customize/>
                 </junit>
@@ -423,10 +423,10 @@ is divided into following sections:
                     </batchtest>
                     <syspropertyset>
                         <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" format="glob"/>
+                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
                     </syspropertyset>
-                    <formatter format="brief" usefile="false"/>
-                    <formatter format="xml"/>
+                    <formatter type="brief" usefile="false"/>
+                    <formatter type="xml"/>
                     <jvmarg value="-ea"/>
                     <customize/>
                 </junit>
@@ -455,7 +455,7 @@ is divided into following sections:
                     <xmlfileset dir="${build.test.classes.dir}" includes="@{testincludes}"/>
                     <propertyset>
                         <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" format="glob"/>
+                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
                     </propertyset>
                     <customize/>
                 </testng>
@@ -535,10 +535,10 @@ is divided into following sections:
                     <test methods="@{testmethods}" name="@{testincludes}" todir="${build.test.results.dir}"/>
                     <syspropertyset>
                         <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" format="glob"/>
+                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
                     </syspropertyset>
-                    <formatter format="brief" usefile="false"/>
-                    <formatter format="xml"/>
+                    <formatter type="brief" usefile="false"/>
+                    <formatter type="xml"/>
                     <jvmarg value="-ea"/>
                     <jvmarg line="${debug-args-line}"/>
                     <jvmarg value="-Xrunjdwp:transport=${debug-transport},address=${jpda.address}"/>
@@ -567,10 +567,10 @@ is divided into following sections:
                     </batchtest>
                     <syspropertyset>
                         <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" format="glob"/>
+                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
                     </syspropertyset>
-                    <formatter format="brief" usefile="false"/>
-                    <formatter format="xml"/>
+                    <formatter type="brief" usefile="false"/>
+                    <formatter type="xml"/>
                     <jvmarg value="-ea"/>
                     <jvmarg line="${debug-args-line}"/>
                     <jvmarg value="-Xrunjdwp:transport=${debug-transport},address=${jpda.address}"/>
@@ -667,7 +667,7 @@ is divided into following sections:
                     <customize2>
                         <syspropertyset>
                             <propertyref prefix="test-sys-prop."/>
-                            <mapper from="test-sys-prop.*" to="*" format="glob"/>
+                            <mapper from="test-sys-prop.*" to="*" type="glob"/>
                         </syspropertyset>
                     </customize2>
                 </j2seproject3:testng-debug-impl>
@@ -712,7 +712,7 @@ is divided into following sections:
                     </classpath>
                     <syspropertyset>
                         <propertyref prefix="run-sys-prop."/>
-                        <mapper from="run-sys-prop.*" to="*" format="glob"/>
+                        <mapper from="run-sys-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <customize/>
                 </java>
@@ -789,7 +789,7 @@ is divided into following sections:
                     </classpath>
                     <syspropertyset>
                         <propertyref prefix="run-sys-prop."/>
-                        <mapper from="run-sys-prop.*" to="*" format="glob"/>
+                        <mapper from="run-sys-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <customize/>
                 </java>
@@ -814,7 +814,7 @@ is divided into following sections:
                     </classpath>
                     <syspropertyset>
                         <propertyref prefix="run-sys-prop."/>
-                        <mapper from="run-sys-prop.*" to="*" format="glob"/>
+                        <mapper from="run-sys-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <customize/>
                 </java>
@@ -1153,10 +1153,10 @@ is divided into following sections:
             </classpath>
             <syspropertyset>
                 <propertyref prefix="test-sys-prop."/>
-                <mapper from="test-sys-prop.*" to="*" format="glob"/>
+                <mapper from="test-sys-prop.*" to="*" type="glob"/>
             </syspropertyset>
-            <formatter format="brief" usefile="false"/>
-            <formatter format="xml"/>
+            <formatter type="brief" usefile="false"/>
+            <formatter type="xml"/>
         </junit>
     </target>
     <!--
@@ -1414,7 +1414,7 @@ is divided into following sections:
         <ant antfile="${call.script}" inheritall="false" target="${call.target}">
             <propertyset>
                 <propertyref prefix="transfer."/>
-                <mapper from="transfer.*" to="*" format="glob"/>
+                <mapper from="transfer.*" to="*" type="glob"/>
             </propertyset>
         </ant>
     </target>
